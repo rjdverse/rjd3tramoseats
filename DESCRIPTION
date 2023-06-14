@@ -1,0 +1,40 @@
+Package: rjd3tramoseats
+Type: Package
+Title: Seasonal Adjustment with TRAMO-SEATS and 'JDemetra+ 3.0'
+Version: 3.0.0
+Authors@R: c(
+  person("Jean", "Palate", role = c("aut", "cre"),
+                email = "jean.palate@nbb.be"),
+  person("Alain", "Quartier-la-Tente", role = c("aut"),
+                 email = "alain.quartier@yahoo.fr",
+                 comment = c(ORCID = "0000-0001-7890-3857")))
+Description: Interface around 'JDemetra+ 3.x' (<https://github.com/jdemetra/jdemetra-core>) seasonal adjustment software, STACE project.
+ It offers full acces to options and outputs of TRAMO-SEATS (Time series Regression with ARIMA noise,
+ Missing values and Outliers-Signal Extraction in ARIMA Time Series), including TRAMO modelling (automatic ARIMA model with outlier detection and 
+ trading days adjustment).
+Depends:
+  R (>= 3.6.0)
+Imports:
+  rJava (>= 1.0-6),
+  RProtoBuf (>= 0.4.17),
+  rjd3toolkit (>= 3.0.0)
+SystemRequirements: Java JRE 17 or higher
+License: EUPL
+URL: https://github.com/palatej/rjd3tramoseats
+RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
+BugReports: https://github.com/palatej/rjd3tramoseats/issues
+Encoding: UTF-8
+Collate: 
+    'print.R'
+    'utils.R'
+    'seats.R'
+    'seats_spec.R'
+    'tramo_generic.R'
+    'tramo_outliers.R'
+    'tramo_spec.R'
+    'tramoseats_rslts.R'
+    'tramoseats_spec.R'
+    'tramoseats.R'
+    'ud_var.R'
+    'zzz.R'

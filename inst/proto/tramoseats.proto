@@ -1,0 +1,185 @@
+syntax = "proto3";
+import public "toolkit.proto";
+import public "modelling.proto";
+import public "regarima.proto";
+import public "sa.proto";
+
+package tramoseats;
+
+option java_multiple_files = true;
+option java_package = "demetra.tramoseats.io.protobuf";
+option java_outer_classname = "TramoSeatsProtos";
+
+enum SeatsApproximation {
+	SEATS_APP_NONE = 0;
+	SEATS_APP_LEGACY=1;
+	SEATS_APP_NOISY=2;
+}
+	
+enum SeatsAlgorithm{
+	SEATS_ALG_BURMAN = 0;
+	SEATS_ALG_KALMANSMOOTHER = 1;
+}
+
+message DecompositionSpec {
+	
+	double xl_boundary = 1;
+    SeatsApproximation approximation = 2;
+    double seastolerance = 3;
+    double trend_boundary = 4;
+	double seas_boundary = 5;
+    double seas_boundary_at_pi = 6;
+	bool bias_correction = 7;
+    int32 nfcasts = 8;
+	int32 nbcasts = 9;
+    SeatsAlgorithm algorithm = 10;
+}
+
+enum AutomaticTradingDays {
+	TD_AUTO_NO = 0;
+	TD_AUTO_FTEST = 1;
+	TD_AUTO_WALD = 2;
+	TD_AUTO_AIC = 3;
+	TD_AUTO_BIC = 4;
+}
+		
+enum TradingDaysTest {
+	TD_TEST_NO = 0;
+	TD_TEST_SEPARATE_T = 1;
+	TD_TEST_JOINT_F = 2;
+}
+
+enum EasterType {
+	EASTER_UNUSED = 0;
+	EASTER_STANDARD = 1;
+	EASTER_INCLUDEEASTER = 2;
+	EASTER_INCLUDEEASTERMONDAY = 3;
+}
+
+message TramoSpec {
+    
+    message BasicSpec{
+	  jd3.TimeSelector span = 1;
+	  bool preliminary_check = 3;
+    }
+    
+    message TransformSpec{
+	  modelling.Transformation transformation = 1;
+	  double fct = 2;
+ 	  modelling.LengthOfPeriod adjust = 3;
+	  bool outliers_correction = 4;
+   }
+	
+	message OutlierSpec{
+		bool enabled = 1;
+	    jd3.TimeSelector span = 2;
+		bool ao =3;
+		bool ls = 4;
+		bool tc = 5;
+		bool so = 6;
+		double va = 7;
+		double tcrate = 8;
+		bool ml = 9;
+	}
+
+    message AutoModelSpec{
+        bool enabled = 1;
+        double cancel = 2;
+        double ub1 = 3;
+        double ub2 = 4;
+        double pcr = 5;
+        double pc = 6;
+        double tsig = 7;
+        bool accept_def = 8;
+        bool ami_compare = 9;
+    }
+	
+	message EasterSpec{
+		
+		EasterType type = 1;
+		int32 duration = 2;
+		bool julian = 3;
+		bool test = 4;
+		jd3.Parameter coefficient = 10;
+	}
+	
+	message TradingDaysSpec{
+	
+		modelling.TradingDays td = 1;
+		modelling.LengthOfPeriod lp = 2;
+		string holidays = 3;
+		repeated string users = 4;
+		int32 w = 5;
+		TradingDaysTest test = 6;
+		AutomaticTradingDays auto = 7;
+		double ptest = 8;
+		bool auto_adjust=9;
+		repeated jd3.Parameter tdcoefficients = 10;
+		jd3.Parameter lpcoefficient = 11;
+	}
+	
+	message RegressionSpec{
+		jd3.Parameter mean = 1;
+		bool check_mean = 2;
+		TradingDaysSpec td = 3;
+		EasterSpec easter = 4;
+		repeated modelling.Outlier outliers = 5;
+		repeated modelling.TsVariable users = 6;
+		repeated modelling.InterventionVariable interventions=7;
+		repeated modelling.Ramp ramps = 8;
+	}
+
+	message EstimateSpec{
+	    jd3.TimeSelector span = 1;
+		bool ml = 2;
+		double tol = 3;
+		double ubp = 4;
+	}
+ 
+	BasicSpec basic = 1;
+	TransformSpec transform = 2;
+	OutlierSpec outlier = 3;
+	regarima.SarimaSpec arima = 4;
+    AutoModelSpec automodel = 5;
+	RegressionSpec regression = 6;
+	EstimateSpec estimate= 7;
+}
+
+message SeatsResults{
+  oneof model{	
+	modelling.ArimaModel seats_arima = 1;
+	modelling.SarimaModel seats_sarima = 2;
+  }
+  bool mean = 3;
+  modelling.UcarimaModel canonical_decomposition = 4;   
+  sa.SaDecomposition stochastics = 5;
+}
+
+message TramoSeatsResults{
+	regarima.RegArimaModel preprocessing = 1;
+	SeatsResults decomposition = 2;
+    sa.SaDecomposition final = 3;
+	sa.Diagnostics diagnostics_sa= 5;
+}
+
+message TramoOutput{
+	regarima.RegArimaModel result = 1;
+	TramoSpec estimation_spec = 2;
+	TramoSpec result_spec = 3;
+	jd3.ProcessingLogs log = 4;
+	map<string, jd3.ProcessingDetail> details = 5;
+}
+
+message TramoSeatsOutput{
+	TramoSeatsResults result = 1;
+	Spec estimation_spec = 2;
+	Spec result_spec = 3;
+	jd3.ProcessingLogs log = 4;
+	map<string, jd3.ProcessingDetail> details = 5;
+}
+
+message Spec{
+	TramoSpec tramo = 1;
+	DecompositionSpec seats = 2;
+	sa.BenchmarkingSpec benchmarking = 3;
+}

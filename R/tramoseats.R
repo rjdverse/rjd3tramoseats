@@ -429,3 +429,13 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
     return (rslt)
   }
 }
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+tramoseats_dictionary<-function(){
+  return (.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "dictionary"))
+}

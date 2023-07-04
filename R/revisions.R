@@ -31,9 +31,9 @@ NULL
 #' data_ids<-list(list(start="2005-01-01", id="regression.td(1)"), list(start="2010-01-01", id="residuals.lb"))
 #' # ts identified by the item <id> for the estimations starting in <start> and ending in <end> (a mts with some missing values is returned)
 #' cmp_ids<-list(list(start="2010-01-01", end="2020-01-01", id="sa"), list(start="2010-01-01", end="2020-01-01", id="t"))
-#' rh<-revisions(s, spec, data_ids, ts_ids, cmp_ids)
+#' rh<-tramoseats_revisions(s, spec, data_ids, ts_ids, cmp_ids)
 #' # See tramoseats_dictionary for possible ids
-revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, context=NULL){
+tramoseats_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, context=NULL){
   jts<-rjd3toolkit::.r2jd_ts(ts)
   jspec<-.r2jd_spec_tramoseats(spec)
   if (is.null(context)){

@@ -25,7 +25,6 @@
 #' - `"Burman"`: the default value. May result in a significant underestimation of the components' standard deviation,
 #' as it may become numerically unstable when some roots of the MA polynomial are near 1;
 #' - `"KalmanSmoother"`: it is not disturbed by the (quasi-) unit roots in MA;
-#' - `"McElroyMatrix"`: it has the same stability issues as the Burman's algorithm.
 #' @param bcasts,fcasts numeric: the number of backasts (`bcasts`) or forecasts (`fcasts`) used in the decomposition in periods (positive values) or years (negative values).Default `bcasts`=0. Default `fcasts`=0.
 #' @param bias TODO.
 #' @examples
@@ -53,7 +52,7 @@ set_seats <- function(x,
                       ma.boundary = NA,
                       fcasts = NA,
                       bcasts = NA,
-                      algorithm = c(NA, "Burman", "KalmanSmoother", "McElroyMatrix"),
+                      algorithm = c(NA, "Burman", "KalmanSmoother"),
                       bias = NA){
   UseMethod("set_seats", x)
 }
@@ -67,13 +66,13 @@ set_seats.JD3_SEATS_SPEC <- function(x,
                                ma.boundary = NA,
                                fcasts = NA,
                                bcasts = NA,
-                               algorithm = c(NA, "Burman", "KalmanSmoother", "McElroyMatrix"),
+                               algorithm = c(NA, "Burman", "KalmanSmoother"),
                                bias = NA) {
 
   approximation <- match.arg(toupper(approximation[1]),
                              c(NA, "NONE", "LEGACY", "NOISY"))
   algorithm <- match.arg(toupper(algorithm[1]),
-                         c(NA, "BURMAN", "KALMANSMOOTHER", "MCELROYMATRIX"))
+                         c(NA, "BURMAN", "KALMANSMOOTHER"))
   if (!is.na(approximation)) {
     x$approximation <- sprintf("APP_%s", approximation)
   }

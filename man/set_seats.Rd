@@ -14,7 +14,7 @@ set_seats(
   ma.boundary = NA,
   fcasts = NA,
   bcasts = NA,
-  algorithm = c(NA, "Burman", "KalmanSmoother", "McElroyMatrix"),
+  algorithm = c(NA, "Burman", "KalmanSmoother"),
   bias = NA
 )
 }
@@ -47,7 +47,6 @@ it is set to xl. Possible values [0.9,1]. Default=0.95.}
 \item \code{"Burman"}: the default value. May result in a significant underestimation of the components' standard deviation,
 as it may become numerically unstable when some roots of the MA polynomial are near 1;
 \item \code{"KalmanSmoother"}: it is not disturbed by the (quasi-) unit roots in MA;
-\item \code{"McElroyMatrix"}: it has the same stability issues as the Burman's algorithm.
 }}
 
 \item{bias}{TODO.}

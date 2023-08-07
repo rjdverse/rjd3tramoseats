@@ -20,10 +20,10 @@ Imports:
   rjd3toolkit (>= 3.0.1)
 SystemRequirements: Java JRE 17 or higher
 License: EUPL
-URL: https://github.com/palatej/rjd3tramoseats
+URL: https://github.com/rjdemetra/rjd3tramoseats
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
-BugReports: https://github.com/palatej/rjd3tramoseats/issues
+BugReports: https://github.com/rjdemetra/rjd3tramoseats/issues
 Encoding: UTF-8
 Collate: 
     'print.R'

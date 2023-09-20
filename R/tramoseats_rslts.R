@@ -62,7 +62,7 @@ sa.decomposition.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
 
 #' @export
 sa.decomposition.JD3_TRAMOSEATS_OUTPUT<-function(x, ...){
-  return (rjd3toolkit::sadecomposition(x$result))
+  return (rjd3toolkit::sa.decomposition(x$result))
 }
 
 

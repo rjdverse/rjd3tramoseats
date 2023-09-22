@@ -68,7 +68,6 @@ summary(ts_model$result$preprocessing) # Summary of tramo model
 #> Loglikelihood:  781.358, Adjusted loglikelihood:  -2086.269
 #> Standard error of the regression (ML estimate):  0.03615788 
 #> AIC:  4198.538 , AICc:  4199.452 , BIC:  4250.811
-
 plot(ts_model) # Plot of the final decomposition
 ```
 

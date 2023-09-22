@@ -68,8 +68,8 @@ new_spec<- set_seats(init_spec,
                     fcasts = -3,
                     algorithm = "KalmanSmoother",
                     bias = TRUE)
-                    y <- rjd3toolkit::ABS$X0.2.09.10.M
-                    sa<- rjd3tramoseats::tramoseats(y,spec=new_spec)
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+sa<- tramoseats(y,spec=new_spec)
 }
 \references{
 More information and examples related to 'JDemetra+' features in the online documentation:

@@ -26,7 +26,7 @@ fast_tramo(
 
 \item{context}{the dictionnary of variables.}
 
-\item{userdefined}{a vector containing the additional output variables.}
+\item{userdefined}{a vector containing the additional output variables (see \code{\link[=tramoseats_dictionary]{tramoseats_dictionary()}}).}
 }
 \value{
 the \code{tramo()} function returns a list with the results (\code{"JD3_regarima_rslts"} object), the estimation specification and the result specification, while \code{fast_tramo()} is a faster function that only returns the results.

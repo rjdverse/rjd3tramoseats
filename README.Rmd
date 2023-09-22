@@ -44,7 +44,6 @@ library(rjd3tramoseats)
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 ts_model <- tramoseats(y) 
 summary(ts_model$result$preprocessing) # Summary of tramo model
-
 plot(ts_model) # Plot of the final decomposition
 ```
 

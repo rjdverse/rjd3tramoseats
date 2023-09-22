@@ -34,7 +34,7 @@ jtramoseats(
 
 \item{context}{the dictionnary of variables.}
 
-\item{userdefined}{a vector containing the additional output variables.}
+\item{userdefined}{a vector containing the additional output variables (see \code{\link[=tramoseats_dictionary]{tramoseats_dictionary()}}).}
 }
 \value{
 the \code{tramoseats()} function returns a list with the results, the estimation specification and the result specification, while \code{fast_tramoseats()} is a faster function that only returns the results.

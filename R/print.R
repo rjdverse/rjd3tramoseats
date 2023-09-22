@@ -53,7 +53,7 @@ print.JD3_SEATS <- function(x, ...) {
   colnames(tableau) <- c("Series", "Seasonally adjusted", "Trend", "Seasonal", "Irregular")
 
   cat("Last values\n")
-  print(tail(.preformat.ts(tableau)))
+  print(utils::tail(stats::.preformat.ts(tableau)))
 
   return(invisible(x))
 }

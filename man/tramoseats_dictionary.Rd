@@ -2,10 +2,13 @@
 % Please edit documentation in R/tramoseats.R
 \name{tramoseats_dictionary}
 \alias{tramoseats_dictionary}
-\title{Title}
+\title{TRAMO-SEATS Dictionary}
 \usage{
 tramoseats_dictionary()
 }
+\value{
+A vector containing the names of all the available output objects (series, diagnostics, parameters).
+}
 \description{
-Title
+TRAMO-SEATS Dictionary
 }

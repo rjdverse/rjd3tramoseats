@@ -7,7 +7,7 @@ NULL
 #' @param ts a univariate time series.
 #' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
 #' @param context the dictionnary of variables.
-#' @param userdefined a vector containing the additional output variables.
+#' @param userdefined a vector containing the additional output variables (see [tramoseats_dictionary()]).
 #'
 #' @return the `tramo()` function returns a list with the results (`"JD3_regarima_rslts"` object), the estimation specification and the result specification, while `fast_tramo()` is a faster function that only returns the results.
 #'
@@ -430,12 +430,11 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
   }
 }
 
-#' Title
+#' TRAMO-SEATS Dictionary
 #'
-#' @return
+#' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
+#'
 #' @export
-#'
-#' @examples
 tramoseats_dictionary<-function(){
   return (.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "dictionary"))
 }

@@ -11,6 +11,6 @@ NULL
   RProtoBuf::readProtoFiles2(protoPath = proto.dir)
 
   # reload extractors
-  .jcall("jdplus/toolkit/base/api/information/InformationExtractors", "V", "reloadExtractors")
+  rjd3toolkit::reload_dictionaries()
 }
 

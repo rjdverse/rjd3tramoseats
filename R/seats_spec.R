@@ -36,8 +36,8 @@
 #'                     fcasts = -3,
 #'                     algorithm = "KalmanSmoother",
 #'                     bias = TRUE)
-#'                     y <- rjd3toolkit::ABS$X0.2.09.10.M
-#'                     sa<- rjd3tramoseats::tramoseats(y,spec=new_spec)
+#'y <- rjd3toolkit::ABS$X0.2.09.10.M
+#'sa<- tramoseats(y,spec=new_spec)
 #' @return an object of class  `"JD3_TRAMOSEATS_SPEC"`
 #' @references
 #' More information and examples related to 'JDemetra+' features in the online documentation:

@@ -251,7 +251,7 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #'
 #' @param spec the current specification to be refreshed (`"result_spec"`).
 #' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
-#' By default this is the `"trfull"` or `"rsafull"` specification.
+#' By default this is the `"TRfull"` or `"RSAfull"` specification.
 #' @param policy the refresh policy to apply (see details).
 #' @param period,start,end to specify the span on which outliers will not be re-identified (i.e.: re-detected) when `policy = "Outliers"`
 #' or `policy = "Outliers_StochasticComponent"`.

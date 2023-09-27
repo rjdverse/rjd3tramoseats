@@ -30,7 +30,7 @@ tramoseats_refresh(
 \item{spec}{the current specification to be refreshed (\code{"result_spec"}).}
 
 \item{refspec}{the reference specification used to define the domain considered for re-estimation (\code{"domain_spec"}).
-By default this is the \code{"trfull"} or \code{"rsafull"} specification.}
+By default this is the \code{"TRfull"} or \code{"RSAfull"} specification.}
 
 \item{policy}{the refresh policy to apply (see details).}
 

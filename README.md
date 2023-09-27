@@ -74,10 +74,10 @@ plot(ts_model) # Plot of the final decomposition
 <img src="man/figures/README-ts-final-1.png" style="display: block; margin: auto;" />
 
 To get the final components you can use the function
-`rjd3toolkit::sa.decomposition()`:
+`rjd3toolkit::sa_decomposition()`:
 
 ``` r
-rjd3toolkit::sa.decomposition(ts_model)
+rjd3toolkit::sa_decomposition(ts_model)
 #> Last values
 #>          series       sa    trend      seas       irr
 #> Sep 2016 1393.5 1552.616 1561.206 0.8975174 0.9944979

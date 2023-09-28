@@ -249,19 +249,19 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #'
 #' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.
 #'
-#' @param spec the current specification to be refreshed ("result_spec")
-#' @param refspec the reference specification used to define the domain considered for re-estimation ("domain_spec").
-#' By default this is the `"TRFull"` or `"RSAFull"` specification.
+#' @param spec the current specification to be refreshed (`"result_spec"`).
+#' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
+#' By default this is the `"TRfull"` or `"RSAfull"` specification.
 #' @param policy the refresh policy to apply (see details).
-#' @param period,start,end to specify the span on which outliers will not be re-identified when `policy` equals to `"Outliers"`
-#' or `"Outliers_StochasticComponent"`.
+#' @param period,start,end to specify the span on which outliers will not be re-identified (i.e.: re-detected) when `policy = "Outliers"`
+#' or `policy = "Outliers_StochasticComponent"`.
 #' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
-#' \code{start}: vector indicating the start of the series in the format `c(YYYY, MM)`.
-#' \code{end}: vector in the format `c(YYYY, MM)` indicating the date from which outliers
-#' will be re-identified. If span parameters are not specified outliers will be re-detected on the whole series.
+#' \code{start} and \code{end}: first and last date from which outliers will not be re-identfied,
+#' defined as arrays of two elements: year and first period (for example, if `period = 12`, `c(1980, 1)` for January 1980).
+#' If they are not specified, the outliers will be re-identified on the whole series.
 #'
-#' @return a new specification, an object of class `"JD3_X13_SPEC"` (`spec_x13()`),
-#' `"JD3_REGARIMA_SPEC"` (`spec_regarima()`).
+#' @return a new specification, an object of class `"JD3_TRAMOSEATS_SPEC"` or
+#' `"JD3_TRAMO_SPEC"`.
 #'
 #' @references
 #' More information on revision policies in JDemetra+ online documentation:

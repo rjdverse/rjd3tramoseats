@@ -47,8 +47,8 @@ summary(ts_model$result$preprocessing) # Summary of tramo model
 plot(ts_model) # Plot of the final decomposition
 ```
 
-To get the final components you can use the function `rjd3toolkit::sa.decomposition()`:
+To get the final components you can use the function `rjd3toolkit::sa_decomposition()`:
 
 ```{r ts-fin-comp}
-rjd3toolkit::sa.decomposition(ts_model)
+rjd3toolkit::sa_decomposition(ts_model)
 ```

@@ -9,15 +9,15 @@ NULL
 #' @param context the dictionnary of variables.
 #' @param userdefined a vector containing the additional output variables (see [tramoseats_dictionary()]).
 #'
-#' @return the `tramo()` function returns a list with the results (`"JD3_regarima_rslts"` object), the estimation specification and the result specification, while `fast_tramo()` is a faster function that only returns the results.
+#' @return the `tramo()` function returns a list with the results (`"JD3_regarima_rslts"` object), the estimation specification and the result specification, while `tramo_fast()` is a faster function that only returns the results.
 #'
 #' @examples
 #' library(rjd3toolkit)
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
-#' sp = spec_tramo("trfull")
+#' sp = tramo_spec("trfull")
 #' sp = add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
-#' fast_tramo(y, spec = sp)
+#' tramo_fast(y, spec = sp)
 #' sp = set_transform(
 #'   set_tradingdays(
 #'     set_easter(sp, enabled = FALSE),
@@ -25,9 +25,9 @@ NULL
 #'   ),
 #'   fun = "None"
 #' )
-#' fast_tramo(y, spec = sp)
+#' tramo_fast(y, spec = sp)
 #' sp = set_outlier(sp, outliers.type = c("AO"))
-#' fast_tramo(y, spec = sp)
+#' tramo_fast(y, spec = sp)
 #' @export
 tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
@@ -57,7 +57,7 @@ tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), 
 
 #' @export
 #' @rdname tramo
-fast_tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
+tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
@@ -105,9 +105,9 @@ fast_tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
 #'
 #' @examples
 #' library(rjd3toolkit)
-#' sp = spec_tramoseats("rsafull")
+#' sp = tramoseats_spec("rsafull")
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
-#' fast_tramoseats(y, spec = sp)
+#' tramoseats_fast(y, spec = sp)
 #' sp = add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 #' sp = set_transform(
@@ -117,8 +117,8 @@ fast_tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
 #'   ),
 #'   fun = "None"
 #' )
-#' fast_tramoseats(y, spec = sp)
-#' @return the `tramoseats()` function returns a list with the results, the estimation specification and the result specification, while `fast_tramoseats()` is a faster function that only returns the results.
+#' tramoseats_fast(y, spec = sp)
+#' @return the `tramoseats()` function returns a list with the results, the estimation specification and the result specification, while `tramoseats_fast()` is a faster function that only returns the results.
 #' The `jtramoseats()` functions only results the java object to custom outputs in other packages (use [rjd3toolkit::dictionary()] to
 #' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
 #' @export
@@ -150,7 +150,7 @@ tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4
 
 #' @export
 #' @rdname tramoseats
-fast_tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
+tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
@@ -274,7 +274,7 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #'# raw series for second (refreshed) estimation
 #'y_new <-window(y,end = 2010)
 #' # specification for first estimation
-#'spec_ts_1<-spec_tramoseats("RSAFull")
+#'spec_ts_1<-tramoseats_spec("RSAFull")
 #' # first estimation
 #'sa_ts<- tramoseats(y_raw, spec_ts_1)
 #' # refreshing the specification

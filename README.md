@@ -9,7 +9,7 @@ rjd3tramoseats offers full acces to options and outputs of TRAMO-SEATS
 (`rjd3tramoseats::seats_decompose()`).
 
 The specification can be created with the functions
-`rjd3tramoseats::spec_tramo()` or `rjd3tramoseats::spec_tramoseats()`
+`rjd3tramoseats::tramo_spec()` or `rjd3tramoseats::tramoseats_spec()`
 and can be modified with the function:
 
 - for the pre-processing: `rjd3toolkit::set_arima()`,

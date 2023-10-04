@@ -26,6 +26,7 @@ Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/rjdemetra/rjd3tramoseats/issues
 Encoding: UTF-8
 Collate: 
+    'deprecated.R'
     'print.R'
     'utils.R'
     'tramoseats_rslts.R'

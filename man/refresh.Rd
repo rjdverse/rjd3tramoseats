@@ -82,7 +82,7 @@ y_raw <-window(y,end = 2009)
 # raw series for second (refreshed) estimation
 y_new <-window(y,end = 2010)
 # specification for first estimation
-spec_ts_1<-spec_tramoseats("RSAFull")
+spec_ts_1<-tramoseats_spec("RSAFull")
 # first estimation
 sa_ts<- tramoseats(y_raw, spec_ts_1)
 # refreshing the specification

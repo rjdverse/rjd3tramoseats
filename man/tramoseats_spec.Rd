@@ -2,13 +2,12 @@
 % Please edit documentation in R/tramoseats_spec.R
 \name{tramoseats_spec}
 \alias{tramoseats_spec}
-\alias{spec_tramo}
-\alias{spec_tramoseats}
+\alias{tramo_spec}
 \title{TRAMO/TRAMO-SEATS Default Specification}
 \usage{
-spec_tramo(name = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"))
+tramo_spec(name = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"))
 
-spec_tramoseats(
+tramoseats_spec(
   name = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
 )
 }
@@ -16,17 +15,17 @@ spec_tramoseats(
 \item{name}{the name of a predefined specification.}
 }
 \value{
-an object of class \code{"JD3_TRAMOSEATS_SPEC"} (\code{spec_tramoseats()}) or
-\code{"JD3_TRAMO_SPEC"} (\code{spec_tramo()}).
+an object of class \code{"JD3_TRAMOSEATS_SPEC"} (\code{tramoseats_spec()}) or
+\code{"JD3_TRAMO_SPEC"} (\code{tramo_spec()}).
 }
 \description{
-Set of functions(\code{spec_tramoseats()},\code{spec_tramo()}) to create default specifications associated with the TRAMO-SEATS seasonal adjustment method.
-Specification creation can be restricted to the tramo part with the \code{spec_tramo()} function.
+Set of functions(\code{tramoseats_spec()},\code{tramo_spec()}) to create default specifications associated with the TRAMO-SEATS seasonal adjustment method.
+Specification creation can be restricted to the tramo part with the \code{tramo_spec()} function.
 }
 \details{
-Without argument \code{spec_tramo()} yields a TR5 specification
+Without argument \code{tramo_spec()} yields a TR5 specification
 
-without argument \code{spec_tramoseats()}  yields a RSA5 specification
+without argument \code{tramoseats_spec()}  yields a RSA5 specification
 
 The available predefined 'JDemetra+' model specifications are described in the table below:
 
@@ -42,9 +41,9 @@ RSAfull/TRfull |\tab automatic |\tab AO/LS/TC |\tab automatic |\tab automatic
 }
 }
 \examples{
-init_spec <- spec_tramoseats()
-init_spec <- spec_tramo()
-init_spec <- spec_tramoseats("rsa3")
-init_spec <- spec_tramo("tr3")
+init_spec <- tramoseats_spec()
+init_spec <- tramo_spec()
+init_spec <- tramoseats_spec("rsa3")
+init_spec <- tramo_spec("tr3")
 
 }

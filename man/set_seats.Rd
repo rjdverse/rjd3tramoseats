@@ -19,7 +19,7 @@ set_seats(
 )
 }
 \arguments{
-\item{x}{the specification to be modified, object of class \code{"JD3_TRAMOSEATS_SPEC"}, has to be generated with \code{spec_tramoseats()} function}
+\item{x}{the specification to be modified, object of class \code{"JD3_TRAMOSEATS_SPEC"}, has to be generated with \code{tramoseats_spec()} function}
 
 \item{approximation}{character: the approximation mode. When the ARIMA model estimated by TRAMO does not accept an admissible decomposition, SEATS: \code{"None"} - performs an approximation; \code{"Legacy"} - replaces the model with a decomposable one; \code{"Noisy"} - estimates a new model by adding a white noise to the non-admissible model estimated by TRAMO. Default="Legacy".}
 
@@ -60,7 +60,7 @@ seasonal adjustment process.
 (Seats is an Arima Model Based decomposition algorithm working in conjunction with Tramo.)
 }
 \examples{
-init_spec<-spec_tramoseats("rsafull")
+init_spec<-tramoseats_spec("rsafull")
 new_spec<- set_seats(init_spec,
                     approximation = "Legacy",
                     trend.boundary = 0.8,

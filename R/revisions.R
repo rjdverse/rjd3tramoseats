@@ -55,7 +55,7 @@ NULL
 #' rh <- tramoseats_revisions(s, sa_mod$result_spec, data_ids, ts_ids, cmp_ids)
 #' @export
 tramoseats_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NULL, context=NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   jspec<-.r2jd_spec_tramoseats(spec)
   if (is.null(context)){
     jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -67,7 +67,7 @@ tramoseats_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NUL
   if (! is.null(data_ids)){
     ldata<-lapply(data_ids, function(data_id){
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "history", data_id$id, data_id$start)
-      return (rjd3toolkit::.jd2r_ts(w))
+      return (rjd3toolkit::.jd2r_tsdata(w))
     })
     names(ldata) <- sapply(data_ids, `[[`,"id")
   }
@@ -75,7 +75,7 @@ tramoseats_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NUL
   if (! is.null(ts_ids)){
     lts<-lapply(ts_ids, function(ts_id){
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "tsHistory", ts_id$id, ts_id$period, ts_id$start)
-      return (rjd3toolkit::.jd2r_ts(w))
+      return (rjd3toolkit::.jd2r_tsdata(w))
     })
     names(lts) <- sapply(ts_ids, `[[`,"id")
   }

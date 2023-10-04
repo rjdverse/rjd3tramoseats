@@ -52,7 +52,7 @@ as it may become numerically unstable when some roots of the MA polynomial are n
 \item{bias}{TODO.}
 }
 \value{
-an object of class  \code{"JD3_TRAMOSEATS_SPEC"}
+an object of class  \code{"JD3_TRAMOSEATS_SPEC"}.
 }
 \description{
 Function allowing to customize parameters in the decomposition part (Seats) of a Tramo-Seats
@@ -74,4 +74,7 @@ sa<- tramoseats(y,spec=new_spec)
 \references{
 More information and examples related to 'JDemetra+' features in the online documentation:
 \url{https://jdemetra-new-documentation.netlify.app/}
+}
+\seealso{
+\code{\link[=tramoseats_spec]{tramoseats_spec()}}.
 }

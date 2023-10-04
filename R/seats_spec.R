@@ -6,7 +6,7 @@
 #' seasonal adjustment process.
 #' (Seats is an Arima Model Based decomposition algorithm working in conjunction with Tramo.)
 #'
-#' @param x the specification to be modified, object of class `"JD3_TRAMOSEATS_SPEC"`, has to be generated with `spec_tramoseats()` function
+#' @param x the specification to be modified, object of class `"JD3_TRAMOSEATS_SPEC"`, has to be generated with `tramoseats_spec()` function
 #' @param approximation character: the approximation mode. When the ARIMA model estimated by TRAMO does not accept an admissible decomposition, SEATS: `"None"` - performs an approximation; `"Legacy"` - replaces the model with a decomposable one; `"Noisy"` - estimates a new model by adding a white noise to the non-admissible model estimated by TRAMO. Default="Legacy".
 #' @param trend.boundary numeric: the trend boundary (rmod). The boundary beyond which an AR root is integrated in the trend component.
 #' If the modulus of the inverse real root is greater than the trend boundary, the AR root is integrated in the trend component.
@@ -28,7 +28,7 @@
 #' @param bcasts,fcasts numeric: the number of backasts (`bcasts`) or forecasts (`fcasts`) used in the decomposition in periods (positive values) or years (negative values).Default `bcasts`=0. Default `fcasts`=0.
 #' @param bias TODO.
 #' @examples
-#' init_spec<-spec_tramoseats("rsafull")
+#' init_spec<-tramoseats_spec("rsafull")
 #' new_spec<- set_seats(init_spec,
 #'                     approximation = "Legacy",
 #'                     trend.boundary = 0.8,
@@ -38,7 +38,8 @@
 #'                     bias = TRUE)
 #'y <- rjd3toolkit::ABS$X0.2.09.10.M
 #'sa<- tramoseats(y,spec=new_spec)
-#' @return an object of class  `"JD3_TRAMOSEATS_SPEC"`
+#' @return an object of class  `"JD3_TRAMOSEATS_SPEC"`.
+#' @seealso [tramoseats_spec()].
 #' @references
 #' More information and examples related to 'JDemetra+' features in the online documentation:
 #' \url{https://jdemetra-new-documentation.netlify.app/}

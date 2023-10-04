@@ -3,23 +3,23 @@ NULL
 
 #' TRAMO/TRAMO-SEATS Default Specification
 #'
-#' Set of functions(`spec_tramoseats()`,`spec_tramo()`) to create default specifications associated with the TRAMO-SEATS seasonal adjustment method.
-#' Specification creation can be restricted to the tramo part with the `spec_tramo()` function.
+#' Set of functions(`tramoseats_spec()`,`tramo_spec()`) to create default specifications associated with the TRAMO-SEATS seasonal adjustment method.
+#' Specification creation can be restricted to the tramo part with the `tramo_spec()` function.
 #'
-#' Without argument `spec_tramo()` yields a TR5 specification
+#' Without argument `tramo_spec()` yields a TR5 specification
 #'
-#' without argument `spec_tramoseats()`  yields a RSA5 specification
+#' without argument `tramoseats_spec()`  yields a RSA5 specification
 #'
 #' @param name the name of a predefined specification.
 #'
 #' @examples
-#' init_spec <- spec_tramoseats()
-#' init_spec <- spec_tramo()
-#' init_spec <- spec_tramoseats("rsa3")
-#' init_spec <- spec_tramo("tr3")
+#' init_spec <- tramoseats_spec()
+#' init_spec <- tramo_spec()
+#' init_spec <- tramoseats_spec("rsa3")
+#' init_spec <- tramo_spec("tr3")
 #'
-#' @return an object of class `"JD3_TRAMOSEATS_SPEC"` (`spec_tramoseats()`) or
-#' `"JD3_TRAMO_SPEC"` (`spec_tramo()`).
+#' @return an object of class `"JD3_TRAMOSEATS_SPEC"` (`tramoseats_spec()`) or
+#' `"JD3_TRAMO_SPEC"` (`tramo_spec()`).
 #'
 #' @details
 #' The available predefined 'JDemetra+' model specifications are described in the table below:
@@ -34,10 +34,14 @@ NULL
 #' RSA5/TR5 |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic\cr
 #' RSAfull/TRfull |\tab automatic |\tab AO/LS/TC |\tab automatic |\tab automatic
 #' }
+#' @seealso
+#' - To set the pre-processing parameters: [rjd3toolkit::set_arima()], [rjd3toolkit::set_automodel()], [rjd3toolkit::set_basic()], [rjd3toolkit::set_easter()], [rjd3toolkit::set_estimate()], [rjd3toolkit::set_outlier()], [rjd3toolkit::set_tradingdays()], [rjd3toolkit::set_transform()], [rjd3toolkit::add_outlier()], [rjd3toolkit::remove_outlier()], [rjd3toolkit::add_ramp()], [rjd3toolkit::remove_ramp()], [rjd3toolkit::add_usrdefvar()].
+#' - To set the decomposition parameters: [set_seats()].
+#' - To set the benchmarking parameters: [rjd3toolkit::set_benchmarking()].
 #' @name tramoseats_spec
 #' @rdname tramoseats_spec
 #' @export
-spec_tramo<-function(name=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")){
+tramo_spec<-function(name=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")){
   name = gsub("rsa", "tr", tolower(name), fixed = TRUE)
   name = match.arg(name[1],
                    choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
@@ -49,7 +53,7 @@ spec_tramo<-function(name=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"))
 
 #' @rdname tramoseats_spec
 #' @export
-spec_tramoseats<-function(name=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")){
+tramoseats_spec<-function(name=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")){
   name = gsub("tr", "rsa", tolower(name), fixed = TRUE)
   name = match.arg(name[1],
                    choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")

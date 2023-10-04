@@ -2,7 +2,7 @@
 % Please edit documentation in R/tramoseats.R
 \name{tramo}
 \alias{tramo}
-\alias{fast_tramo}
+\alias{tramo_fast}
 \title{TRAMO model, pre-adjustment in TRAMO-SEATS}
 \usage{
 tramo(
@@ -12,7 +12,7 @@ tramo(
   userdefined = NULL
 )
 
-fast_tramo(
+tramo_fast(
   ts,
   spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
   context = NULL,
@@ -29,7 +29,7 @@ fast_tramo(
 \item{userdefined}{a vector containing the additional output variables (see \code{\link[=tramoseats_dictionary]{tramoseats_dictionary()}}).}
 }
 \value{
-the \code{tramo()} function returns a list with the results (\code{"JD3_regarima_rslts"} object), the estimation specification and the result specification, while \code{fast_tramo()} is a faster function that only returns the results.
+the \code{tramo()} function returns a list with the results (\code{"JD3_regarima_rslts"} object), the estimation specification and the result specification, while \code{tramo_fast()} is a faster function that only returns the results.
 }
 \description{
 TRAMO model, pre-adjustment in TRAMO-SEATS
@@ -37,10 +37,10 @@ TRAMO model, pre-adjustment in TRAMO-SEATS
 \examples{
 library(rjd3toolkit)
 y = rjd3toolkit::ABS$X0.2.09.10.M
-sp = spec_tramo("trfull")
+sp = tramo_spec("trfull")
 sp = add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
-fast_tramo(y, spec = sp)
+tramo_fast(y, spec = sp)
 sp = set_transform(
   set_tradingdays(
     set_easter(sp, enabled = FALSE),
@@ -48,7 +48,7 @@ sp = set_transform(
   ),
   fun = "None"
 )
-fast_tramo(y, spec = sp)
+tramo_fast(y, spec = sp)
 sp = set_outlier(sp, outliers.type = c("AO"))
-fast_tramo(y, spec = sp)
+tramo_fast(y, spec = sp)
 }

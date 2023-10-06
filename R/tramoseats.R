@@ -31,7 +31,7 @@ NULL
 #' @export
 tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -59,7 +59,7 @@ tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), 
 #' @rdname tramo
 tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -124,7 +124,7 @@ tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
 #' @export
 tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -151,7 +151,7 @@ tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4
 #' @export
 #' @rdname tramoseats
 tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -178,7 +178,7 @@ tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
 #' @export
 #' @rdname tramoseats
 jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -329,7 +329,7 @@ tramoseats_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Com
 
 
 
-terror_names<-c("actual", "forecast", "error", "rel. error", "raw", "fraw", "efraw")
+terror_names<-c("actual", "forecast", "error", "rel. error", "transformed", "tr.fcast", "tr.error")
 forecast_names<-c("forecast", "error", "fraw", "efraw")
 
 #' TERROR Quality Control of Outliers
@@ -360,7 +360,7 @@ forecast_names<-c("forecast", "error", "fraw", "efraw")
 #' terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
 #' @export
 terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nback=1, context=NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -403,7 +403,7 @@ terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
 #' @export
 tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nf=-1, context=NULL){
   # TODO : check parameters
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (nf<0) nf<-frequency(ts)*(-nf)
 
   if (is.character(spec)){

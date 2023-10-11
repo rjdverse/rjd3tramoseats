@@ -1,7 +1,7 @@
 Package: rjd3tramoseats
 Type: Package
 Title: Seasonal Adjustment with TRAMO-SEATS and 'JDemetra+ 3.0'
-Version: 3.0.0
+Version: 3.1.0
 Authors@R: c(
   person("Jean", "Palate", role = c("aut", "cre"),
                 email = "jean.palate@nbb.be"),
@@ -16,8 +16,8 @@ Depends:
   R (>= 3.6.0)
 Imports:
   rJava (>= 1.0-6),
-  RProtoBuf (>= 0.4.17),
-  rjd3toolkit (>= 3.0.0)
+  RProtoBuf (>= 0.4.20),
+  rjd3toolkit (>= 3.1.0)
 SystemRequirements: Java JRE 17 or higher
 License: EUPL
 URL: https://github.com/rjdemetra/rjd3tramoseats
@@ -26,15 +26,17 @@ Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/rjdemetra/rjd3tramoseats/issues
 Encoding: UTF-8
 Collate: 
+    'deprecated.R'
     'print.R'
     'utils.R'
+    'tramoseats_rslts.R'
+    'tramoseats_spec.R'
+    'revisions.R'
     'seats.R'
     'seats_spec.R'
     'tramo_generic.R'
     'tramo_outliers.R'
     'tramo_spec.R'
-    'tramoseats_rslts.R'
-    'tramoseats_spec.R'
     'tramoseats.R'
     'ud_var.R'
     'zzz.R'

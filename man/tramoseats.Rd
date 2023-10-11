@@ -2,7 +2,7 @@
 % Please edit documentation in R/tramoseats.R
 \name{tramoseats}
 \alias{tramoseats}
-\alias{fast_tramoseats}
+\alias{tramoseats_fast}
 \alias{jtramoseats}
 \title{Seasonal Adjustment with  TRAMO-SEATS}
 \usage{
@@ -13,7 +13,7 @@ tramoseats(
   userdefined = NULL
 )
 
-fast_tramoseats(
+tramoseats_fast(
   ts,
   spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
   context = NULL,
@@ -34,10 +34,10 @@ jtramoseats(
 
 \item{context}{the dictionnary of variables.}
 
-\item{userdefined}{a vector containing the additional output variables.}
+\item{userdefined}{a vector containing the additional output variables (see \code{\link[=tramoseats_dictionary]{tramoseats_dictionary()}}).}
 }
 \value{
-the \code{tramoseats()} function returns a list with the results, the estimation specification and the result specification, while \code{fast_tramoseats()} is a faster function that only returns the results.
+the \code{tramoseats()} function returns a list with the results, the estimation specification and the result specification, while \code{tramoseats_fast()} is a faster function that only returns the results.
 The \code{jtramoseats()} functions only results the java object to custom outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
 get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
 }
@@ -46,9 +46,9 @@ Seasonal Adjustment with  TRAMO-SEATS
 }
 \examples{
 library(rjd3toolkit)
-sp = spec_tramoseats("rsafull")
+sp = tramoseats_spec("rsafull")
 y = rjd3toolkit::ABS$X0.2.09.10.M
-fast_tramoseats(y, spec = sp)
+tramoseats_fast(y, spec = sp)
 sp = add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 sp = set_transform(
@@ -58,5 +58,5 @@ sp = set_transform(
   ),
   fun = "None"
 )
-fast_tramoseats(y, spec = sp)
+tramoseats_fast(y, spec = sp)
 }

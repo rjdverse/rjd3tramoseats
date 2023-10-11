@@ -7,17 +7,17 @@ NULL
 #' @param ts a univariate time series.
 #' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
 #' @param context the dictionnary of variables.
-#' @param userdefined a vector containing the additional output variables.
+#' @param userdefined a vector containing the additional output variables (see [tramoseats_dictionary()]).
 #'
-#' @return the `tramo()` function returns a list with the results (`"JD3_regarima_rslts"` object), the estimation specification and the result specification, while `fast_tramo()` is a faster function that only returns the results.
+#' @return the `tramo()` function returns a list with the results (`"JD3_regarima_rslts"` object), the estimation specification and the result specification, while `tramo_fast()` is a faster function that only returns the results.
 #'
 #' @examples
 #' library(rjd3toolkit)
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
-#' sp = spec_tramo("trfull")
+#' sp = tramo_spec("trfull")
 #' sp = add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
-#' fast_tramo(y, spec = sp)
+#' tramo_fast(y, spec = sp)
 #' sp = set_transform(
 #'   set_tradingdays(
 #'     set_easter(sp, enabled = FALSE),
@@ -25,13 +25,13 @@ NULL
 #'   ),
 #'   fun = "None"
 #' )
-#' fast_tramo(y, spec = sp)
+#' tramo_fast(y, spec = sp)
 #' sp = set_outlier(sp, outliers.type = c("AO"))
-#' fast_tramo(y, spec = sp)
+#' tramo_fast(y, spec = sp)
 #' @export
 tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -57,9 +57,9 @@ tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), 
 
 #' @export
 #' @rdname tramo
-fast_tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
+tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -105,9 +105,9 @@ fast_tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
 #'
 #' @examples
 #' library(rjd3toolkit)
-#' sp = spec_tramoseats("rsafull")
+#' sp = tramoseats_spec("rsafull")
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
-#' fast_tramoseats(y, spec = sp)
+#' tramoseats_fast(y, spec = sp)
 #' sp = add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 #' sp = set_transform(
@@ -117,14 +117,14 @@ fast_tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
 #'   ),
 #'   fun = "None"
 #' )
-#' fast_tramoseats(y, spec = sp)
-#' @return the `tramoseats()` function returns a list with the results, the estimation specification and the result specification, while `fast_tramoseats()` is a faster function that only returns the results.
+#' tramoseats_fast(y, spec = sp)
+#' @return the `tramoseats()` function returns a list with the results, the estimation specification and the result specification, while `tramoseats_fast()` is a faster function that only returns the results.
 #' The `jtramoseats()` functions only results the java object to custom outputs in other packages (use [rjd3toolkit::dictionary()] to
 #' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
 #' @export
 tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -150,8 +150,8 @@ tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4
 
 #' @export
 #' @rdname tramoseats
-fast_tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -178,7 +178,7 @@ fast_tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
 #' @export
 #' @rdname tramoseats
 jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -249,17 +249,19 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #'
 #' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.
 #'
-#' @param spec the current specification to be refreshed ("result_spec")
-#' @param refspec the reference specification used to define the domain considered for re-estimation ("domain_spec")
-#' By default this is the `"TRFull"` or `"RSAFull"` specification.
-#' @param policy the refresh policy to apply (see details)
-#' @param period,start,end to specify the span on which outliers will be re-identified when `policy` equals to `"Outliers"`
-#' or `"Outliers_StochasticComponent"`. Span definition: \code{period}: numeric, number of observations in a year (12,4...). \code{start}: vector
-#' indicating the start of the series in the format c(YYYY,MM). \code{end}: vector in the format c(YYYY,MM) indicating the date from which outliers
-#' will be re-identified. If span parameters are not specified outliers will be re-detected on the whole series.
+#' @param spec the current specification to be refreshed (`"result_spec"`).
+#' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
+#' By default this is the `"TRfull"` or `"RSAfull"` specification.
+#' @param policy the refresh policy to apply (see details).
+#' @param period,start,end to specify the span on which outliers will not be re-identified (i.e.: re-detected) when `policy = "Outliers"`
+#' or `policy = "Outliers_StochasticComponent"`.
+#' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
+#' \code{start} and \code{end}: first and last date from which outliers will not be re-identfied,
+#' defined as arrays of two elements: year and first period (for example, if `period = 12`, `c(1980, 1)` for January 1980).
+#' If they are not specified, the outliers will be re-identified on the whole series.
 #'
-#' @return a new specification, an object of class `"JD3_X13_SPEC"` (`spec_x13()`),
-#' `"JD3_REGARIMA_SPEC"` (`spec_regarima()`)
+#' @return a new specification, an object of class `"JD3_TRAMOSEATS_SPEC"` or
+#' `"JD3_TRAMO_SPEC"`.
 #'
 #' @references
 #' More information on revision policies in JDemetra+ online documentation:
@@ -272,7 +274,7 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #'# raw series for second (refreshed) estimation
 #'y_new <-window(y,end = 2010)
 #' # specification for first estimation
-#'spec_ts_1<-spec_tramoseats("RSAFull")
+#'spec_ts_1<-tramoseats_spec("RSAFull")
 #' # first estimation
 #'sa_ts<- tramoseats(y_raw, spec_ts_1)
 #' # refreshing the specification
@@ -327,7 +329,7 @@ tramoseats_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Com
 
 
 
-terror_names<-c("actual", "forecast", "error", "rel. error", "raw", "fraw", "efraw")
+terror_names<-c("actual", "forecast", "error", "rel. error", "transformed", "tr.fcast", "tr.error")
 forecast_names<-c("forecast", "error", "fraw", "efraw")
 
 #' TERROR Quality Control of Outliers
@@ -358,7 +360,7 @@ forecast_names<-c("forecast", "error", "fraw", "efraw")
 #' terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
 #' @export
 terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nback=1, context=NULL){
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
     spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
     spec = match.arg(spec[1],
@@ -401,7 +403,7 @@ terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
 #' @export
 tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nf=-1, context=NULL){
   # TODO : check parameters
-  jts<-rjd3toolkit::.r2jd_ts(ts)
+  jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (nf<0) nf<-frequency(ts)*(-nf)
 
   if (is.character(spec)){
@@ -428,4 +430,13 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
     colnames(rslt)<-forecast_names
     return (rslt)
   }
+}
+
+#' TRAMO-SEATS Dictionary
+#'
+#' @return A vector containing the names of all the available output objects (series, diagnostics, parameters).
+#'
+#' @export
+tramoseats_dictionary<-function(){
+  return (.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "dictionary"))
 }

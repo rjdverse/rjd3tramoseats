@@ -6,7 +6,7 @@
 #' seasonal adjustment process.
 #' (Seats is an Arima Model Based decomposition algorithm working in conjunction with Tramo.)
 #'
-#' @param x the specification to be modified, object of class `"JD3_TRAMOSEATS_SPEC"`, has to be generated with `spec_tramoseats()` function
+#' @param x the specification to be modified, object of class `"JD3_TRAMOSEATS_SPEC"`, has to be generated with `tramoseats_spec()` function
 #' @param approximation character: the approximation mode. When the ARIMA model estimated by TRAMO does not accept an admissible decomposition, SEATS: `"None"` - performs an approximation; `"Legacy"` - replaces the model with a decomposable one; `"Noisy"` - estimates a new model by adding a white noise to the non-admissible model estimated by TRAMO. Default="Legacy".
 #' @param trend.boundary numeric: the trend boundary (rmod). The boundary beyond which an AR root is integrated in the trend component.
 #' If the modulus of the inverse real root is greater than the trend boundary, the AR root is integrated in the trend component.
@@ -25,11 +25,10 @@
 #' - `"Burman"`: the default value. May result in a significant underestimation of the components' standard deviation,
 #' as it may become numerically unstable when some roots of the MA polynomial are near 1;
 #' - `"KalmanSmoother"`: it is not disturbed by the (quasi-) unit roots in MA;
-#' - `"McElroyMatrix"`: it has the same stability issues as the Burman's algorithm.
 #' @param bcasts,fcasts numeric: the number of backasts (`bcasts`) or forecasts (`fcasts`) used in the decomposition in periods (positive values) or years (negative values).Default `bcasts`=0. Default `fcasts`=0.
 #' @param bias TODO.
 #' @examples
-#' init_spec<-spec_tramoseats("rsafull")
+#' init_spec<-tramoseats_spec("rsafull")
 #' new_spec<- set_seats(init_spec,
 #'                     approximation = "Legacy",
 #'                     trend.boundary = 0.8,
@@ -37,9 +36,10 @@
 #'                     fcasts = -3,
 #'                     algorithm = "KalmanSmoother",
 #'                     bias = TRUE)
-#'                     y <- rjd3toolkit::ABS$X0.2.09.10.M
-#'                     sa<- rjd3tramoseats::tramoseats(y,spec=new_spec)
-#' @return an object of class  `"JD3_TRAMOSEATS_SPEC"`
+#'y <- rjd3toolkit::ABS$X0.2.09.10.M
+#'sa<- tramoseats(y,spec=new_spec)
+#' @return an object of class  `"JD3_TRAMOSEATS_SPEC"`.
+#' @seealso [tramoseats_spec()].
 #' @references
 #' More information and examples related to 'JDemetra+' features in the online documentation:
 #' \url{https://jdemetra-new-documentation.netlify.app/}
@@ -53,7 +53,7 @@ set_seats <- function(x,
                       ma.boundary = NA,
                       fcasts = NA,
                       bcasts = NA,
-                      algorithm = c(NA, "Burman", "KalmanSmoother", "McElroyMatrix"),
+                      algorithm = c(NA, "Burman", "KalmanSmoother"),
                       bias = NA){
   UseMethod("set_seats", x)
 }
@@ -67,13 +67,13 @@ set_seats.JD3_SEATS_SPEC <- function(x,
                                ma.boundary = NA,
                                fcasts = NA,
                                bcasts = NA,
-                               algorithm = c(NA, "Burman", "KalmanSmoother", "McElroyMatrix"),
+                               algorithm = c(NA, "Burman", "KalmanSmoother"),
                                bias = NA) {
 
   approximation <- match.arg(toupper(approximation[1]),
                              c(NA, "NONE", "LEGACY", "NOISY"))
   algorithm <- match.arg(toupper(algorithm[1]),
-                         c(NA, "BURMAN", "KALMANSMOOTHER", "MCELROYMATRIX"))
+                         c(NA, "BURMAN", "KALMANSMOOTHER"))
   if (!is.na(approximation)) {
     x$approximation <- sprintf("APP_%s", approximation)
   }

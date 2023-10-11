@@ -42,7 +42,7 @@ by the number of observations.}
 \item{clean}{Clean missing values at the beginning/end of the series. Regression variables are automatically resized, if need be.}
 }
 \value{
-a \code{"JDSTS"} object.
+a \code{"JD3_REGARIMA_OUTLIERS"} object.
 }
 \description{
 Tramo is a particular regarima model estimation algorithm, mainly used to linearized the series before performing a decomposition with Seats

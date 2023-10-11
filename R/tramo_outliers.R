@@ -18,7 +18,7 @@ NULL
 #' @param ml Use of maximum likelihood (otherwise approximation by means of Hannan-Rissanen).
 #' @param clean Clean missing values at the beginning/end of the series. Regression variables are automatically resized, if need be.
 #'
-#' @return a `"JDSTS"` object.
+#' @return a `"JD3_REGARIMA_OUTLIERS"` object.
 #'
 #' @examples
 #' tramo_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
@@ -34,7 +34,7 @@ tramo_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
   }
 
 
-  jtramo<-.jcall("jdplus/tramoseats/base/r/TramoOutliersDetection", "Ljdplus/tramoseats/base/r/TramoOutliersDetection$Results;", "process", rjd3toolkit::.r2jd_ts(y),
+  jtramo<-.jcall("jdplus/tramoseats/base/r/TramoOutliersDetection", "Ljdplus/tramoseats/base/r/TramoOutliersDetection$Results;", "process", rjd3toolkit::.r2jd_tsdata(y),
                as.integer(order), as.integer(seasonal), mean, rjd3toolkit::.r2jd_matrix(X),
                ao, ls, tc, so, cv, ml, clean)
   model<-list(

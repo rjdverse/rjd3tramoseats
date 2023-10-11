@@ -1,5 +1,5 @@
 #' @include utils.R
-#' @importFrom rjd3toolkit sa.decomposition
+#' @importFrom rjd3toolkit sa_decomposition
 NULL
 
 .regarima_rslts <- function(jrslts){
@@ -45,9 +45,9 @@ NULL
 
 ############################# Generics
 
-#' @importFrom rjd3toolkit sa.decomposition
+#' @importFrom rjd3toolkit sa_decomposition
 #' @export
-sa.decomposition.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
+sa_decomposition.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
   if (is.null(x)) return (NULL)
   return (rjd3toolkit::sadecomposition(x$final$series$data,
                                 x$final$sa$data,
@@ -61,8 +61,8 @@ sa.decomposition.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
 
 
 #' @export
-sa.decomposition.JD3_TRAMOSEATS_OUTPUT<-function(x, ...){
-  return (rjd3toolkit::sadecomposition(x$result))
+sa_decomposition.JD3_TRAMOSEATS_OUTPUT<-function(x, ...){
+  return (rjd3toolkit::sa_decomposition(x$result))
 }
 
 

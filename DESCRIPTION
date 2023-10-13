@@ -18,9 +18,11 @@ Imports:
   rJava (>= 1.0-6),
   RProtoBuf (>= 0.4.20),
   rjd3toolkit (>= 3.1.0)
+Remotes:
+  github::rjdemetra/rjd3toolkit
 SystemRequirements: Java JRE 17 or higher
 License: EUPL
-URL: https://github.com/rjdemetra/rjd3tramoseats
+URL: https://github.com/rjdemetra/rjd3tramoseats, https://tanguybarthelemy.github.io/rjd3tramoseats/
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/rjdemetra/rjd3tramoseats/issues

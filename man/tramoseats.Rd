@@ -45,7 +45,7 @@ get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::r
 Seasonal Adjustment with  TRAMO-SEATS
 }
 \examples{
-library(rjd3toolkit)
+library("rjd3toolkit")
 sp = tramoseats_spec("rsafull")
 y = rjd3toolkit::ABS$X0.2.09.10.M
 tramoseats_fast(y, spec = sp)

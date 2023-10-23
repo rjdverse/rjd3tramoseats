@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   fig.align="center"
 )
-library(rjd3tramoseats)
+library("rjd3tramoseats")
 ```
 
 # rjd3tramoseats
@@ -29,18 +29,27 @@ The specification can be created with the functions `rjd3tramoseats::tramo_spec(
 
 ## Installation
 
+To get the current stable version (from the latest release):
+
+```{r, eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("rjdemetra/rjd3toolkit@*release")
+remotes::install_github("rjdemetra/rjd3tramoseats@*release")
+```
+
+To get the current development version from GitHub:
 
 ```{r, eval = FALSE}
 # Install development version from GitHub
 # install.packages("remotes")
-remotes::install_github("rjdemetra/rjd3toolkit")
 remotes::install_github("rjdemetra/rjd3tramoseats")
 ```
+
 
 ## Usage
 
 ```{r ts-final}
-library(rjd3tramoseats)
+library("rjd3tramoseats")
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 ts_model <- tramoseats(y) 
 summary(ts_model$result$preprocessing) # Summary of tramo model

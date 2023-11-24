@@ -47,7 +47,7 @@ userdefined_variables_tramoseats <- function(x = c("TRAMO-SEATS","TRAMO")){
   x <- match.arg(gsub("-", "", tolower(x)),
                  choices = c("tramoseats", "tramo"))
 
-  # library(rjd3tramoseats)
+  # library("rjd3tramoseats")
   # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
   # jrslt<- rJava::.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;", "fullProcess", jts, "rsafull")
   # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt$getResult(), result = TRUE)) |>

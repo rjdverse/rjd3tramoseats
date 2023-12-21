@@ -39,7 +39,7 @@ NULL
     list(
       seatsmodel=rjd3toolkit::.p2r_arima(p$seats_arima),
       canonicaldecomposition=rjd3toolkit::.p2r_ucarima(p$canonical_decomposition),
-      stochastics=rjd3toolkit::.p2r_sa_decomposition(p$stochastics, T)),
+      stochastics=rjd3toolkit::.p2r_sa_decomposition(p$stochastics, TRUE)),
     class= "JD3_SEATS"))
 }
 
@@ -64,6 +64,3 @@ sa_decomposition.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
 sa_decomposition.JD3_TRAMOSEATS_OUTPUT<-function(x, ...){
   return (rjd3toolkit::sa_decomposition(x$result))
 }
-
-
-

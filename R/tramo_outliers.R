@@ -23,8 +23,8 @@ NULL
 #' @examples
 #' tramo_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 #' @export
-tramo_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
-                      X=NULL, X.td=NULL, ao=T, ls=T, tc=F, so=F, cv=0, ml=F, clean=F){
+tramo_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=FALSE,
+                      X=NULL, X.td=NULL, ao=TRUE, ls=TRUE, tc=FALSE, so=FALSE, cv=0, ml=FALSE, clean=FALSE){
   if (!is.ts(y)){
     stop("y must be a time series")
   }

@@ -268,4 +268,3 @@ diagnostics.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
 diagnostics.JD3_TRAMOSEATS_OUTPUT<-function(x, ...){
   return (rjd3toolkit::diagnostics(x$result, ...))
 }
-

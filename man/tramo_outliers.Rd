@@ -8,16 +8,16 @@ tramo_outliers(
   y,
   order = c(0L, 1L, 1L),
   seasonal = c(0L, 1L, 1L),
-  mean = F,
+  mean = FALSE,
   X = NULL,
   X.td = NULL,
-  ao = T,
-  ls = T,
-  tc = F,
-  so = F,
+  ao = TRUE,
+  ls = TRUE,
+  tc = FALSE,
+  so = FALSE,
   cv = 0,
-  ml = F,
-  clean = F
+  ml = FALSE,
+  clean = FALSE
 )
 }
 \arguments{

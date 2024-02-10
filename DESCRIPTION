@@ -23,7 +23,7 @@ Remotes:
 SystemRequirements: Java JRE 17 or higher
 License: EUPL
 URL: https://github.com/rjdemetra/rjd3tramoseats, https://tanguybarthelemy.github.io/rjd3tramoseats/, https://rjdemetra.github.io/rjd3tramoseats/
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/rjdemetra/rjd3tramoseats/issues
 Encoding: UTF-8

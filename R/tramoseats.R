@@ -440,3 +440,18 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
 tramoseats_dictionary<-function(){
   return (.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "dictionary"))
 }
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+tramoseats_full_dictionary<-function(){
+  q<-.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "fullDictionary")
+  q<-`dim<-`(q, c(6, length(q)/6))
+  q<-t(q)
+  q<-`colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
+  return (q)
+}
+

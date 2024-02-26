@@ -40,7 +40,9 @@ By default this is the \code{"TRfull"} or \code{"RSAfull"} specification.}
 
 \item{end}{specifies the date from which outliers will be re-identified (i.e.: re-detected) when \code{policy = "Outliers"}
 or \code{policy = "Outliers_StochasticComponent"}, defined as an array of two elements: year and first period.
-If not specified, outliers will be re-identified on the whole series.}
+If not specified, outliers will be re-identified on the whole series.
+Span definition: \code{period}, \code{start} and \code{end} have to be specified only when \code{policy = "Outliers"}
+or \code{policy = "Outliers_StochasticComponent"}.}
 }
 \value{
 a new specification, an object of class \code{"JD3_TRAMOSEATS_SPEC"} or

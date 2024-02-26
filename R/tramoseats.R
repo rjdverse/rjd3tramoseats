@@ -258,6 +258,8 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #' @param end specifies the date from which outliers will be re-identified (i.e.: re-detected) when `policy = "Outliers"`
 #' or `policy = "Outliers_StochasticComponent"`, defined as an array of two elements: year and first period.
 #' If not specified, outliers will be re-identified on the whole series.
+#' Span definition: \code{period}, \code{start} and \code{end} have to be specified only when `policy = "Outliers"`
+#' or `policy = "Outliers_StochasticComponent"`.
 #'
 #' @return a new specification, an object of class `"JD3_TRAMOSEATS_SPEC"` or
 #' `"JD3_TRAMO_SPEC"`.

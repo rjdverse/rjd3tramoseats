@@ -228,11 +228,11 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #' The selection of constraints to be kept fixed or re-estimated is called a revision policy.
 #' User-defined parameters are always copied to the new refreshed specifications. Only the Tramo
 #' (reg-arima pre-adjustment part) is refreshed, but the final ARIMA model handed down to SEATS for the decomposition part
-#' might be changed as a result of the refresh process.
+#' might be changed as a result of the refreshing process.
 #'
 #' Available refresh policies are:
 #'
-#' \strong{Current}: Not Available yet, behaves like "Fixed". Will be: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)
+#' \strong{Current}: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)
 #'
 #' \strong{Fixed}: applying the current pre-adjustment reg-arima model and replacing forecasts by new raw data points.
 #'
@@ -245,7 +245,7 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #'
 #' \strong{FreeParameters}: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.
 #'
-#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but outliers will be re-detected , thus all regression and Arima model coefficients are re-estimated
+#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but outliers will be re-detected on the defined span, thus all regression and Arima model coefficients are re-estimated
 #'
 #' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.
 #'
@@ -253,13 +253,12 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
 #' By default this is the `"TRfull"` or `"RSAfull"` specification.
 #' @param policy the refresh policy to apply (see details).
-#' @param period periodicity of the series on which the refreshed spec will be applied, an integer in (12,6,4,3,2).
-#' @param start starting date of of the series on which the refreshed spec will be applied, defined as an array of two elements: year and first period (for example, if `period = 12`, `c(1980, 1)` for January 1980).
-#' @param end specifies the date from which outliers will be re-identified (i.e.: re-detected) when `policy = "Outliers"`
-#' or `policy = "Outliers_StochasticComponent"`, defined as an array of two elements: year and first period.
-#' If not specified, outliers will be re-identified on the whole series.
-#' Span definition: \code{period}, \code{start} and \code{end} have to be specified only when `policy = "Outliers"`
-#' or `policy = "Outliers_StochasticComponent"`.
+#' @param period,start,end additional parameters used when outliers are partially re-estimated (`policy = "Outliers"`) or to specify the span on which additive outliers are introduced,
+#' normally at the end of the series  (`policy = "Current"`).
+#' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
+#' \code{start} and \code{end}: first and last date (included) where additive outliers are introduced or, in the case of re-estimation of outliers, start of the re-estimation (end is unused),
+#' defined as arrays of two elements: year and first period (for example, if `period = 12`, `c(1980, 1)` for January 1980).
+#' If they are not specified, the outliers will be re-identified on the whole series.
 #'
 #' @return a new specification, an object of class `"JD3_TRAMOSEATS_SPEC"` or
 #' `"JD3_TRAMO_SPEC"`.
@@ -273,7 +272,7 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #'# raw series for first estimation
 #'y_raw <-window(y,end = 2009)
 #'# raw series for second (refreshed) estimation
-#'y_new <-window(y,end = 2010)
+#'y_new <-window(y,start = 2010)
 #' # specification for first estimation
 #'spec_ts_1<-tramoseats_spec("RSAFull")
 #' # first estimation
@@ -289,7 +288,7 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #' @name refresh
 #' @rdname refresh
 #' @export
-tramo_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed"), period=0, start=NULL, end=NULL){
+tramo_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
   if (!inherits(spec, "JD3_TRAMO_SPEC"))
     stop("Invalid specification type")
@@ -302,7 +301,14 @@ tramo_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_tramo(refspec)
   }
-  jdom<-rjd3toolkit::.jdomain(period, start, end)
+  if (policy == 'Current'){
+    if (end[2] == period) end<-c(end[1]+1, 1) else end<-c(end[1], end[2]+1)
+    jdom<-rjd3toolkit::.jdomain(period, start, end)
+  }
+  else if (policy == 'Outliers')
+    jdom<-rjd3toolkit::.jdomain(period, NULL, start)
+  else
+    jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
   jnspec<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/tramoseats/base/api/tramo/TramoSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
   return (.jd2r_spec_tramo(jnspec))
 }
@@ -322,7 +328,15 @@ tramoseats_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Com
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_tramoseats(refspec)
   }
-  jdom<-rjd3toolkit::.jdomain(period, start, end)
+
+  if (policy == 'Current'){
+    if (end[2] == period) end<-c(end[1]+1, 1) else end<-c(end[1], end[2]+1)
+    jdom<-rjd3toolkit::.jdomain(period, start, end)
+  }
+  else if (policy == 'Outliers')
+    jdom<-rjd3toolkit::.jdomain(period, NULL, start)
+  else
+    jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
   jnspec<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
   return (.jd2r_spec_tramoseats(jnspec))
 
@@ -441,3 +455,18 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
 tramoseats_dictionary<-function(){
   return (.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "dictionary"))
 }
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+tramoseats_full_dictionary<-function(){
+  q<-.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "fullDictionary")
+  q<-`dim<-`(q, c(6, length(q)/6))
+  q<-t(q)
+  q<-`colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
+  return (q)
+}
+

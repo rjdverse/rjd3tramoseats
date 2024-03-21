@@ -20,7 +20,7 @@ Imports:
   rjd3toolkit (>= 3.2.2)
 Remotes:
   github::rjdemetra/rjd3toolkit
-SystemRequirements: Java JRE 17 or higher
+SystemRequirements: Java (>= 17)
 License: EUPL
 URL: https://github.com/rjdemetra/rjd3tramoseats, https://tanguybarthelemy.github.io/rjd3tramoseats/, https://rjdemetra.github.io/rjd3tramoseats/
 RoxygenNote: 7.3.1

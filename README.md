@@ -102,3 +102,12 @@ rjd3toolkit::sa_decomposition(ts_model)
 #> Jul 2017 1445.5 1544.701 1551.717 0.9357801 0.9954781
 #> Aug 2017 1303.1 1535.588 1550.949 0.8485999 0.9900960
 ```
+
+
+## Contributing
+
+Any contribution is welcome and should be done through pull requests and/or issues.
+
+## Licensing
+
+The code of this project is licensed under the [European Union Public Licence (EUPL)](https://joinup.ec.europa.eu/page/eupl-text-11-12).

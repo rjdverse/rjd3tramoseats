@@ -94,12 +94,13 @@ By default this is the <code>"TRfull"</code> or <code>"RSAfull"</code> specifica
 
 
 <dt>period, start, end</dt>
-<dd><p>additional parameters used when outliers are partially re-estimated (<code>policy = "Outliers"</code>) or to specify the span on which additive outliers are introduced,
-normally at the end of the series  (<code>policy = "Current"</code>).
+<dd><p>additional parameters used to specify the span on which additive outliers (AO) are introduced when <code>policy = "Current"</code>
+or to specify the span on which outliers will be re-detected when <code>policy = "Outliers"</code> or <code>policy = "Outliers_StochasticComponent"</code>,
+is this case <code>end</code> is unused.
+If <code>start</code> is not specified, outliers will be re-identified on the whole series.
 Span definition: <code>period</code>: numeric, number of observations in a year (12, 4...).
-<code>start</code> and <code>end</code>: first and last date (included) where additive outliers are introduced or, in the case of re-estimation of outliers, start of the re-estimation (end is unused),
-defined as arrays of two elements: year and first period (for example, if <code>period = 12</code>, <code>c(1980, 1)</code> for January 1980).
-If they are not specified, the outliers will be re-identified on the whole series.</p></dd>
+<code>start</code> and <code>end</code>: defined as arrays of two elements: year and first period (for example, <code>period = 12</code> and <code>c(1980, 1)</code> stands for January 1980)
+The dates corresponding <code>start</code> and <code>end</code> are included in the span definition.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -112,17 +113,15 @@ If they are not specified, the outliers will be re-identified on the whole serie
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The selection of constraints to be kept fixed or re-estimated is called a revision policy.
-User-defined parameters are always copied to the new refreshed specifications. Only the Tramo
-(reg-arima pre-adjustment part) is refreshed, but the final ARIMA model handed down to SEATS for the decomposition part
-might be changed as a result of the refreshing process.</p>
+User-defined parameters are always copied to the new refreshed specifications.
+This revision applies to the estimation done in Tramo (pre-adjustment phase), Seats will then
+run a new decomposition which might be in some (rare) cases based on a different model.</p>
 <p>Available refresh policies are:</p>
-<p><strong>Current</strong>: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)</p>
+<p><strong>Current</strong>: applying the current pre-adjustment reg-arima model and handling the new raw data points, or any sub-span of the series as Additive Outliers (defined as new intervention variables)</p>
 <p><strong>Fixed</strong>: applying the current pre-adjustment reg-arima model and replacing forecasts by new raw data points.</p>
 <p><strong>FixedParameters</strong>: pre-adjustment reg-arima model is partially modified: regression coefficients will be re-estimated but regression variables, Arima orders
 and coefficients are unchanged.</p>
-<p><strong>FixedAutoRegressiveParameters</strong>: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.
-When using Seats for decomposition it avoids a possible re-allocation of roots between the trend and seasonal components,
-which might have led to strong revisions.</p>
+<p><strong>FixedAutoRegressiveParameters</strong>: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.</p>
 <p><strong>FreeParameters</strong>: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.</p>
 <p><strong>Outliers</strong>: regression variables and Arima orders are kept fixed, but outliers will be re-detected on the defined span, thus all regression and Arima model coefficients are re-estimated</p>
 <p><strong>Outliers_StochasticComponent</strong>: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.</p>
@@ -137,21 +136,43 @@ which might have led to strong revisions.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">y</span><span class="op">&lt;-</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="va">ABS</span><span class="op">$</span><span class="va">X0.2.08.10.M</span></span></span>
 <span class="r-in"><span><span class="co"># raw series for first estimation</span></span></span>
-<span class="r-in"><span><span class="va">y_raw</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">y</span>,end <span class="op">=</span> <span class="fl">2009</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y_raw</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">y</span>,end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2016</span>,<span class="fl">12</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># raw series for second (refreshed) estimation</span></span></span>
-<span class="r-in"><span><span class="va">y_new</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">y</span>,start <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y_new</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/window.html" class="external-link">window</a></span><span class="op">(</span><span class="va">y</span>,end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2017</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># specification for first estimation</span></span></span>
-<span class="r-in"><span><span class="va">spec_ts_1</span><span class="op">&lt;-</span><span class="fu"><a href="tramoseats_spec.html">tramoseats_spec</a></span><span class="op">(</span><span class="st">"RSAFull"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">spec_tramoseats_1</span><span class="op">&lt;-</span><span class="fu"><a href="tramoseats_spec.html">tramoseats_spec</a></span><span class="op">(</span><span class="st">"rsafull"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># first estimation</span></span></span>
-<span class="r-in"><span><span class="va">sa_ts</span><span class="op">&lt;-</span> <span class="fu"><a href="tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y_raw</span>, <span class="va">spec_ts_1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sa_tramoseats</span><span class="op">&lt;-</span> <span class="fu"><a href="tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y_raw</span>, <span class="va">spec_tramoseats_1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># refreshing the specification</span></span></span>
-<span class="r-in"><span><span class="va">current_result_spec</span> <span class="op">&lt;-</span> <span class="va">sa_ts</span><span class="op">$</span><span class="va">result_spec</span></span></span>
-<span class="r-in"><span><span class="va">current_domain_spec</span> <span class="op">&lt;-</span> <span class="va">sa_ts</span><span class="op">$</span><span class="va">estimation_spec</span></span></span>
-<span class="r-in"><span><span class="va">spec_ts_ref</span> <span class="op">&lt;-</span> <span class="fu">tramoseats_refresh</span><span class="op">(</span><span class="va">current_result_spec</span>, <span class="co"># point spec to be refreshed</span></span></span>
+<span class="r-in"><span><span class="va">current_result_spec</span> <span class="op">&lt;-</span> <span class="va">sa_tramoseats</span><span class="op">$</span><span class="va">result_spec</span></span></span>
+<span class="r-in"><span><span class="va">current_domain_spec</span> <span class="op">&lt;-</span> <span class="va">sa_tramoseats</span><span class="op">$</span><span class="va">estimation_spec</span></span></span>
+<span class="r-in"><span><span class="co"># policy = "Fixed"</span></span></span>
+<span class="r-in"><span><span class="va">spec_tramoseats_ref</span> <span class="op">&lt;-</span> <span class="fu">tramoseats_refresh</span><span class="op">(</span><span class="va">current_result_spec</span>, <span class="co"># point spec to be refreshed</span></span></span>
 <span class="r-in"><span>  <span class="va">current_domain_spec</span>, <span class="co">#domain spec (set of constraints)</span></span></span>
-<span class="r-in"><span>  policy <span class="op">=</span> <span class="st">"FixedAutoRegressiveParameters"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  policy <span class="op">=</span> <span class="st">"Fixed"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># 2nd estimation with refreshed specification</span></span></span>
-<span class="r-in"><span><span class="va">sa_ts_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y_new</span>, <span class="va">spec_ts_ref</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sa_tramoseats_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y_new</span>, <span class="va">spec_tramoseats_ref</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># policy = "Outliers"</span></span></span>
+<span class="r-in"><span><span class="va">spec_tramoseats_ref</span> <span class="op">&lt;-</span> <span class="fu">tramoseats_refresh</span><span class="op">(</span><span class="va">current_result_spec</span>,</span></span>
+<span class="r-in"><span>  <span class="va">current_domain_spec</span>,</span></span>
+<span class="r-in"><span>  policy <span class="op">=</span> <span class="st">"Outliers"</span>,</span></span>
+<span class="r-in"><span>  period<span class="op">=</span><span class="fl">12</span>,</span></span>
+<span class="r-in"><span>  start<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2017</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="co"># outliers will be re-detected from January 2017 included</span></span></span>
+<span class="r-in"><span><span class="co"># 2nd estimation with refreshed specification</span></span></span>
+<span class="r-in"><span><span class="va">sa_tramoseats_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y_new</span>, <span class="va">spec_tramoseats_ref</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># policy = "Current"</span></span></span>
+<span class="r-in"><span><span class="va">spec_tramoseats_ref</span> <span class="op">&lt;-</span> <span class="fu">tramoseats_refresh</span><span class="op">(</span><span class="va">current_result_spec</span>,</span></span>
+<span class="r-in"><span>  <span class="va">current_domain_spec</span>,</span></span>
+<span class="r-in"><span>  policy <span class="op">=</span> <span class="st">"Current"</span>,</span></span>
+<span class="r-in"><span>  period<span class="op">=</span><span class="fl">12</span>,</span></span>
+<span class="r-in"><span>  start<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2017</span>,<span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  end<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/start.html" class="external-link">end</a></span><span class="op">(</span><span class="va">y_new</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># points from January 2017 (included) until the end of the series will be treated</span></span></span>
+<span class="r-in"><span>  <span class="co"># as Additive Outliers, the previous reg-Arima model being otherwise kept fixed</span></span></span>
+<span class="r-in"><span><span class="co"># 2nd estimation with refreshed specification</span></span></span>
+<span class="r-in"><span><span class="va">sa_tramoseats_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y_new</span>, <span class="va">spec_tramoseats_ref</span><span class="op">)</span><span class="co">#'</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

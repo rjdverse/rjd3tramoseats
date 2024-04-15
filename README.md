@@ -8,11 +8,11 @@ rjd3tramoseats offers full acces to options and outputs of TRAMO-SEATS
 (`rjd3tramoseats::tramo()`) and SEATS decomposition
 (`rjd3tramoseats::seats_decompose()`).
 
-A specification can be created with the functions
+The specification can be created with the functions
 `rjd3tramoseats::tramo_spec()` or `rjd3tramoseats::tramoseats_spec()`
 and can be modified with the function:
 
-- for pre-processing: `rjd3toolkit::set_arima()`,
+- for the pre-processing: `rjd3toolkit::set_arima()`,
   `rjd3toolkit::set_automodel()`, `rjd3toolkit::set_basic()`,
   `rjd3toolkit::set_easter()`, `rjd3toolkit::set_estimate()`,
   `rjd3toolkit::set_outlier()`, `rjd3toolkit::set_tradingdays()`,
@@ -20,9 +20,9 @@ and can be modified with the function:
   `rjd3toolkit::remove_outlier()`, `rjd3toolkit::add_ramp()`,
   `rjd3toolkit::remove_ramp()`, `rjd3toolkit::add_usrdefvar()`;
 
-- for decomposition: `rjd3tramoseats::set_seats()`;
+- for the decomposition: `rjd3tramoseats::set_seats()`;
 
-- for benchmarking: `rjd3toolkit::set_benchmarking()`.
+- for the benchmarking: `rjd3toolkit::set_benchmarking()`.
 
 ## Installation
 
@@ -103,11 +103,14 @@ rjd3toolkit::sa_decomposition(ts_model)
 #> Aug 2017 1303.1 1535.588 1550.949 0.8485999 0.9900960
 ```
 
+## Package Maintenance and contributing
 
-## Contributing
-
-Any contribution is welcome and should be done through pull requests and/or issues.
+Any contribution is welcome and should be done through pull requests
+and/or issues. pull requests should include **updated tests** and
+**updated documentation**. If functionality is changed, docstrings
+should be added or updated.
 
 ## Licensing
 
-The code of this project is licensed under the [European Union Public Licence (EUPL)](https://joinup.ec.europa.eu/page/eupl-text-11-12).
+The code of this project is licensed under the [European Union Public
+Licence (EUPL)](https://joinup.ec.europa.eu/page/eupl-text-11-12).

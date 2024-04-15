@@ -1,8 +1,8 @@
 pandoc: 3.1.11
-pkgdown: 2.0.7
+pkgdown: 2.0.8
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-04-08T13:39Z
+last_built: 2024-04-15T14:34Z
 urls:
   reference: https://rjdemetra.github.io/rjd3tramoseats/reference
   article: https://rjdemetra.github.io/rjd3tramoseats/articles

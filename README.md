@@ -3,16 +3,16 @@
 
 # rjd3tramoseats
 
-rjd3tramoseats offers full acces to options and outputs of TRAMO-SEATS
+rjd3tramoseats offers full access to options and outputs of TRAMO-SEATS
 (`rjd3tramoseats::tramoseats()`), including TRAMO modelling
 (`rjd3tramoseats::tramo()`) and SEATS decomposition
 (`rjd3tramoseats::seats_decompose()`).
 
-The specification can be created with the functions
-`rjd3tramoseats::tramo_spec()` or `rjd3tramoseats::tramoseats_spec()`
-and can be modified with the function:
+A specification can be created with `rjd3tramoseats::tramo_spec()` or
+`rjd3tramoseats::tramoseats_spec()` and can be modified with the
+following function:
 
-- for the pre-processing: `rjd3toolkit::set_arima()`,
+- for pre-processing: `rjd3toolkit::set_arima()`,
   `rjd3toolkit::set_automodel()`, `rjd3toolkit::set_basic()`,
   `rjd3toolkit::set_easter()`, `rjd3toolkit::set_estimate()`,
   `rjd3toolkit::set_outlier()`, `rjd3toolkit::set_tradingdays()`,
@@ -20,11 +20,15 @@ and can be modified with the function:
   `rjd3toolkit::remove_outlier()`, `rjd3toolkit::add_ramp()`,
   `rjd3toolkit::remove_ramp()`, `rjd3toolkit::add_usrdefvar()`;
 
-- for the decomposition: `rjd3tramoseats::set_seats()`;
+- for decomposition: `rjd3tramoseats::set_seats()`;
 
-- for the benchmarking: `rjd3toolkit::set_benchmarking()`.
+- for benchmarking: `rjd3toolkit::set_benchmarking()`.
 
 ## Installation
+
+Running rjd3 packages requires **Java 17 or higher**. How to set up such
+a configuration in R is explained
+[here](https://jdemetra-new-documentation.netlify.app/#Rconfig)
 
 To get the current stable version (from the latest release):
 

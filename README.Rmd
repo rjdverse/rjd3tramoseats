@@ -29,7 +29,11 @@ A specification can be created with `rjd3tramoseats::tramo_spec()` or `rjd3tramo
 
 ## Installation
 
+<<<<<<< HEAD
 Running rjd3 packages requires **Java 17 or higher**. How to set up such a configuration in R is explained [here](https://jdemetra-new-documentation.netlify.app/#Rconfig) 
+=======
+Running rjd3 packages requires Java 17 or higher. How to set up such a configuration in R is explained [here](https://jdemetra-new-documentation.netlify.app/#installing-the-software) 
+>>>>>>> 95d3b055fe63ffae92796f1670e00ce042495082
 
 To get the current stable version (from the latest release):
 

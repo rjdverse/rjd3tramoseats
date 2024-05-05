@@ -34,8 +34,8 @@ To get the current stable version (from the latest release):
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("rjdemetra/rjd3toolkit@*release")
-remotes::install_github("rjdemetra/rjd3tramoseats@*release")
+remotes::install_github("rjdverse/rjd3toolkit@*release")
+remotes::install_github("rjdverse/rjd3tramoseats@*release")
 ```
 
 To get the current development version from GitHub:
@@ -43,7 +43,7 @@ To get the current development version from GitHub:
 ``` r
 # Install development version from GitHub
 # install.packages("remotes")
-remotes::install_github("rjdemetra/rjd3tramoseats")
+remotes::install_github("rjdverse/rjd3tramoseats")
 ```
 
 ## Usage

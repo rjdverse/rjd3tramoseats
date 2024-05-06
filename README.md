@@ -26,6 +26,10 @@ and can be modified with the function:
 
 ## Installation
 
+Running rjd3 packages requires Java 17 or higher. How to set up such a
+configuration in R is explained
+[here](https://jdemetra-new-documentation.netlify.app/#installing-the-software).
+
 To get the current stable version (from the latest release):
 
 ``` r
@@ -99,8 +103,7 @@ rjd3toolkit::sa_decomposition(ts_model)
 #> Apr 2017 1522.6 1580.752 1554.759 0.9632123 1.0167187
 #> May 2017 1452.4 1554.517 1553.908 0.9343093 1.0003924
 #> Jun 2017 1557.2 1551.804 1552.778 1.0034774 0.9993726
-#> Jul 2017 1445.5 1544.701 1551.717 0.9357801 0.9954781
-#> Aug 2017 1303.1 1535.588 1550.949 0.8485999 0.9900960
+#>  [ getOption("max.print") est atteint -- 2 lignes omises ]
 ```
 
 ## Package Maintenance and contributing
@@ -113,4 +116,5 @@ should be added or updated.
 ## Licensing
 
 The code of this project is licensed under the [European Union Public
-Licence (EUPL)](https://joinup.ec.europa.eu/page/eupl-text-11-12).
+Licence
+(EUPL)](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12).

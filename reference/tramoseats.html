@@ -96,8 +96,8 @@
     
 
 <p>the <code>tramoseats()</code> function returns a list with the results, the estimation specification and the result specification, while <code>tramoseats_fast()</code> is a faster function that only returns the results.
-The <code>jtramoseats()</code> functions only results the java object to custom outputs in other packages (use <code><a href="https://rjdemetra.github.io/rjd3toolkit/reference/dictionary.html" class="external-link">rjd3toolkit::dictionary()</a></code> to
-get the list of variables and <code><a href="https://rjdemetra.github.io/rjd3toolkit/reference/dictionary.html" class="external-link">rjd3toolkit::result()</a></code> to get a specific variable).</p>
+The <code>jtramoseats()</code> functions only results the java object to custom outputs in other packages (use <code><a href="https://rjdverse.github.io/rjd3toolkit/reference/dictionary.html" class="external-link">rjd3toolkit::dictionary()</a></code> to
+get the list of variables and <code><a href="https://rjdverse.github.io/rjd3toolkit/reference/dictionary.html" class="external-link">rjd3toolkit::result()</a></code> to get a specific variable).</p>
     </div>
 
     <div class="section level2">
@@ -202,11 +202,11 @@ get the list of variables and <code><a href="https://rjdemetra.github.io/rjd3too
 <span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2017 1557.2 1551.804 1552.778 1.0034774 0.9993726</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Jul 2017 1445.5 1544.701 1551.717 0.9357801 0.9954781</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Aug 2017 1303.1 1535.588 1550.949 0.8485999 0.9900960</span>
-<span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/add_outlier.html" class="external-link">add_outlier</a></span><span class="op">(</span><span class="va">sp</span>,</span></span>
+<span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/add_outlier.html" class="external-link">add_outlier</a></span><span class="op">(</span><span class="va">sp</span>,</span></span>
 <span class="r-in"><span>                 type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2015-01-01"</span>, <span class="st">"2010-01-01"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_transform.html" class="external-link">set_transform</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_tradingdays.html" class="external-link">set_tradingdays</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rjdemetra.github.io/rjd3toolkit/reference/set_easter.html" class="external-link">set_easter</a></span><span class="op">(</span><span class="va">sp</span>, enabled <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_transform.html" class="external-link">set_transform</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_tradingdays.html" class="external-link">set_tradingdays</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_easter.html" class="external-link">set_easter</a></span><span class="op">(</span><span class="va">sp</span>, enabled <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    option <span class="op">=</span> <span class="st">"workingdays"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span>  fun <span class="op">=</span> <span class="st">"None"</span></span></span>

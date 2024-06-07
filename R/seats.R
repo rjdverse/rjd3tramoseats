@@ -20,8 +20,8 @@ seats_decompose<-function(sarima, seas.tolerance=2, trend.boundary=.5, seas.boun
   jucm<-.jcall("jdplus/tramoseats/base/r/Seats", "Ljdplus/toolkit/base/core/ucarima/UcarimaModel;", "decompose",
          jsarima, seas.tolerance, trend.boundary, seas.boundary, seas.boundary.unique, approximation)
   if (is.jnull(jucm)){
-    return (NULL)
+    return(NULL)
   } else {
-    return (rjd3toolkit::.jd2r_ucarima(jucm))
+    return(rjd3toolkit::.jd2r_ucarima(jucm))
   }
 }

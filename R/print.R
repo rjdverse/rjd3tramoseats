@@ -250,7 +250,7 @@ plot.JD3_TRAMOSEATS_OUTPUT <- function(x, first_date = NULL, last_date = NULL,
 #' @importFrom rjd3toolkit diagnostics
 #' @export
 diagnostics.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
-  if (is.null(x)) return (NULL)
+  if (is.null(x)) return(NULL)
   variance_decomposition = x$diagnostics$vardecomposition
   variance_decomposition = matrix(unlist(variance_decomposition),
                                   ncol = 1,
@@ -266,5 +266,5 @@ diagnostics.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
 
 #' @export
 diagnostics.JD3_TRAMOSEATS_OUTPUT<-function(x, ...){
-  return (rjd3toolkit::diagnostics(x$result, ...))
+  return(rjd3toolkit::diagnostics(x$result, ...))
 }

@@ -48,10 +48,10 @@ tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), 
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/tramoseats/base/core/tramo/TramoOutput;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
+    return(NULL)
   } else{
     res = .tramo_output(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined))
+    return(.add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
 
@@ -76,20 +76,20 @@ tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
+    return(NULL)
   } else{
     res = .regarima_rslts(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+    return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
 
 .tramo_output<-function(jq){
   if (is.jnull(jq))
-    return (NULL)
+    return(NULL)
   q<-.jcall("jdplus/tramoseats/base/r/Tramo", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(tramoseats.TramoOutput, q)
-  return (structure(list(
+  return(structure(list(
     result=rjd3toolkit::.p2r_regarima_rslts(p$result),
     estimation_spec=.p2r_spec_tramo(p$estimation_spec),
     result_spec=.p2r_spec_tramo(p$result_spec)
@@ -141,10 +141,10 @@ tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;", "fullProcess", jts, jspec, jcontext )
   }
   if (is.jnull(jrslt)){
-    return (NULL)
+    return(NULL)
   } else{
     res = .tramoseats_output(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined))
+    return(.add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
 
@@ -168,10 +168,10 @@ tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
+    return(NULL)
   } else{
     res = .tramoseats_rslts(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+    return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
@@ -195,19 +195,19 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
+    return(NULL)
   } else{
     res = rjd3toolkit::.jd3_object(jrslt, result = TRUE)
-    return (res)
+    return(res)
   }
 }
 
 .tramoseats_output<-function(jq){
   if (is.jnull(jq))
-    return (NULL)
+    return(NULL)
   q<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(tramoseats.TramoSeatsOutput, q)
-  return (structure(list(
+  return(structure(list(
     result=.p2r_tramoseats_rslts(p$result),
     estimation_spec=.p2r_spec_tramoseats(p$estimation_spec),
     result_spec=.p2r_spec_tramoseats(p$result_spec)
@@ -330,7 +330,7 @@ tramo_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete
   else
     jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
   jnspec<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/tramoseats/base/api/tramo/TramoSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
-  return (.jd2r_spec_tramo(jnspec))
+  return(.jd2r_spec_tramo(jnspec))
 }
 
 #' @rdname refresh
@@ -358,7 +358,7 @@ tramoseats_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Com
   else
     jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
   jnspec<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
-  return (.jd2r_spec_tramoseats(jnspec))
+  return(.jd2r_spec_tramoseats(jnspec))
 
 }
 
@@ -412,12 +412,12 @@ terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
     jrslt<-.jcall("jdplus/tramoseats/base/r/Terror", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "process", jts, jspec, jcontext, as.integer(nback))
   }
   if (is.jnull(jrslt)){
-    return (NULL)
+    return(NULL)
   } else{
     rslt <- rjd3toolkit::.jd2r_matrix(jrslt)
     rslt <- ts(rslt, end = end(ts), frequency = frequency(ts))
     colnames(rslt)<-terror_names
-    return (rslt)
+    return(rslt)
   }
 }
 
@@ -457,13 +457,13 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "forecast", jts, jspec, jcontext, as.integer(nf))
   }
   if (is.jnull(jrslt)){
-    return (NULL)
+    return(NULL)
   } else{
     rslt<-rjd3toolkit::.jd2r_matrix(jrslt)
     rslt <- ts(rslt, frequency = frequency(ts),
                start = time(ts)[length(ts)] + 1/frequency(ts))
     colnames(rslt)<-forecast_names
-    return (rslt)
+    return(rslt)
   }
 }
 
@@ -473,7 +473,7 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
 #'
 #' @export
 tramoseats_dictionary<-function(){
-  return (.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "dictionary"))
+  return(.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "dictionary"))
 }
 
 #' Title
@@ -487,6 +487,6 @@ tramoseats_full_dictionary<-function(){
   q<-`dim<-`(q, c(6, length(q)/6))
   q<-t(q)
   q<-`colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
-  return (q)
+  return(q)
 }
 

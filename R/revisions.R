@@ -4,7 +4,7 @@ NULL
 .jrevisions<-function(jts, jspec, jcontext){
   jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeatsRevisionHistory",
                 "Ljdplus/toolkit/base/r/timeseries/Revisions;", "revisions", jts, jspec, jcontext)
-  return (jrslt)
+  return(jrslt)
 }
 
 
@@ -67,7 +67,7 @@ tramoseats_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NUL
   if (! is.null(data_ids)){
     ldata<-lapply(data_ids, function(data_id){
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "history", data_id$id, data_id$start)
-      return (rjd3toolkit::.jd2r_tsdata(w))
+      return(rjd3toolkit::.jd2r_tsdata(w))
     })
     names(ldata) <- sapply(data_ids, `[[`,"id")
   }
@@ -75,7 +75,7 @@ tramoseats_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NUL
   if (! is.null(ts_ids)){
     lts<-lapply(ts_ids, function(ts_id){
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsData;", "tsHistory", ts_id$id, ts_id$period, ts_id$start)
-      return (rjd3toolkit::.jd2r_tsdata(w))
+      return(rjd3toolkit::.jd2r_tsdata(w))
     })
     names(lts) <- sapply(ts_ids, `[[`,"id")
   }
@@ -83,10 +83,10 @@ tramoseats_revisions<-function(ts, spec, data_ids=NULL, ts_ids=NULL, cmp_ids=NUL
   if (! is.null(cmp_ids)){
     lcmp<-lapply(cmp_ids, function(cmp_id){
       w<-.jcall(jr, "Ljdplus/toolkit/base/api/timeseries/TsDataTable;", "tsSelect", cmp_id$id, cmp_id$start, cmp_id$end)
-      return (rjd3toolkit::.jd2r_mts(w))
+      return(rjd3toolkit::.jd2r_mts(w))
     })
     names(lcmp) <- sapply(cmp_ids, `[[`,"id")
   }
 
-  return (list(data=ldata, series=lts, components=lcmp))
+  return(list(data=ldata, series=lts, components=lcmp))
 }

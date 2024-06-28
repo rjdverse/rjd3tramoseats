@@ -1,7 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rjd3tramoseats
+# `rjd3tramoseats` <a href="https://rjdverse.github.io/rjd3tramoseats/"><img src="man/figures/logo.png" align="right" height="150" style="float:right; height:150px;"/></a>
+
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rjd3tramoseats)](https://CRAN.R-project.org/package=rjd3tramoseats)
+
+[![R-CMD-check](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml)
+[![lint](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml)
+
+[![GH Pages
+built](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml)
+<!-- badges: end -->
 
 rjd3tramoseats offers full access to options and outputs of TRAMO-SEATS
 (`rjd3tramoseats::tramoseats()`), including TRAMO modelling
@@ -81,6 +93,9 @@ summary(ts_model$result$preprocessing) # Summary of tramo model
 #> Loglikelihood:  781.358, Adjusted loglikelihood:  -2086.269
 #> Standard error of the regression (ML estimate):  0.03615788 
 #> AIC:  4198.538 , AICc:  4199.452 , BIC:  4250.811
+```
+
+``` r
 plot(ts_model) # Plot of the final decomposition
 ```
 
@@ -103,7 +118,7 @@ rjd3toolkit::sa_decomposition(ts_model)
 #> Apr 2017 1522.6 1580.752 1554.759 0.9632123 1.0167187
 #> May 2017 1452.4 1554.517 1553.908 0.9343093 1.0003924
 #> Jun 2017 1557.2 1551.804 1552.778 1.0034774 0.9993726
-#>  [ getOption("max.print") est atteint -- 2 lignes omises ]
+#>  [ reached getOption("max.print") -- omitted 2 rows ]
 ```
 
 ## Package Maintenance and contributing

@@ -14,7 +14,17 @@ knitr::opts_chunk$set(
 library("rjd3tramoseats")
 ```
 
-# rjd3tramoseats
+# `rjd3tramoseats` <a href="https://rjdverse.github.io/rjd3tramoseats/"><img src="man/figures/logo.png" align="right" height="150" style="float:right; height:150px;"/></a>
+
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/rjd3tramoseats)](https://CRAN.R-project.org/package=rjd3tramoseats)
+
+[![R-CMD-check](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml)
+[![lint](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml)
+
+[![GH Pages built](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml)
+<!-- badges: end -->
+
 
 rjd3tramoseats offers full access to options and outputs of TRAMO-SEATS (`rjd3tramoseats::tramoseats()`), including TRAMO modelling (`rjd3tramoseats::tramo()`) and SEATS decomposition (`rjd3tramoseats::seats_decompose()`).
 

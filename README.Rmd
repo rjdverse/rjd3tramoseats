@@ -6,10 +6,11 @@ output: github_document
 
 ```{r, echo = FALSE, include=FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  fig.align="center"
+    collapse = TRUE,
+    comment = "#>",
+    fig.path = "man/figures/README-",
+    fig.align = "center",
+    fig.width = 8L
 )
 library("rjd3tramoseats")
 ```

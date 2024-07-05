@@ -42,8 +42,8 @@ NULL
 #' @rdname tramoseats_spec
 #' @export
 tramo_spec<-function(name=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")){
-  name = gsub("rsa", "tr", tolower(name), fixed = TRUE)
-  name = match.arg(name[1],
+  name <- gsub("rsa", "tr", tolower(name), fixed = TRUE)
+  name <- match.arg(name[1],
                    choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
   )
   jspec<-.jcall("jdplus/tramoseats/base/api/tramo/TramoSpec", "Ljdplus/tramoseats/base/api/tramo/TramoSpec;", "fromString", name)
@@ -54,8 +54,8 @@ tramo_spec<-function(name=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"))
 #' @rdname tramoseats_spec
 #' @export
 tramoseats_spec<-function(name=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")){
-  name = gsub("tr", "rsa", tolower(name), fixed = TRUE)
-  name = match.arg(name[1],
+  name <- gsub("tr", "rsa", tolower(name), fixed = TRUE)
+  name <- match.arg(name[1],
                    choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
   )
   jspec<-.jcall("jdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec", "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;", "fromString", name)
@@ -109,14 +109,14 @@ tramoseats_spec<-function(name=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
     preliminaryCheck = b$preliminary_check
     )
   t<-pspec$transform
-  transform=list(
+  transform <- list(
     fn=rjd3toolkit::.enum_extract(modelling.Transformation, t$transformation),
     fct=t$fct,
     adjust=rjd3toolkit::.enum_extract(modelling.LengthOfPeriod, t$adjust),
     outliers=t$outliers_correction
     )
   a<-pspec$automodel
-  automodel=list(
+  automodel <- list(
     enabled=a$enabled,
     acceptdef=a$accept_def,
     cancel=a$cancel,
@@ -127,7 +127,7 @@ tramoseats_spec<-function(name=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
     tsig=a$tsig,
     amicompare=a$ami_compare
     )
-  arima=rjd3toolkit::.p2r_spec_sarima(pspec$arima)
+  arima <- rjd3toolkit::.p2r_spec_sarima(pspec$arima)
   o<-pspec$outlier
   outlier<-list(enabled=o$enabled, span=rjd3toolkit::.p2r_span(o$span), ao=o$ao, ls=o$ls, tc=o$tc, so=o$so, va=o$va, tcrate=o$tcrate, ml=o$ml)
   r<-pspec$regression
@@ -189,7 +189,7 @@ tramoseats_spec<-function(name=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
   pspec$outlier$tc<-rspec$outlier$tc
   pspec$outlier$so<-rspec$outlier$so
   pspec$outlier$va<-rspec$outlier$va
-  pspec$outlier$tcrate=rspec$outlier$tcrate
+  pspec$outlier$tcrate <- rspec$outlier$tcrate
   pspec$outlier$ml<-rspec$outlier$ml
 
   #AMI

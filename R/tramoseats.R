@@ -33,12 +33,12 @@ tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), 
   # TODO : check parameters
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/tramoseats/base/core/tramo/TramoOutput;", "fullProcess", jts, spec)
-  }else{
+  } else {
     jspec<-.r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -48,10 +48,10 @@ tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), 
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/tramoseats/base/core/tramo/TramoOutput;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  }else{
-    res = .tramo_output(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined))
+    return(NULL)
+  } else {
+    res <- .tramo_output(jrslt)
+    return(.add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
 
@@ -61,12 +61,12 @@ tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
   # TODO : check parameters
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, spec)
-  }else{
+  } else {
     jspec<-.r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -76,20 +76,20 @@ tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  }else{
-    res = .regarima_rslts(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+    return(NULL)
+  } else {
+    res <- .regarima_rslts(jrslt)
+    return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
 
 .tramo_output<-function(jq){
   if (is.jnull(jq))
-    return (NULL)
+    return(NULL)
   q<-.jcall("jdplus/tramoseats/base/r/Tramo", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(tramoseats.TramoOutput, q)
-  return (structure(list(
+  return(structure(list(
     result=rjd3toolkit::.p2r_regarima_rslts(p$result),
     estimation_spec=.p2r_spec_tramo(p$estimation_spec),
     result_spec=.p2r_spec_tramo(p$result_spec)
@@ -119,19 +119,19 @@ tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
 #' )
 #' tramoseats_fast(y, spec = sp)
 #' @return the `tramoseats()` function returns a list with the results, the estimation specification and the result specification, while `tramoseats_fast()` is a faster function that only returns the results.
-#' The `jtramoseats()` functions only results the java object to custom outputs in other packages (use [rjd3toolkit::dictionary()] to
+#' The `.jtramoseats()` functions only results the java object to custom outputs in other packages (use [rjd3toolkit::dictionary()] to
 #' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
 #' @export
 tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   # TODO : check parameters
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("tr", "rsa", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;", "fullProcess", jts, spec)
-  }else{
+  } else {
     jspec<-.r2jd_spec_tramoseats(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -141,10 +141,10 @@ tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;", "fullProcess", jts, jspec, jcontext )
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  }else{
-    res = .tramoseats_output(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined))
+    return(NULL)
+  } else {
+    res <- .tramoseats_output(jrslt)
+    return(.add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
 
@@ -153,12 +153,12 @@ tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4
 tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("tr", "rsa", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;", "process", jts, spec)
-  }else{
+  } else {
     jspec<-.r2jd_spec_tramoseats(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -168,24 +168,24 @@ tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  }else{
-    res = .tramoseats_rslts(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+    return(NULL)
+  } else {
+    res <- .tramoseats_rslts(jrslt)
+    return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
 #' @export
 #' @rdname tramoseats
-jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
+.jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("tr", "rsa", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;", "process", jts, spec)
-  }else{
+  } else {
     jspec<-.r2jd_spec_tramoseats(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -195,19 +195,19 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  }else{
-    res = rjd3toolkit::.jd3_object(jrslt, result = TRUE)
-    return (res)
+    return(NULL)
+  } else {
+    res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
+    return(res)
   }
 }
 
 .tramoseats_output<-function(jq){
   if (is.jnull(jq))
-    return (NULL)
+    return(NULL)
   q<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(tramoseats.TramoSeatsOutput, q)
-  return (structure(list(
+  return(structure(list(
     result=.p2r_tramoseats_rslts(p$result),
     estimation_spec=.p2r_spec_tramoseats(p$estimation_spec),
     result_spec=.p2r_spec_tramoseats(p$result_spec)
@@ -226,13 +226,13 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #'
 #' @details
 #' The selection of constraints to be kept fixed or re-estimated is called a revision policy.
-#' User-defined parameters are always copied to the new refreshed specifications. Only the Tramo
-#' (reg-arima pre-adjustment part) is refreshed, but the final ARIMA model handed down to SEATS for the decomposition part
-#' might be changed as a result of the refreshing process.
+#' User-defined parameters are always copied to the new refreshed specifications.
+#' This revision applies to the estimation done in Tramo (pre-adjustment phase), Seats will then
+#' run a new decomposition which might be in some (rare) cases based on a different model.
 #'
 #' Available refresh policies are:
 #'
-#' \strong{Current}: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)
+#' \strong{Current}: applying the current pre-adjustment reg-arima model and handling the new raw data points, or any sub-span of the series as Additive Outliers (defined as new intervention variables)
 #'
 #' \strong{Fixed}: applying the current pre-adjustment reg-arima model and replacing forecasts by new raw data points.
 #'
@@ -240,8 +240,6 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #' and coefficients are unchanged.
 #'
 #' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.
-#' When using Seats for decomposition it avoids a possible re-allocation of roots between the trend and seasonal components,
-#' which might have led to strong revisions.
 #'
 #' \strong{FreeParameters}: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.
 #'
@@ -253,13 +251,13 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
 #' By default this is the `"TRfull"` or `"RSAfull"` specification.
 #' @param policy the refresh policy to apply (see details).
-#' @param period,start,end additional parameters used when outliers are partially re-estimated (`policy = "Outliers"`) or to specify the span on which additive outliers are introduced,
-#' normally at the end of the series  (`policy = "Current"`).
+#' @param period,start,end  additional parameters used to specify the span on which additive outliers (AO) are introduced when `policy = "Current"`
+#' or to specify the span on which outliers will be re-detected when `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`,
+#' is this case \code{end} is unused.
+#' If \code{start} is not specified, outliers will be re-identified on the whole series.
 #' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
-#' \code{start} and \code{end}: first and last date (included) where additive outliers are introduced or, in the case of re-estimation of outliers, start of the re-estimation (end is unused),
-#' defined as arrays of two elements: year and first period (for example, if `period = 12`, `c(1980, 1)` for January 1980).
-#' If they are not specified, the outliers will be re-identified on the whole series.
-#'
+#' \code{start} and \code{end}: defined as arrays of two elements: year and first period (for example, `period = 12` and `c(1980, 1)` stands for January 1980)
+#' The dates corresponding \code{start} and \code{end} are included in the span definition.
 #' @return a new specification, an object of class `"JD3_TRAMOSEATS_SPEC"` or
 #' `"JD3_TRAMO_SPEC"`.
 #'
@@ -268,35 +266,57 @@ jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa
 #' \url{https://jdemetra-new-documentation.netlify.app/t-rev-policies-production}
 #'
 #' @examples
-#'y<- rjd3toolkit::ABS$X0.2.08.10.M
-#'# raw series for first estimation
-#'y_raw <-window(y,end = 2009)
-#'# raw series for second (refreshed) estimation
-#'y_new <-window(y,start = 2010)
+#' y<- rjd3toolkit::ABS$X0.2.08.10.M
+#' # raw series for first estimation
+#' y_raw <-window(y,end = c(2016,12))
+#' # raw series for second (refreshed) estimation
+#' y_new <-window(y,end = c(2017,6))
 #' # specification for first estimation
-#'spec_ts_1<-tramoseats_spec("RSAFull")
+#' spec_tramoseats_1<-tramoseats_spec("rsafull")
 #' # first estimation
-#'sa_ts<- tramoseats(y_raw, spec_ts_1)
+#' sa_tramoseats<- tramoseats(y_raw, spec_tramoseats_1)
 #' # refreshing the specification
-#' current_result_spec <- sa_ts$result_spec
-#' current_domain_spec <- sa_ts$estimation_spec
-#' spec_ts_ref <- tramoseats_refresh(current_result_spec, # point spec to be refreshed
+#' current_result_spec <- sa_tramoseats$result_spec
+#' current_domain_spec <- sa_tramoseats$estimation_spec
+#' # policy = "Fixed"
+#' spec_tramoseats_ref <- tramoseats_refresh(current_result_spec, # point spec to be refreshed
 #'   current_domain_spec, #domain spec (set of constraints)
-#'   policy = "FixedAutoRegressiveParameters")
+#'   policy = "Fixed")
 #' # 2nd estimation with refreshed specification
-#' sa_ts_ref <- tramoseats(y_new, spec_ts_ref)
+#' sa_tramoseats_ref <- tramoseats(y_new, spec_tramoseats_ref)
+#' # policy = "Outliers"
+#' spec_tramoseats_ref <- tramoseats_refresh(current_result_spec,
+#'   current_domain_spec,
+#'   policy = "Outliers",
+#'   period=12,
+#'   start=c(2017,1)) # outliers will be re-detected from January 2017 included
+#' # 2nd estimation with refreshed specification
+#' sa_tramoseats_ref <- tramoseats(y_new, spec_tramoseats_ref)
+#'
+#' # policy = "Current"
+#' spec_tramoseats_ref <- tramoseats_refresh(current_result_spec,
+#'   current_domain_spec,
+#'   policy = "Current",
+#'   period=12,
+#'   start=c(2017,1),
+#'   end=end(y_new))
+#'   # points from January 2017 (included) until the end of the series will be treated
+#'   # as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
+#' # 2nd estimation with refreshed specification
+#' sa_tramoseats_ref <- tramoseats(y_new, spec_tramoseats_ref)#'
+#'
 #' @name refresh
 #' @rdname refresh
 #' @export
 tramo_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
-  policy=match.arg(policy)
+  policy <- match.arg(policy)
   if (!inherits(spec, "JD3_TRAMO_SPEC"))
     stop("Invalid specification type")
   jspec<-.r2jd_spec_tramo(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("jdplus/tramoseats/base/api/tramo/TramoSpec", "Ljdplus/tramoseats/base/api/tramo/TramoSpec;", "fromString", "trfull")
 
-  }else{
+  } else {
     if (!inherits(refspec, "JD3_TRAMO_SPEC"))
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_tramo(refspec)
@@ -310,20 +330,20 @@ tramo_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete
   else
     jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
   jnspec<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/tramoseats/base/api/tramo/TramoSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
-  return (.jd2r_spec_tramo(jnspec))
+  return(.jd2r_spec_tramo(jnspec))
 }
 
 #' @rdname refresh
 #' @export
 tramoseats_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
-  policy=match.arg(policy)
+  policy <- match.arg(policy)
   if (!inherits(spec, "JD3_TRAMOSEATS_SPEC"))
     stop("Invalid specification type")
   jspec<-.r2jd_spec_tramoseats(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("jdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec", "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;", "fromString", "rsafull")
 
-  }else{
+  } else {
     if (!inherits(refspec, "JD3_TRAMOSEATS_SPEC"))
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_tramoseats(refspec)
@@ -338,7 +358,7 @@ tramoseats_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Com
   else
     jdom<-jdom<-rjd3toolkit::.jdomain(0, NULL, NULL)
   jnspec<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
-  return (.jd2r_spec_tramoseats(jnspec))
+  return(.jd2r_spec_tramoseats(jnspec))
 
 }
 
@@ -377,12 +397,12 @@ forecast_names<-c("forecast", "error", "fraw", "efraw")
 terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nback=1, context=NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/Terror", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "process", jts, spec, as.integer(nback))
-  }else{
+  } else {
     jspec<-.r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -392,12 +412,12 @@ terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
     jrslt<-.jcall("jdplus/tramoseats/base/r/Terror", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "process", jts, jspec, jcontext, as.integer(nback))
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  }else{
+    return(NULL)
+  } else {
     rslt <- rjd3toolkit::.jd2r_matrix(jrslt)
     rslt <- ts(rslt, end = end(ts), frequency = frequency(ts))
     colnames(rslt)<-terror_names
-    return (rslt)
+    return(rslt)
   }
 }
 
@@ -422,12 +442,12 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
   if (nf<0) nf<-frequency(ts)*(-nf)
 
   if (is.character(spec)){
-    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "forecast", jts, spec, as.integer(nf))
-  }else{
+  } else {
     jspec<-.r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -437,13 +457,13 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "forecast", jts, jspec, jcontext, as.integer(nf))
   }
   if (is.jnull(jrslt)){
-    return (NULL)
-  }else{
+    return(NULL)
+  } else {
     rslt<-rjd3toolkit::.jd2r_matrix(jrslt)
     rslt <- ts(rslt, frequency = frequency(ts),
                start = time(ts)[length(ts)] + 1/frequency(ts))
     colnames(rslt)<-forecast_names
-    return (rslt)
+    return(rslt)
   }
 }
 
@@ -453,7 +473,7 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
 #'
 #' @export
 tramoseats_dictionary<-function(){
-  return (.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "dictionary"))
+  return(.jcall("jdplus/tramoseats/base/r/TramoSeats","[S", "dictionary"))
 }
 
 #' Title
@@ -467,6 +487,5 @@ tramoseats_full_dictionary<-function(){
   q<-`dim<-`(q, c(6, length(q)/6))
   q<-t(q)
   q<-`colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
-  return (q)
+  return(q)
 }
-

@@ -2,9 +2,9 @@
 #'@importFrom utils capture.output
 print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
                               ...){
-  diagnostics = rjd3toolkit::diagnostics(x)
-  variance_decomposition = diagnostics$variance_decomposition
-  residual_tests = diagnostics$residual_tests
+  diagnostics <- rjd3toolkit::diagnostics(x)
+  variance_decomposition <- diagnostics$variance_decomposition
+  residual_tests <- diagnostics$residual_tests
 
   cat("Relative contribution of the components to the stationary",
       "portion of the variance in the original series,",
@@ -250,21 +250,25 @@ plot.JD3_TRAMOSEATS_OUTPUT <- function(x, first_date = NULL, last_date = NULL,
 #' @importFrom rjd3toolkit diagnostics
 #' @export
 diagnostics.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
-  if (is.null(x)) return (NULL)
-  variance_decomposition = x$diagnostics$vardecomposition
-  variance_decomposition = matrix(unlist(variance_decomposition),
-                                  ncol = 1,
-                                  dimnames = list(names(variance_decomposition), "Component"))
-  residual_tests = x$diagnostics[grep("test", names(x$diagnostics))]
-  residual_tests = data.frame(Statistic = sapply(residual_tests, function(test) test[["value"]]),
-                              P.value = sapply(residual_tests, function(test) test[["pvalue"]]),
-                              Description = sapply(residual_tests, function(test) attr(test, "distribution")))
-  list(preprocessing = rjd3toolkit::diagnostics(x$preprocessing),
-    variance_decomposition = variance_decomposition,
-       residual_tests = residual_tests)
+    if (is.null(x)) return(NULL)
+    variance_decomposition <- x$diagnostics$vardecomposition
+    variance_decomposition <- matrix(unlist(variance_decomposition),
+                                     ncol = 1,
+                                     dimnames = list(names(variance_decomposition), "Component"))
+    residual_tests <- x$diagnostics[grep("test", names(x$diagnostics))]
+    residual_tests <- data.frame(
+        Statistic = sapply(residual_tests, function(test) test[["value"]]),
+        P.value = sapply(residual_tests, function(test) test[["pvalue"]]),
+        Description = sapply(residual_tests, function(test) attr(test, "distribution"))
+    )
+    return(list(
+        preprocessing = rjd3toolkit::diagnostics(x$preprocessing),
+        variance_decomposition = variance_decomposition,
+        residual_tests = residual_tests
+    ))
 }
 
 #' @export
 diagnostics.JD3_TRAMOSEATS_OUTPUT<-function(x, ...){
-  return (rjd3toolkit::diagnostics(x$result, ...))
+  return(rjd3toolkit::diagnostics(x$result, ...))
 }

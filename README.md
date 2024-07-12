@@ -1,16 +1,28 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rjd3tramoseats
+# `rjd3tramoseats` <a href="https://rjdverse.github.io/rjd3tramoseats/"><img src="man/figures/logo.png" align="right" height="150" style="float:right; height:150px;"/></a>
 
-rjd3tramoseats offers full acces to options and outputs of TRAMO-SEATS
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rjd3tramoseats)](https://CRAN.R-project.org/package=rjd3tramoseats)
+
+[![R-CMD-check](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml)
+[![lint](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml)
+
+[![GH Pages
+built](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml)
+<!-- badges: end -->
+
+rjd3tramoseats offers full access to options and outputs of TRAMO-SEATS
 (`rjd3tramoseats::tramoseats()`), including TRAMO modelling
 (`rjd3tramoseats::tramo()`) and SEATS decomposition
 (`rjd3tramoseats::seats_decompose()`).
 
-A specification can be created with the functions
-`rjd3tramoseats::tramo_spec()` or `rjd3tramoseats::tramoseats_spec()`
-and can be modified with the function:
+A specification can be created with `rjd3tramoseats::tramo_spec()` or
+`rjd3tramoseats::tramoseats_spec()` and can be modified with the
+following functions:
 
 - for pre-processing: `rjd3toolkit::set_arima()`,
   `rjd3toolkit::set_automodel()`, `rjd3toolkit::set_basic()`,
@@ -26,12 +38,16 @@ and can be modified with the function:
 
 ## Installation
 
+Running rjd3 packages requires **Java 17 or higher**. How to set up such
+a configuration in R is explained
+[here](https://jdemetra-new-documentation.netlify.app/#Rconfig)
+
 To get the current stable version (from the latest release):
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("rjdemetra/rjd3toolkit@*release")
-remotes::install_github("rjdemetra/rjd3tramoseats@*release")
+remotes::install_github("rjdverse/rjd3toolkit@*release")
+remotes::install_github("rjdverse/rjd3tramoseats@*release")
 ```
 
 To get the current development version from GitHub:
@@ -39,7 +55,7 @@ To get the current development version from GitHub:
 ``` r
 # Install development version from GitHub
 # install.packages("remotes")
-remotes::install_github("rjdemetra/rjd3tramoseats")
+remotes::install_github("rjdverse/rjd3tramoseats")
 ```
 
 ## Usage
@@ -77,6 +93,9 @@ summary(ts_model$result$preprocessing) # Summary of tramo model
 #> Loglikelihood:  781.358, Adjusted loglikelihood:  -2086.269
 #> Standard error of the regression (ML estimate):  0.03615788 
 #> AIC:  4198.538 , AICc:  4199.452 , BIC:  4250.811
+```
+
+``` r
 plot(ts_model) # Plot of the final decomposition
 ```
 
@@ -99,6 +118,18 @@ rjd3toolkit::sa_decomposition(ts_model)
 #> Apr 2017 1522.6 1580.752 1554.759 0.9632123 1.0167187
 #> May 2017 1452.4 1554.517 1553.908 0.9343093 1.0003924
 #> Jun 2017 1557.2 1551.804 1552.778 1.0034774 0.9993726
-#> Jul 2017 1445.5 1544.701 1551.717 0.9357801 0.9954781
-#> Aug 2017 1303.1 1535.588 1550.949 0.8485999 0.9900960
+#>  [ reached getOption("max.print") -- omitted 2 rows ]
 ```
+
+## Package Maintenance and contributing
+
+Any contribution is welcome and should be done through pull requests
+and/or issues. pull requests should include **updated tests** and
+**updated documentation**. If functionality is changed, docstrings
+should be added or updated.
+
+## Licensing
+
+The code of this project is licensed under the [European Union Public
+Licence
+(EUPL)](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12).

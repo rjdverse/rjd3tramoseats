@@ -3,7 +3,7 @@
 \name{tramoseats}
 \alias{tramoseats}
 \alias{tramoseats_fast}
-\alias{jtramoseats}
+\alias{.jtramoseats}
 \title{Seasonal Adjustment with  TRAMO-SEATS}
 \usage{
 tramoseats(
@@ -20,7 +20,7 @@ tramoseats_fast(
   userdefined = NULL
 )
 
-jtramoseats(
+.jtramoseats(
   ts,
   spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
   context = NULL,
@@ -38,7 +38,7 @@ jtramoseats(
 }
 \value{
 the \code{tramoseats()} function returns a list with the results, the estimation specification and the result specification, while \code{tramoseats_fast()} is a faster function that only returns the results.
-The \code{jtramoseats()} functions only results the java object to custom outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
+The \code{.jtramoseats()} functions only results the java object to custom outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
 get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
 }
 \description{

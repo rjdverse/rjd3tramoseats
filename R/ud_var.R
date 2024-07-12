@@ -1,18 +1,18 @@
 .add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE){
   if (is.null(userdefined)) {
-    x$user_defined = rjd3toolkit::user_defined(x, NULL)
+    x$user_defined <- rjd3toolkit::user_defined(x, NULL)
   } else {
     if (result) {
-      res = jx
+      res <- jx
     } else {
       if (is.null(out_class)) {
-        res = jx$getResult()
+        res <- jx$getResult()
       } else {
-        res = .jcall(jx, out_class, "getResult")
+        res <- .jcall(jx, out_class, "getResult")
       }
     }
-    res = rjd3toolkit::.jd3_object(res, result = TRUE)
-    x$user_defined = rjd3toolkit::user_defined(res, userdefined = userdefined)
+    res <- rjd3toolkit::.jd3_object(res, result = TRUE)
+    x$user_defined <- rjd3toolkit::user_defined(res, userdefined = userdefined)
   }
   x
 }
@@ -54,7 +54,7 @@ userdefined_variables_tramoseats <- function(x = c("TRAMO-SEATS","TRAMO")){
   #   sort() |>
   #   dput()
 
-  sa_tramoseats = c("adjust", "arima.bd", "arima.bp", "arima.bphi(*)", "arima.bq",
+  sa_tramoseats <- c("adjust", "arima.bd", "arima.bp", "arima.bphi(*)", "arima.bq",
                     "arima.btheta(*)", "arima.d", "arima.p", "arima.phi(*)", "arima.q",
                     "arima.theta(*)", "benchmarking.original", "benchmarking.result",
                     "benchmarking.target", "cal", "cal_b", "cal_b(?)", "cal_f", "cal_f(?)",
@@ -162,7 +162,7 @@ userdefined_variables_tramoseats <- function(x = c("TRAMO-SEATS","TRAMO")){
   #   sort() |>
   #   dput()
 
-  sa_tramo = c("adjust", "arima.bd", "arima.bp", "arima.bphi(*)", "arima.bq",
+  sa_tramo <- c("adjust", "arima.bd", "arima.bp", "arima.bphi(*)", "arima.bq",
                "arima.btheta(*)", "arima.d", "arima.p", "arima.phi(*)", "arima.q",
                "arima.theta(*)", "cal", "cal_b(?)", "cal_f(?)", "det", "det_b(?)",
                "det_f(?)", "det_i", "det_i_b(?)", "det_i_f(?)", "det_s", "det_s_b(?)",

@@ -33,12 +33,12 @@ tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), 
   # TODO : check parameters
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/tramoseats/base/core/tramo/TramoOutput;", "fullProcess", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -49,8 +49,8 @@ tramo<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), 
   }
   if (is.jnull(jrslt)){
     return(NULL)
-  } else{
-    res = .tramo_output(jrslt)
+  } else {
+    res <- .tramo_output(jrslt)
     return(.add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
@@ -61,12 +61,12 @@ tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
   # TODO : check parameters
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -77,8 +77,8 @@ tramo_fast<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
   }
   if (is.jnull(jrslt)){
     return(NULL)
-  } else{
-    res = .regarima_rslts(jrslt)
+  } else {
+    res <- .regarima_rslts(jrslt)
     return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
@@ -126,12 +126,12 @@ tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4
   # TODO : check parameters
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("tr", "rsa", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;", "fullProcess", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_tramoseats(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -142,8 +142,8 @@ tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4
   }
   if (is.jnull(jrslt)){
     return(NULL)
-  } else{
-    res = .tramoseats_output(jrslt)
+  } else {
+    res <- .tramoseats_output(jrslt)
     return(.add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
@@ -153,12 +153,12 @@ tramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4
 tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("tr", "rsa", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;", "process", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_tramoseats(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -169,8 +169,8 @@ tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
   }
   if (is.jnull(jrslt)){
     return(NULL)
-  } else{
-    res = .tramoseats_rslts(jrslt)
+  } else {
+    res <- .tramoseats_rslts(jrslt)
     return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
@@ -180,12 +180,12 @@ tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
 .jtramoseats<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("tr", "rsa", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("tr", "rsa", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;", "process", jts, spec)
-  } else{
+  } else {
     jspec<-.r2jd_spec_tramoseats(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -196,8 +196,8 @@ tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
   }
   if (is.jnull(jrslt)){
     return(NULL)
-  } else{
-    res = rjd3toolkit::.jd3_object(jrslt, result = TRUE)
+  } else {
+    res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
     return(res)
   }
 }
@@ -309,14 +309,14 @@ tramoseats_fast<-function(ts, spec=c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
 #' @rdname refresh
 #' @export
 tramo_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
-  policy=match.arg(policy)
+  policy <- match.arg(policy)
   if (!inherits(spec, "JD3_TRAMO_SPEC"))
     stop("Invalid specification type")
   jspec<-.r2jd_spec_tramo(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("jdplus/tramoseats/base/api/tramo/TramoSpec", "Ljdplus/tramoseats/base/api/tramo/TramoSpec;", "fromString", "trfull")
 
-  } else{
+  } else {
     if (!inherits(refspec, "JD3_TRAMO_SPEC"))
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_tramo(refspec)
@@ -336,14 +336,14 @@ tramo_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete
 #' @rdname refresh
 #' @export
 tramoseats_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
-  policy=match.arg(policy)
+  policy <- match.arg(policy)
   if (!inherits(spec, "JD3_TRAMOSEATS_SPEC"))
     stop("Invalid specification type")
   jspec<-.r2jd_spec_tramoseats(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("jdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec", "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;", "fromString", "rsafull")
 
-  } else{
+  } else {
     if (!inherits(refspec, "JD3_TRAMOSEATS_SPEC"))
       stop("Invalid specification type")
     jrefspec<-.r2jd_spec_tramoseats(refspec)
@@ -397,12 +397,12 @@ forecast_names<-c("forecast", "error", "fraw", "efraw")
 terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nback=1, context=NULL){
   jts<-rjd3toolkit::.r2jd_tsdata(ts)
   if (is.character(spec)){
-    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/Terror", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "process", jts, spec, as.integer(nback))
-  } else{
+  } else {
     jspec<-.r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -413,7 +413,7 @@ terror<-function(ts, spec=c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
   }
   if (is.jnull(jrslt)){
     return(NULL)
-  } else{
+  } else {
     rslt <- rjd3toolkit::.jd2r_matrix(jrslt)
     rslt <- ts(rslt, end = end(ts), frequency = frequency(ts))
     colnames(rslt)<-terror_names
@@ -442,12 +442,12 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
   if (nf<0) nf<-frequency(ts)*(-nf)
 
   if (is.character(spec)){
-    spec = gsub("rsa", "tr", tolower(spec), fixed = TRUE)
-    spec = match.arg(spec[1],
+    spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+    spec <- match.arg(spec[1],
                      choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
     )
     jrslt<-.jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "forecast", jts, spec, as.integer(nf))
-  } else{
+  } else {
     jspec<-.r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
@@ -458,7 +458,7 @@ tramo_forecast<-function(ts, spec= c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4"
   }
   if (is.jnull(jrslt)){
     return(NULL)
-  } else{
+  } else {
     rslt<-rjd3toolkit::.jd2r_matrix(jrslt)
     rslt <- ts(rslt, frequency = frequency(ts),
                start = time(ts)[length(ts)] + 1/frequency(ts))
@@ -489,4 +489,3 @@ tramoseats_full_dictionary<-function(){
   q<-`colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
   return(q)
 }
-

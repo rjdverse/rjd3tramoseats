@@ -1,7 +1,7 @@
 Package: rjd3tramoseats
 Type: Package
 Title: Seasonal Adjustment with TRAMO-SEATS in 'JDemetra+ 3.x'
-Version: 3.2.3
+Version: 3.2.3.9000
 Authors@R: c(
   person("Jean", "Palate", role = c("aut"),
                 email = "palatejean@gmail.com"),
@@ -24,7 +24,7 @@ Imports:
   RProtoBuf (>= 0.4.20),
   rjd3toolkit (>= 3.2.2)
 Remotes: 
-    github::rjdverse/rjd3toolkit@*release
+    github::rjdverse/rjd3toolkit
 SystemRequirements: Java (>= 17)
 License: EUPL
 URL: https://github.com/rjdverse/rjd3tramoseats, https://rjdverse.github.io/rjd3tramoseats/

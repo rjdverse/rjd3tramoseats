@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+* New .jar
+
 ## [3.2.2] - 2024-03-15
 
 [Unreleased]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.2.2...HEAD

@@ -28,7 +28,7 @@ Remotes:
 SystemRequirements: Java (>= 17)
 License: EUPL
 URL: https://github.com/rjdverse/rjd3tramoseats, https://rjdverse.github.io/rjd3tramoseats/
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/rjdverse/rjd3tramoseats/issues
 Encoding: UTF-8

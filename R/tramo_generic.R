@@ -25,11 +25,14 @@ residuals.JD3_TRAMO_OUTPUT <- function(object, ...){
 }
 #' @export
 summary.JD3_TRAMO_OUTPUT <- function(object, ...){
-  summary(object$result, ...)
+  x <- summary(object$result, ...)
+  x$method <- "TRAMO"
+  x
 }
 #' @export
-print.JD3_TRAMO_OUTPUT <- function(x, ...){
-  print(x$result, ...)
+print.JD3_TRAMO_OUTPUT <- function(x, summary_info = getOption("summary_info"), ...){
+  cat("Method: TRAMO\n")
+  print(x$result, summary_info = summary_info, ...)
 }
 #' @export
 diagnostics.JD3_TRAMO_OUTPUT <- function(x, ...){

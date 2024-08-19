@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rjd3tramoseats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.3.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>TRAMO model, pre-adjustment in TRAMO-SEATS</h1>
-      <small class="dont-index">Source: <a href="https://github.com/rjdverse/rjd3tramoseats/blob/v3.2.3/R/tramoseats.R" class="external-link"><code>R/tramoseats.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/rjdverse/rjd3tramoseats/blob/develop/R/tramoseats.R" class="external-link"><code>R/tramoseats.R</code></a></small>
       <div class="d-none name"><code>tramo.Rd</code></div>
     </div>
 
@@ -92,42 +92,21 @@
 <span class="r-in"><span>                 type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2015-01-01"</span>, <span class="st">"2010-01-01"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">tramo_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: yes </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (2,1,2) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model: (2,1,2) (0,1,1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi(1)    -0.09251    0.39861 -0.232</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi(2)     0.12325    0.08546  1.442</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -1.02295    0.40059 -2.554</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> theta(2)   0.24537    0.31899  0.769</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.43575    0.06277 -6.942</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    phi(1)    phi(2)  theta(1)  theta(2) btheta(1) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -0.09251   0.12325  -1.02295   0.24537  -0.43575 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> monday          -1.131e-02  3.604e-03 -3.137</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tuesday          5.831e-03  3.623e-03  1.609</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> wednesday       -8.502e-05  3.605e-03 -0.024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> thursday         1.293e-02  3.665e-03  3.529</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> friday          -2.076e-03  3.646e-03 -0.569</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> saturday         1.535e-02  3.635e-03  4.224</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lp               3.881e-02  9.934e-03  3.907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> easter           5.207e-02  7.566e-03  6.882</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2010-01-01)  3.674e-02  2.922e-02  1.258</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2015-01-01) -9.888e-03  2.935e-02 -0.337</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-06-01)  1.736e-01  2.928e-02  5.928</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -1.831e-01  2.918e-02 -6.273</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  18 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          monday         tuesday       wednesday        thursday          friday </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      -1.131e-02       5.831e-03      -8.502e-05       1.293e-02      -2.076e-03 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        saturday              lp          easter AO (2010-01-01) AO (2015-01-01) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       1.535e-02       3.881e-02       5.207e-02       3.674e-02      -9.888e-03 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-06-01) AO (2000-07-01) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       1.736e-01      -1.831e-01 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  787.6949 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Adjusted loglikelihood:  -2079.932 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  0.03560084 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4195.864 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4197.604 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4268.242 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> For a more detailed output, use the 'summary()' function.</span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_transform.html" class="external-link">set_transform</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_tradingdays.html" class="external-link">set_tradingdays</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_easter.html" class="external-link">set_easter</a></span><span class="op">(</span><span class="va">sp</span>, enabled <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
@@ -137,71 +116,39 @@
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">tramo_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: no </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (0,1,1) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model: (0,1,1) (0,1,1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.82355    0.02896 -28.43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.26081    0.04903  -5.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  theta(1) btheta(1) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -0.8235   -0.2608 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> monday           -11.7873     3.8750 -3.042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tuesday            0.2507     3.8786  0.065</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> wednesday          3.0039     3.8746  0.775</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> thursday          12.8309     3.9423  3.255</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> friday            -5.4519     3.9132 -1.393</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> saturday          17.2998     3.9274  4.405</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lp                33.6083    11.2479  2.988</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2010-01-01)   40.5331    33.7485  1.201</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2015-01-01)  -10.7096    33.7815 -0.317</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-06-01)  192.7411    33.9640  5.675</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -200.7316    33.7986 -5.939</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2005-04-01) -177.1356    33.7257 -5.252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  15 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          monday         tuesday       wednesday        thursday          friday </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        -11.7873          0.2507          3.0039         12.8309         -5.4519 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        saturday              lp AO (2010-01-01) AO (2015-01-01) AO (2000-06-01) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         17.2998         33.6083         40.5331        -10.7096        192.7411 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) AO (2005-04-01) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       -200.7316       -177.1356 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  -2139.74 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  43.47307 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4309.481 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4310.693 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4369.796 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> For a more detailed output, use the 'summary()' function.</span>
 <span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_outlier.html" class="external-link">set_outlier</a></span><span class="op">(</span><span class="va">sp</span>, outliers.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">tramo_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: no </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model:  (0,1,1) (0,1,1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model: (0,1,1) (0,1,1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> theta(1)  -0.82355    0.02896 -28.43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> btheta(1) -0.26081    0.04903  -5.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  theta(1) btheta(1) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -0.8235   -0.2608 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Regression model:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Estimate Std. Error T-stat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> monday           -11.7873     3.8750 -3.042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tuesday            0.2507     3.8786  0.065</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> wednesday          3.0039     3.8746  0.775</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> thursday          12.8309     3.9423  3.255</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> friday            -5.4519     3.9132 -1.393</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> saturday          17.2998     3.9274  4.405</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lp                33.6083    11.2479  2.988</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2010-01-01)   40.5331    33.7485  1.201</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2015-01-01)  -10.7096    33.7815 -0.317</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-06-01)  192.7411    33.9640  5.675</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) -200.7316    33.7986 -5.939</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2005-04-01) -177.1356    33.7257 -5.252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:  425 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of effective observations:  412 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of parameters:  15 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          monday         tuesday       wednesday        thursday          friday </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        -11.7873          0.2507          3.0039         12.8309         -5.4519 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        saturday              lp AO (2010-01-01) AO (2015-01-01) AO (2000-06-01) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         17.2998         33.6083         40.5331        -10.7096        192.7411 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AO (2000-07-01) AO (2005-04-01) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       -200.7316       -177.1356 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Loglikelihood:  -2139.74 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard error of the regression (ML estimate):  43.47307 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC:  4309.481 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AICC:  4310.693 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BIC:  4369.796 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> For a more detailed output, use the 'summary()' function.</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

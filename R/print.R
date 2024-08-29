@@ -288,4 +288,3 @@ print.JD3_TRAMOSEATS_SPEC <- function(x, ...) {
     cat("\n")
     return(invisible(x))
 }
-

@@ -1,4 +1,3 @@
-
 #' Set Seats Specification
 #'
 #' @description
@@ -28,16 +27,17 @@
 #' @param bcasts,fcasts numeric: the number of backasts (`bcasts`) or forecasts (`fcasts`) used in the decomposition in periods (positive values) or years (negative values).Default `bcasts`=0. Default `fcasts`=0.
 #' @param bias TODO.
 #' @examples
-#' init_spec<-tramoseats_spec("rsafull")
-#' new_spec<- set_seats(init_spec,
-#'                     approximation = "Legacy",
-#'                     trend.boundary = 0.8,
-#'                     seas.boundary = 0.5,
-#'                     fcasts = -3,
-#'                     algorithm = "KalmanSmoother",
-#'                     bias = TRUE)
-#'y <- rjd3toolkit::ABS$X0.2.09.10.M
-#'sa<- tramoseats(y,spec=new_spec)
+#' init_spec <- tramoseats_spec("rsafull")
+#' new_spec <- set_seats(init_spec,
+#'     approximation = "Legacy",
+#'     trend.boundary = 0.8,
+#'     seas.boundary = 0.5,
+#'     fcasts = -3,
+#'     algorithm = "KalmanSmoother",
+#'     bias = TRUE
+#' )
+#' y <- rjd3toolkit::ABS$X0.2.09.10.M
+#' sa <- tramoseats(y, spec = new_spec)
 #' @return an object of class  `"JD3_TRAMOSEATS_SPEC"`.
 #' @seealso [tramoseats_spec()].
 #' @references
@@ -54,63 +54,66 @@ set_seats <- function(x,
                       fcasts = NA,
                       bcasts = NA,
                       algorithm = c(NA, "Burman", "KalmanSmoother"),
-                      bias = NA){
-  UseMethod("set_seats", x)
+                      bias = NA) {
+    UseMethod("set_seats", x)
 }
 #' @export
 set_seats.JD3_SEATS_SPEC <- function(x,
-                               approximation = c(NA, "None", "Legacy", "Noisy"),
-                               trend.boundary = NA,
-                               seas.boundary = NA,
-                               seas.boundary.unique = NA,
-                               seas.tolerance = NA,
-                               ma.boundary = NA,
-                               fcasts = NA,
-                               bcasts = NA,
-                               algorithm = c(NA, "Burman", "KalmanSmoother"),
-                               bias = NA) {
+                                     approximation = c(NA, "None", "Legacy", "Noisy"),
+                                     trend.boundary = NA,
+                                     seas.boundary = NA,
+                                     seas.boundary.unique = NA,
+                                     seas.tolerance = NA,
+                                     ma.boundary = NA,
+                                     fcasts = NA,
+                                     bcasts = NA,
+                                     algorithm = c(NA, "Burman", "KalmanSmoother"),
+                                     bias = NA) {
+    approximation <- match.arg(
+        toupper(approximation[1]),
+        c(NA, "NONE", "LEGACY", "NOISY")
+    )
+    algorithm <- match.arg(
+        toupper(algorithm[1]),
+        c(NA, "BURMAN", "KALMANSMOOTHER")
+    )
+    if (!is.na(approximation)) {
+        x$approximation <- sprintf("APP_%s", approximation)
+    }
+    if (!is.na(algorithm)) {
+        x$algorithm <- sprintf("ALG_%s", algorithm)
+    }
+    if (!is.na(seas.tolerance)) {
+        x$epsphi <- seas.tolerance
+    }
+    if (!is.na(trend.boundary)) {
+        x$rmod <- trend.boundary
+    }
+    if (!is.na(seas.boundary)) {
+        x$sbound <- seas.boundary
+    }
+    if (!is.na(seas.boundary.unique)) {
+        x$sboundatpi <- seas.boundary.unique
+    }
+    if (!is.na(ma.boundary)) {
+        x$xl <- ma.boundary
+    }
 
-  approximation <- match.arg(toupper(approximation[1]),
-                             c(NA, "NONE", "LEGACY", "NOISY"))
-  algorithm <- match.arg(toupper(algorithm[1]),
-                         c(NA, "BURMAN", "KALMANSMOOTHER"))
-  if (!is.na(approximation)) {
-    x$approximation <- sprintf("APP_%s", approximation)
-  }
-  if (!is.na(algorithm)) {
-    x$algorithm <- sprintf("ALG_%s", algorithm)
-  }
-  if (!is.na(seas.tolerance)) {
-    x$epsphi <- seas.tolerance
-  }
-  if (!is.na(trend.boundary)) {
-    x$rmod <- trend.boundary
-  }
-  if (!is.na(seas.boundary)) {
-    x$sbound <- seas.boundary
-  }
-  if (!is.na(seas.boundary.unique)) {
-    x$sboundatpi <- seas.boundary.unique
-  }
-  if (!is.na(ma.boundary)) {
-    x$xl <- ma.boundary
-  }
 
-
-  if (!is.na(bcasts)) {
-    x$nbcasts <- bcasts
-  }
-  if (!is.na(fcasts)) {
-    x$nfcasts <- fcasts
-  }
-  if (!is.na(bias) && is.logical(bias)) {
-    x$bias <- bias
-  }
-  x
+    if (!is.na(bcasts)) {
+        x$nbcasts <- bcasts
+    }
+    if (!is.na(fcasts)) {
+        x$nfcasts <- fcasts
+    }
+    if (!is.na(bias) && is.logical(bias)) {
+        x$bias <- bias
+    }
+    x
 }
 
 #' @export
 set_seats.JD3_TRAMOSEATS_SPEC <- function(x, ...) {
-  x$seats <- set_seats(x$seats, ...)
-  x
+    x$seats <- set_seats(x$seats, ...)
+    x
 }

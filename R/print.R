@@ -1,141 +1,164 @@
-#'@importFrom stats printCoefmat end time
-#'@importFrom utils capture.output
+#' @importFrom stats printCoefmat end time
+#' @importFrom utils capture.output
 print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
-                              ...){
-  variance_decomposition <- x$variance_decomposition
-  residual_tests <- x$residual_tests
+                              ...) {
+    variance_decomposition <- x$variance_decomposition
+    residual_tests <- x$residual_tests
 
-  cat("Relative contribution of the components to the stationary",
-      "portion of the variance in the original series,",
-      "after the removal of the long term trend (in %)",
-      sep = "\n"
-  )
-  cat("\n")
-  cat(paste0(" ",
-             capture.output(
-               printCoefmat(variance_decomposition*100, digits = digits, ...)
-             )),
-      sep ="\n")
-  cat("\n")
+    cat("Relative contribution of the components to the stationary",
+        "portion of the variance in the original series,",
+        "after the removal of the long term trend (in %)",
+        sep = "\n"
+    )
+    cat("\n")
+    cat(
+        paste0(
+            " ",
+            capture.output(
+                printCoefmat(variance_decomposition * 100, digits = digits, ...)
+            )
+        ),
+        sep = "\n"
+    )
+    cat("\n")
 
-  cat("Residual seasonality tests")
-  cat("\n")
-  cat(paste0(" ",
-             capture.output(
-               printCoefmat(residual_tests[,"P.value", drop = FALSE], digits = digits,
-                            na.print = "NA", ...)
-             )
-  ),
-  sep ="\n")
-  cat("\n")
+    cat("Residual seasonality tests")
+    cat("\n")
+    cat(
+        paste0(
+            " ",
+            capture.output(
+                printCoefmat(residual_tests[, "P.value", drop = FALSE],
+                    digits = digits,
+                    na.print = "NA", ...
+                )
+            )
+        ),
+        sep = "\n"
+    )
+    cat("\n")
 
-  invisible(x)
+    invisible(x)
 }
 
 #' @export
 print.JD3_SEATS <- function(x, ...) {
+    print(x$seatsmodel)
+    print(x$canonicaldecomposition)
 
-  print(x$seatsmodel)
-  print(x$canonicaldecomposition)
+    tableau <- cbind(
+        x$stochastics$series$data,
+        x$stochastics$sa$data,
+        x$stochastics$t$data,
+        x$stochastics$sa$data,
+        x$stochastics$i$data
+    )
+    colnames(tableau) <- c("Series", "Seasonally adjusted", "Trend", "Seasonal", "Irregular")
 
-  tableau <- cbind(
-    x$stochastics$series$data,
-    x$stochastics$sa$data,
-    x$stochastics$t$data,
-    x$stochastics$sa$data,
-    x$stochastics$i$data
-  )
-  colnames(tableau) <- c("Series", "Seasonally adjusted", "Trend", "Seasonal", "Irregular")
+    cat("Last values\n")
+    print(utils::tail(stats::.preformat.ts(tableau)))
 
-  cat("Last values\n")
-  print(utils::tail(stats::.preformat.ts(tableau)))
-
-  return(invisible(x))
+    return(invisible(x))
 }
 
 #' @export
 print.JD3_TRAMOSEATS_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
-                                       ...){
-    cat("Model: TRAMO-SEATS","\n",sep="")
+                                       ...) {
+    cat("Model: TRAMO-SEATS", "\n", sep = "")
     print(x$preprocessing, digits = digits, summary_info = FALSE, ...)
-    if (summary_info)
+    if (summary_info) {
         cat("\nFor a more detailed output, use the 'summary()' function.\n")
+    }
     return(invisible(x))
 }
 #' @export
-summary.JD3_TRAMOSEATS_RSLTS <- function(object, ...){
-    x <- list(preprocessing = summary(object$preprocessing),
-              decomposition = object$decomposition$canonicaldecomposition,
-              diagnostics = rjd3toolkit::diagnostics(object),
-              final = rjd3toolkit::sa_decomposition(object)
+summary.JD3_TRAMOSEATS_RSLTS <- function(object, ...) {
+    x <- list(
+        preprocessing = summary(object$preprocessing),
+        decomposition = object$decomposition$canonicaldecomposition,
+        diagnostics = rjd3toolkit::diagnostics(object),
+        final = rjd3toolkit::sa_decomposition(object)
     )
     class(x) <- "summary.JD3_TRAMOSEATS_RSLTS"
     return(x)
 }
 
 #' @export
-summary.JD3_TRAMOSEATS_OUTPUT <- function(object, ...){
+summary.JD3_TRAMOSEATS_OUTPUT <- function(object, ...) {
     summary(object$result, ...)
 }
 #' @export
-print.summary.JD3_TRAMOSEATS_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), signif.stars = getOption("show.signif.stars"), ...){
+print.summary.JD3_TRAMOSEATS_RSLTS <- function(x, digits = max(3L, getOption("digits") - 3L), signif.stars = getOption("show.signif.stars"), ...) {
     cat("Model: TRAMO-SEATS\n")
     print(x$preprocessing, digits = digits, signif.stars = signif.stars, ...)
-    cat("\n", "Decomposition","\n",sep="")
+    cat("\n", "Decomposition", "\n", sep = "")
     print(x$decomposition, ...)
-    cat("\n", "Diagnostics","\n",sep="")
+    cat("\n", "Diagnostics", "\n", sep = "")
     print_diagnostics(x$diagnostics, digits = digits, ...)
-    cat("\n", "Final","\n",sep="")
+    cat("\n", "Final", "\n", sep = "")
     print(x$final, digits = digits, ...)
     return(invisible(x))
 }
 #' @export
-print.JD3_TRAMOSEATS_OUTPUT<- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
-                                ...){
-  print(x$result, digits = digits, summary_info = summary_info, ...)
+print.JD3_TRAMOSEATS_OUTPUT <- function(x, digits = max(3L, getOption("digits") - 3L), summary_info = getOption("summary_info"),
+                                        ...) {
+    print(x$result, digits = digits, summary_info = summary_info, ...)
 
-  return(invisible(x))
+    return(invisible(x))
 }
 
 #' @export
 plot.JD3_TRAMOSEATS_RSLTS <- function(x, first_date = NULL, last_date = NULL,
-                               type_chart = c("sa-trend", "seas-irr"),
-                               caption = c("sa-trend" = "Y, Sa, trend",
-                                           "seas-irr" = "Sea., irr.")[type_chart],
-                               colors = c(y = "#F0B400", t = "#1E6C0B", sa = "#155692",
-                                          s = "#1E6C0B", i = "#155692"),
-                               ...){
-  plot(rjd3toolkit::sa_decomposition(x),
-       first_date = first_date, last_date = last_date,
-       type_chart = type_chart,
-       caption = caption,
-       colors = colors,
-       ...)
+                                      type_chart = c("sa-trend", "seas-irr"),
+                                      caption = c(
+                                          "sa-trend" = "Y, Sa, trend",
+                                          "seas-irr" = "Sea., irr."
+                                      )[type_chart],
+                                      colors = c(
+                                          y = "#F0B400", t = "#1E6C0B", sa = "#155692",
+                                          s = "#1E6C0B", i = "#155692"
+                                      ),
+                                      ...) {
+    plot(rjd3toolkit::sa_decomposition(x),
+        first_date = first_date, last_date = last_date,
+        type_chart = type_chart,
+        caption = caption,
+        colors = colors,
+        ...
+    )
 }
 #' @export
 plot.JD3_TRAMOSEATS_OUTPUT <- function(x, first_date = NULL, last_date = NULL,
-                                type_chart = c("sa-trend", "seas-irr"),
-                                caption = c("sa-trend" = "Y, Sa, trend",
-                                            "seas-irr" = "Sea., irr.")[type_chart],
-                                colors = c(y = "#F0B400", t = "#1E6C0B", sa = "#155692",
-                                           s = "#1E6C0B", i = "#155692"),
-                                ...){
-  plot(x$result,
-       first_date = first_date, last_date = last_date,
-       type_chart = type_chart,
-       caption = caption,
-       colors = colors,
-       ...)
+                                       type_chart = c("sa-trend", "seas-irr"),
+                                       caption = c(
+                                           "sa-trend" = "Y, Sa, trend",
+                                           "seas-irr" = "Sea., irr."
+                                       )[type_chart],
+                                       colors = c(
+                                           y = "#F0B400", t = "#1E6C0B", sa = "#155692",
+                                           s = "#1E6C0B", i = "#155692"
+                                       ),
+                                       ...) {
+    plot(x$result,
+        first_date = first_date, last_date = last_date,
+        type_chart = type_chart,
+        caption = caption,
+        colors = colors,
+        ...
+    )
 }
 
 #' @importFrom rjd3toolkit diagnostics
 #' @export
-diagnostics.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
-    if (is.null(x)) return(NULL)
+diagnostics.JD3_TRAMOSEATS_RSLTS <- function(x, ...) {
+    if (is.null(x)) {
+        return(NULL)
+    }
     variance_decomposition <- x$diagnostics$vardecomposition
     variance_decomposition <- matrix(unlist(variance_decomposition),
-                                     ncol = 1,
-                                     dimnames = list(names(variance_decomposition), "Component"))
+        ncol = 1,
+        dimnames = list(names(variance_decomposition), "Component")
+    )
     residual_tests <- x$diagnostics[grep("test", names(x$diagnostics))]
     residual_tests <- data.frame(
         Statistic = sapply(residual_tests, function(test) test[["value"]]),
@@ -150,14 +173,13 @@ diagnostics.JD3_TRAMOSEATS_RSLTS<-function(x, ...){
 }
 
 #' @export
-diagnostics.JD3_TRAMOSEATS_OUTPUT<-function(x, ...){
-  return(rjd3toolkit::diagnostics(x$result, ...))
+diagnostics.JD3_TRAMOSEATS_OUTPUT <- function(x, ...) {
+    return(rjd3toolkit::diagnostics(x$result, ...))
 }
 
 
 #' @export
 print.JD3_TRAMO_SPEC <- function(x, ...) {
-
     cat("Specification", "\n", sep = "")
 
 
@@ -230,7 +252,8 @@ print.JD3_TRAMO_SPEC <- function(x, ...) {
         list_outliers <- c("ao", "ls", "tc", "so")
         detected_outliers <- c("ao", "ls", "tc", "so")[do.call(
             args = x$outlier[c("ao", "ls", "tc", "so")],
-            what = c)]
+            what = c
+        )]
 
         if (length(detected_outliers) > 0) {
             cat("Outliers type: ", paste(detected_outliers, collapse = ", "), "\n", sep = "")
@@ -253,7 +276,6 @@ print.JD3_TRAMO_SPEC <- function(x, ...) {
 
 #' @export
 print.JD3_SEATS_SPEC <- function(x, ...) {
-
     cat("Specification SEATS", "\n", sep = "")
 
 
@@ -269,7 +291,6 @@ print.JD3_SEATS_SPEC <- function(x, ...) {
 
 #' @export
 print.JD3_TRAMOSEATS_SPEC <- function(x, ...) {
-
     print(x$tramo, ...)
     print(x$seats, ...)
 

@@ -296,14 +296,14 @@ print.JD3_TRAMOSEATS_SPEC <- function(x, ...) {
 
     cat("\n", "Benchmarking", "\n", sep = "")
 
-    if (!x$benchmarking$enabled) {
-        cat("Is enabled: No\n")
-    } else {
+    if (x$benchmarking$enabled) {
         cat("Enabled: Yes", sep = "")
         cat("Target: ", x$benchmarking$target, "\n", sep = "")
         cat("Lambda: ", x$benchmarking$lambda, "\n", sep = "")
         cat("Rho: ", x$benchmarking$rho, "\n", sep = "")
         cat("Use forecast: ", ifelse(x$benchmarking$forecast, "Yes", "No"), "\n", sep = "")
+    } else {
+        cat("Is enabled: No\n")
     }
 
     cat("\n")

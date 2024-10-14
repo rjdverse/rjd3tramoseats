@@ -2,14 +2,19 @@
 NULL
 
 
-#' TRAMO model, pre-adjustment in TRAMO-SEATS
+#' @title TRAMO model, pre-adjustment in TRAMO-SEATS
 #'
 #' @param ts a univariate time series.
-#' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
+#' @param spec the model specification. Can be either the name of a predefined
+#' specification or a user-defined specification.
 #' @param context the dictionnary of variables.
-#' @param userdefined a vector containing the additional output variables (see [tramoseats_dictionary()]).
+#' @param userdefined a vector containing the additional output variables
+#' (see [tramoseats_dictionary()]).
 #'
-#' @return the `tramo()` function returns a list with the results (`"JD3_regarima_rslts"` object), the estimation specification and the result specification, while `tramo_fast()` is a faster function that only returns the results.
+#' @return the `tramo()` function returns a list with the results
+#' (`"JD3_regarima_rslts"` object), the estimation specification and the result
+#' specification, while `tramo_fast()` is a faster function that only returns
+#' the results.
 #'
 #' @examples
 #' library("rjd3toolkit")
@@ -29,8 +34,13 @@ NULL
 #' tramo_fast(y, spec = sp)
 #' sp <- set_outlier(sp, outliers.type = c("AO"))
 #' tramo_fast(y, spec = sp)
+#'
 #' @export
-tramo <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), context = NULL, userdefined = NULL) {
+#'
+tramo <- function(ts,
+                  spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+                  context = NULL,
+                  userdefined = NULL) {
     # TODO : check parameters
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
@@ -122,11 +132,17 @@ tramo_fast <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4",
 #'     fun = "None"
 #' )
 #' tramoseats_fast(y, spec = sp)
-#' @return the `tramoseats()` function returns a list with the results, the estimation specification and the result specification, while `tramoseats_fast()` is a faster function that only returns the results.
-#' The `.jtramoseats()` functions only results the java object to custom outputs in other packages (use [rjd3toolkit::dictionary()] to
-#' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
+#' @return The `tramoseats()` function returns a list with the results, the
+#' estimation specification and the result specification, while
+#' `tramoseats_fast()` is a faster function that only returns the results.
+#' The `.jtramoseats()` functions only results the java object to custom outputs
+#' in other packages (use [rjd3toolkit::dictionary()] to get the list of
+#' variables and [rjd3toolkit::result()] to get a specific variable).
 #' @export
-tramoseats <- function(ts, spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"), context = NULL, userdefined = NULL) {
+tramoseats <- function(ts,
+                       spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+                       context = NULL,
+                       userdefined = NULL) {
     # TODO : check parameters
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
@@ -134,7 +150,9 @@ tramoseats <- function(ts, spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "
         spec <- match.arg(spec[1],
             choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
         )
-        jrslt <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;", "fullProcess", jts, spec)
+        jrslt <- .jcall("jdplus/tramoseats/base/r/TramoSeats",
+                        "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;",
+                        "fullProcess", jts, spec)
     } else {
         jspec <- .r2jd_spec_tramoseats(spec)
         if (is.null(context)) {
@@ -142,7 +160,9 @@ tramoseats <- function(ts, spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "
         } else {
             jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
         }
-        jrslt <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;", "fullProcess", jts, jspec, jcontext)
+        jrslt <- .jcall("jdplus/tramoseats/base/r/TramoSeats",
+                        "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;",
+                        "fullProcess", jts, jspec, jcontext)
     }
     if (is.jnull(jrslt)) {
         return(NULL)
@@ -222,47 +242,67 @@ tramoseats_fast <- function(ts, spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa
     ))
 }
 
-#' Refresh a specification with constraints
+#' @title Refresh a specification with constraints
 #'
 #' @description
-#' Function allowing to create a new specification by updating a specification used for a previous estimation.
-#' Some selected parameters will be kept fixed (previous estimation results) while others will be freed for re-estimation
-#' in a domain of constraints. See details and examples.
+#' Function allowing to create a new specification by updating a specification
+#' used for a previous estimation. Some selected parameters will be kept fixed
+#' (previous estimation results) while others will be freed for re-estimation in
+#' a domain of constraints. See details and examples.
 #'
 #' @details
-#' The selection of constraints to be kept fixed or re-estimated is called a revision policy.
-#' User-defined parameters are always copied to the new refreshed specifications.
-#' This revision applies to the estimation done in Tramo (pre-adjustment phase), Seats will then
-#' run a new decomposition which might be in some (rare) cases based on a different model.
+#' The selection of constraints to be kept fixed or re-estimated is called a
+#' revision policy. User-defined parameters are always copied to the new
+#' refreshed specifications. This revision applies to the estimation done in
+#' Tramo (pre-adjustment phase), Seats will then run a new decomposition which
+#' might be in some (rare) cases based on a different model.
 #'
 #' Available refresh policies are:
 #'
-#' \strong{Current}: applying the current pre-adjustment reg-arima model and handling the new raw data points, or any sub-span of the series as Additive Outliers (defined as new intervention variables)
+#' \strong{Current}: applying the current pre-adjustment reg-arima model and
+#' handling the new raw data points, or any sub-span of the series as Additive
+#' Outliers (defined as new intervention variables)
 #'
-#' \strong{Fixed}: applying the current pre-adjustment reg-arima model and replacing forecasts by new raw data points.
+#' \strong{Fixed}: applying the current pre-adjustment reg-arima model and
+#' replacing forecasts by new raw data points.
 #'
-#' \strong{FixedParameters}: pre-adjustment reg-arima model is partially modified: regression coefficients will be re-estimated but regression variables, Arima orders
-#' and coefficients are unchanged.
+#' \strong{FixedParameters}: pre-adjustment reg-arima model is partially
+#' modified: regression coefficients will be re-estimated but regression
+#' variables, Arima orders and coefficients are unchanged.
 #'
-#' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.
+#' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima
+#' Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR)
+#' coefficients are kept fixed.
 #'
-#' \strong{FreeParameters}: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.
+#' \strong{FreeParameters}: all regression and Arima model coefficients are
+#' re-estimated, regression variables and Arima orders are kept fixed.
 #'
-#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but outliers will be re-detected on the defined span, thus all regression and Arima model coefficients are re-estimated
+#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but
+#' outliers will be re-detected on the defined span, thus all regression and
+#' Arima model coefficients are re-estimated
 #'
-#' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.
+#' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model
+#' orders (p,d,q)(P,D,Q) can also be re-identified.
 #'
 #' @param spec the current specification to be refreshed (`"result_spec"`).
-#' @param refspec the reference specification used to define the domain considered for re-estimation (`"domain_spec"`).
-#' By default this is the `"TRfull"` or `"RSAfull"` specification.
+#' @param refspec the reference specification used to define the domain
+#' considered for re-estimation (`"domain_spec"`). By default this is the
+#' `"TRfull"` or `"RSAfull"` specification.
 #' @param policy the refresh policy to apply (see details).
-#' @param period,start,end  additional parameters used to specify the span on which additive outliers (AO) are introduced when `policy = "Current"`
-#' or to specify the span on which outliers will be re-detected when `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`,
-#' is this case \code{end} is unused.
-#' If \code{start} is not specified, outliers will be re-identified on the whole series.
-#' Span definition: \code{period}: numeric, number of observations in a year (12, 4...).
-#' \code{start} and \code{end}: defined as arrays of two elements: year and first period (for example, `period = 12` and `c(1980, 1)` stands for January 1980)
-#' The dates corresponding \code{start} and \code{end} are included in the span definition.
+#' @param period,start,end  additional parameters used to specify the span on
+#' which additive outliers (AO) are introduced when `policy = "Current"` or to
+#' specify the span on which outliers will be re-detected when
+#' `policy = "Outliers"` or `policy = "Outliers_StochasticComponent"`, is this
+#' case \code{end} is unused.
+#' If \code{start} is not specified, outliers will be re-identified on the whole
+#' series.
+#' Span definition:
+#' \code{period}: numeric, number of observations in a year (12, 4...).
+#' \code{start} and \code{end}: defined as arrays of two elements: year and
+#' first period (for example, `period = 12` and `c(1980, 1)` stands for January
+#' 1980) The dates corresponding \code{start} and \code{end} are included in the
+#' span definition.
+#'
 #' @return a new specification, an object of class `"JD3_TRAMOSEATS_SPEC"` or
 #' `"JD3_TRAMO_SPEC"`.
 #'
@@ -316,14 +356,25 @@ tramoseats_fast <- function(ts, spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa
 #' @name refresh
 #' @rdname refresh
 #' @export
-tramo_refresh <- function(spec, refspec = NULL, policy = c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period = 0, start = NULL, end = NULL) {
+tramo_refresh <- function(spec,
+                          refspec = NULL,
+                          policy = c("FreeParameters", "Complete",
+                                     "Outliers_StochasticComponent", "Outliers",
+                                     "FixedParameters",
+                                     "FixedAutoRegressiveParameters",
+                                     "Fixed", "Current"),
+                          period = 0,
+                          start = NULL,
+                          end = NULL) {
     policy <- match.arg(policy)
     if (!inherits(spec, "JD3_TRAMO_SPEC")) {
         stop("Invalid specification type")
     }
     jspec <- .r2jd_spec_tramo(spec)
     if (is.null(refspec)) {
-        jrefspec <- .jcall("jdplus/tramoseats/base/api/tramo/TramoSpec", "Ljdplus/tramoseats/base/api/tramo/TramoSpec;", "fromString", "trfull")
+        jrefspec <- .jcall("jdplus/tramoseats/base/api/tramo/TramoSpec",
+                           "Ljdplus/tramoseats/base/api/tramo/TramoSpec;",
+                           "fromString", "trfull")
     } else {
         if (!inherits(refspec, "JD3_TRAMO_SPEC")) {
             stop("Invalid specification type")
@@ -338,20 +389,33 @@ tramo_refresh <- function(spec, refspec = NULL, policy = c("FreeParameters", "Co
     } else {
         jdom <- jdom <- rjd3toolkit::.jdomain(0, NULL, NULL)
     }
-    jnspec <- .jcall("jdplus/tramoseats/base/r/Tramo", "Ljdplus/tramoseats/base/api/tramo/TramoSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
+    jnspec <- .jcall("jdplus/tramoseats/base/r/Tramo",
+                     "Ljdplus/tramoseats/base/api/tramo/TramoSpec;",
+                     "refreshSpec", jspec, jrefspec, jdom, policy)
     return(.jd2r_spec_tramo(jnspec))
 }
 
 #' @rdname refresh
 #' @export
-tramoseats_refresh <- function(spec, refspec = NULL, policy = c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period = 0, start = NULL, end = NULL) {
+tramoseats_refresh <- function(spec,
+                               refspec = NULL,
+                               policy = c("FreeParameters", "Complete",
+                                          "Outliers_StochasticComponent",
+                                          "Outliers", "FixedParameters",
+                                          "FixedAutoRegressiveParameters",
+                                          "Fixed", "Current"),
+                               period = 0,
+                               start = NULL,
+                               end = NULL) {
     policy <- match.arg(policy)
     if (!inherits(spec, "JD3_TRAMOSEATS_SPEC")) {
         stop("Invalid specification type")
     }
     jspec <- .r2jd_spec_tramoseats(spec)
     if (is.null(refspec)) {
-        jrefspec <- .jcall("jdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec", "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;", "fromString", "rsafull")
+        jrefspec <- .jcall("jdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec",
+                           "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;",
+                           "fromString", "rsafull")
     } else {
         if (!inherits(refspec, "JD3_TRAMOSEATS_SPEC")) {
             stop("Invalid specification type")
@@ -367,7 +431,9 @@ tramoseats_refresh <- function(spec, refspec = NULL, policy = c("FreeParameters"
     } else {
         jdom <- jdom <- rjd3toolkit::.jdomain(0, NULL, NULL)
     }
-    jnspec <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
+    jnspec <- .jcall("jdplus/tramoseats/base/r/TramoSeats",
+                     "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;",
+                     "refreshSpec", jspec, jrefspec, jdom, policy)
     return(.jd2r_spec_tramoseats(jnspec))
 }
 
@@ -410,7 +476,9 @@ terror <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
         spec <- match.arg(spec[1],
             choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
         )
-        jrslt <- .jcall("jdplus/tramoseats/base/r/Terror", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "process", jts, spec, as.integer(nback))
+        jrslt <- .jcall("jdplus/tramoseats/base/r/Terror",
+                        "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
+                        "process", jts, spec, as.integer(nback))
     } else {
         jspec <- .r2jd_spec_tramo(spec)
         if (is.null(context)) {
@@ -418,7 +486,9 @@ terror <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
         } else {
             jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
         }
-        jrslt <- .jcall("jdplus/tramoseats/base/r/Terror", "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "process", jts, jspec, jcontext, as.integer(nback))
+        jrslt <- .jcall("jdplus/tramoseats/base/r/Terror",
+                        "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
+                        "process", jts, jspec, jcontext, as.integer(nback))
     }
     if (is.jnull(jrslt)) {
         return(NULL)

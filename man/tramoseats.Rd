@@ -30,33 +30,39 @@ tramoseats_fast(
 \arguments{
 \item{ts}{a univariate time series.}
 
-\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+\item{spec}{the model specification. Can be either the name of a predefined
+specification or a user-defined specification.}
 
 \item{context}{the dictionnary of variables.}
 
-\item{userdefined}{a vector containing the additional output variables (see \code{\link[=tramoseats_dictionary]{tramoseats_dictionary()}}).}
+\item{userdefined}{a vector containing the additional output variables
+(see \code{\link[=tramoseats_dictionary]{tramoseats_dictionary()}}).}
 }
 \value{
-the \code{tramoseats()} function returns a list with the results, the estimation specification and the result specification, while \code{tramoseats_fast()} is a faster function that only returns the results.
-The \code{.jtramoseats()} functions only results the java object to custom outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
-get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
+The \code{tramoseats()} function returns a list with the results, the
+estimation specification and the result specification, while
+\code{tramoseats_fast()} is a faster function that only returns the results.
+The \code{.jtramoseats()} functions only results the java object to custom outputs
+in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to get the list of
+variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
 }
 \description{
 Seasonal Adjustment with  TRAMO-SEATS
 }
 \examples{
 library("rjd3toolkit")
-sp = tramoseats_spec("rsafull")
-y = rjd3toolkit::ABS$X0.2.09.10.M
+sp <- tramoseats_spec("rsafull")
+y <- rjd3toolkit::ABS$X0.2.09.10.M
 tramoseats_fast(y, spec = sp)
-sp = add_outlier(sp,
-                 type = c("AO"), c("2015-01-01", "2010-01-01"))
-sp = set_transform(
-  set_tradingdays(
-    set_easter(sp, enabled = FALSE),
-    option = "workingdays"
-  ),
-  fun = "None"
+sp <- add_outlier(sp,
+    type = c("AO"), c("2015-01-01", "2010-01-01")
+)
+sp <- set_transform(
+    set_tradingdays(
+        set_easter(sp, enabled = FALSE),
+        option = "workingdays"
+    ),
+    fun = "None"
 )
 tramoseats_fast(y, spec = sp)
 }

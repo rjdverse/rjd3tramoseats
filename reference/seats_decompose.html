@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rjd3tramoseats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,35 +57,57 @@
 
 
 <dt id="arg-seas-tolerance">seas.tolerance<a class="anchor" aria-label="anchor" href="#arg-seas-tolerance"></a></dt>
-<dd><p>numeric: the seasonal tolerance (epsphi). The tolerance (measured in degrees) to allocate the AR non-real roots
-to the seasonal component (if the modulus of the inverse complex AR root is greater than the trend boundary
-and the frequency of this root differs from one of the seasonal frequencies by less than Seasonal tolerance)
-or the transitory component (otherwise). Possible values in [0,10]. Default value 2.</p></dd>
+<dd><p>numeric: the seasonal tolerance (epsphi). The tolerance
+(measured in degrees) to allocate the AR non-real roots to the seasonal
+component (if the modulus of the inverse complex AR root is greater than the
+trend boundary and the frequency of this root differs from one of the
+seasonal frequencies by less than Seasonal tolerance) or the transitory
+component (otherwise). Possible values in [0,10]. Default value 2.</p></dd>
 
 
 <dt id="arg-trend-boundary">trend.boundary<a class="anchor" aria-label="anchor" href="#arg-trend-boundary"></a></dt>
-<dd><p>numeric: the trend boundary (rmod). The boundary beyond which an AR root is integrated in the trend component.
-If the modulus of the inverse real root is greater than the trend boundary, the AR root is integrated in the trend component.
-Below this value, the root is integrated in the transitory component. Possible values [0,1]. Default=0.5.</p></dd>
+<dd><p>numeric: the trend boundary (rmod). The boundary beyond
+which an AR root is integrated in the trend component.
+If the modulus of the inverse real root is greater than the trend boundary,
+the AR root is integrated in the trend component.
+Below this value, the root is integrated in the transitory component.
+Possible values [0,1]. Default = 0.5.</p></dd>
 
 
 <dt id="arg-seas-boundary">seas.boundary<a class="anchor" aria-label="anchor" href="#arg-seas-boundary"></a></dt>
-<dd><p>numeric: the seasonal boundary (sbound). The boundary beyond which a real negative AR root is integrated in the seasonal component. If the modulus of the inverse negative real root is greater (or equal) than Seasonal boundary, the AR root is integrated into the seasonal component. Otherwise the root is integrated into the trend or transitory component. Possible values [0,1]. Default=0.8.</p></dd>
+<dd><p>numeric: the seasonal boundary (sbound). The boundary
+beyond which a real negative AR root is integrated in the seasonal component.
+If the modulus of the inverse negative real root is greater (or equal) than
+Seasonal boundary, the AR root is integrated into the seasonal component.
+Otherwise the root is integrated into the trend or transitory component.
+Possible values [0,1]. Default=0.8.</p></dd>
 
 
 <dt id="arg-seas-boundary-unique">seas.boundary.unique<a class="anchor" aria-label="anchor" href="#arg-seas-boundary-unique"></a></dt>
-<dd><p>numeric: the seasonal boundary (unique),(sboundatpi). The boundary beyond which a negative AR root is integrated
-in the seasonal component, when the root is the unique seasonal root.  If the modulus of the inverse negative real root is greater (or equal) than Seasonal boundary, the AR root is integrated into the seasonal component. Otherwise the root is integrated into the trend or transitory component. Possible values [0,1]. Default=0.8.</p></dd>
+<dd><p>numeric: the seasonal boundary (unique),
+(sboundatpi).
+The boundary beyond which a negative AR root is integrated in the seasonal
+component, when the root is the unique seasonal root.  If the modulus of the
+inverse negative real root is greater (or equal) than Seasonal boundary, the
+AR root is integrated into the seasonal component. Otherwise the root is
+integrated into the trend or transitory component. Possible values [0,1].
+Default=0.8.</p></dd>
 
 
 <dt id="arg-approximation">approximation<a class="anchor" aria-label="anchor" href="#arg-approximation"></a></dt>
-<dd><p>character: the approximation mode. When the ARIMA model estimated by TRAMO does not accept an admissible decomposition, SEATS: <code>"None"</code> - performs an approximation; <code>"Legacy"</code> - replaces the model with a decomposable one; <code>"Noisy"</code> - estimates a new model by adding a white noise to the non-admissible model estimated by TRAMO. Default="Legacy".</p></dd>
+<dd><p>character: the approximation mode.
+When the ARIMA model estimated by TRAMO does not accept an admissible
+decomposition, SEATS:
+<code>"None"</code> - performs an approximation;
+<code>"Legacy"</code> - replaces the model with a decomposable one;
+<code>"Noisy"</code> - estimates a new model by adding a white noise to the
+non-admissible model estimated by TRAMO. Default="Legacy".</p></dd>
 
 </dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">seats_decompose</span><span class="op">(</span><span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/sarima_model.html" class="external-link">sarima_model</a></span><span class="op">(</span>period <span class="op">=</span> <span class="fl">12</span>,phi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,bd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">seats_decompose</span><span class="op">(</span><span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/sarima_model.html" class="external-link">sarima_model</a></span><span class="op">(</span>period <span class="op">=</span> <span class="fl">12</span>, phi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, bd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> model </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> AR: 1 0 1 </span>

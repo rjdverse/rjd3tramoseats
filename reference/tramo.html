@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rjd3tramoseats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,8 @@
 
 
 <dt id="arg-spec">spec<a class="anchor" aria-label="anchor" href="#arg-spec"></a></dt>
-<dd><p>the model specification. Can be either the name of a predefined specification or a user-defined specification.</p></dd>
+<dd><p>the model specification. Can be either the name of a predefined
+specification or a user-defined specification.</p></dd>
 
 
 <dt id="arg-context">context<a class="anchor" aria-label="anchor" href="#arg-context"></a></dt>
@@ -70,12 +71,16 @@
 
 
 <dt id="arg-userdefined">userdefined<a class="anchor" aria-label="anchor" href="#arg-userdefined"></a></dt>
-<dd><p>a vector containing the additional output variables (see <code><a href="tramoseats_dictionary.html">tramoseats_dictionary()</a></code>).</p></dd>
+<dd><p>a vector containing the additional output variables
+(see <code><a href="tramoseats_dictionary.html">tramoseats_dictionary()</a></code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>the <code>tramo()</code> function returns a list with the results (<code>"JD3_regarima_rslts"</code> object), the estimation specification and the result specification, while <code>tramo_fast()</code> is a faster function that only returns the results.</p>
+    <p>the <code>tramo()</code> function returns a list with the results
+(<code>"JD3_regarima_rslts"</code> object), the estimation specification and the result
+specification, while <code>tramo_fast()</code> is a faster function that only returns
+the results.</p>
     </div>
 
     <div class="section level2">
@@ -86,10 +91,11 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:stats’:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     aggregate, mad</span>
-<span class="r-in"><span><span class="va">y</span> <span class="op">=</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="va"><a href="https://rjdverse.github.io/rjd3toolkit/reference/ABS.html" class="external-link">ABS</a></span><span class="op">$</span><span class="va">X0.2.09.10.M</span></span></span>
-<span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="tramoseats_spec.html">tramo_spec</a></span><span class="op">(</span><span class="st">"trfull"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/add_outlier.html" class="external-link">add_outlier</a></span><span class="op">(</span><span class="va">sp</span>,</span></span>
-<span class="r-in"><span>                 type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2015-01-01"</span>, <span class="st">"2010-01-01"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="va"><a href="https://rjdverse.github.io/rjd3toolkit/reference/ABS.html" class="external-link">ABS</a></span><span class="op">$</span><span class="va">X0.2.09.10.M</span></span></span>
+<span class="r-in"><span><span class="va">sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="tramoseats_spec.html">tramo_spec</a></span><span class="op">(</span><span class="st">"trfull"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/add_outlier.html" class="external-link">add_outlier</a></span><span class="op">(</span><span class="va">sp</span>,</span></span>
+<span class="r-in"><span>    type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2015-01-01"</span>, <span class="st">"2010-01-01"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">tramo_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: yes </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model: (2,1,2) (0,1,1)</span>
@@ -107,12 +113,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1.736e-01      -1.831e-01 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> For a more detailed output, use the 'summary()' function.</span>
-<span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_transform.html" class="external-link">set_transform</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_tradingdays.html" class="external-link">set_tradingdays</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_easter.html" class="external-link">set_easter</a></span><span class="op">(</span><span class="va">sp</span>, enabled <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    option <span class="op">=</span> <span class="st">"workingdays"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  fun <span class="op">=</span> <span class="st">"None"</span></span></span>
+<span class="r-in"><span><span class="va">sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_transform.html" class="external-link">set_transform</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_tradingdays.html" class="external-link">set_tradingdays</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_easter.html" class="external-link">set_easter</a></span><span class="op">(</span><span class="va">sp</span>, enabled <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        option <span class="op">=</span> <span class="st">"workingdays"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    fun <span class="op">=</span> <span class="st">"None"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">tramo_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: no </span>
@@ -131,7 +137,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>       -200.7316       -177.1356 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> For a more detailed output, use the 'summary()' function.</span>
-<span class="r-in"><span><span class="va">sp</span> <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_outlier.html" class="external-link">set_outlier</a></span><span class="op">(</span><span class="va">sp</span>, outliers.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/set_outlier.html" class="external-link">set_outlier</a></span><span class="op">(</span><span class="va">sp</span>, outliers.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AO"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">tramo_fast</span><span class="op">(</span><span class="va">y</span>, spec <span class="op">=</span> <span class="va">sp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log-transformation: no </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SARIMA model: (0,1,1) (0,1,1)</span>
@@ -149,6 +155,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>       -200.7316       -177.1356 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> For a more detailed output, use the 'summary()' function.</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

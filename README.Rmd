@@ -75,16 +75,16 @@ remotes::install_github("rjdverse/rjd3tramoseats")
 
 ```{r ts-final}
 library("rjd3tramoseats")
-y <- rjd3tramoseats::ABS$X0.2.09.10.M
-ts_model <- tramoseats(y) 
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+ts_model <- tramoseats(y)
 summary(ts_model$result$preprocessing) # Summary of tramo model
 plot(ts_model) # Plot of the final decomposition
 ```
 
-To get the final components you can use the function `rjd3tramoseats::sa_decomposition()`:
+To get the final components you can use the function `rjd3toolkit::sa_decomposition()`:
 
 ```{r ts-fin-comp}
-rjd3tramoseats::sa_decomposition(ts_model)
+rjd3toolkit::sa_decomposition(ts_model)
 ```
 
 

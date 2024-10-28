@@ -14,7 +14,8 @@ tramo_forecast(
 \arguments{
 \item{ts}{a univariate time series.}
 
-\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+\item{spec}{the model specification. Can be either the name of a predefined
+specification or a user-defined specification.}
 
 \item{nf}{the forecasting horizon (\code{numeric}). The forecast length is in periods (positive values) or years (negative values). By default, the program generates a one-year forecast (\code{nf = -1}).}
 

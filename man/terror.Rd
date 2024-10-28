@@ -14,7 +14,8 @@ terror(
 \arguments{
 \item{ts}{a univariate time series.}
 
-\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+\item{spec}{the model specification. Can be either the name of a predefined
+specification or a user-defined specification.}
 
 \item{nback}{number of last observations considered for the quality check.}
 

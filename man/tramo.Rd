@@ -22,33 +22,40 @@ tramo_fast(
 \arguments{
 \item{ts}{a univariate time series.}
 
-\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
+\item{spec}{the model specification. Can be either the name of a predefined
+specification or a user-defined specification.}
 
 \item{context}{the dictionnary of variables.}
 
-\item{userdefined}{a vector containing the additional output variables (see \code{\link[=tramoseats_dictionary]{tramoseats_dictionary()}}).}
+\item{userdefined}{a vector containing the additional output variables
+(see \code{\link[=tramoseats_dictionary]{tramoseats_dictionary()}}).}
 }
 \value{
-the \code{tramo()} function returns a list with the results (\code{"JD3_regarima_rslts"} object), the estimation specification and the result specification, while \code{tramo_fast()} is a faster function that only returns the results.
+the \code{tramo()} function returns a list with the results
+(\code{"JD3_regarima_rslts"} object), the estimation specification and the result
+specification, while \code{tramo_fast()} is a faster function that only returns
+the results.
 }
 \description{
 TRAMO model, pre-adjustment in TRAMO-SEATS
 }
 \examples{
 library("rjd3toolkit")
-y = rjd3toolkit::ABS$X0.2.09.10.M
-sp = tramo_spec("trfull")
-sp = add_outlier(sp,
-                 type = c("AO"), c("2015-01-01", "2010-01-01"))
-tramo_fast(y, spec = sp)
-sp = set_transform(
-  set_tradingdays(
-    set_easter(sp, enabled = FALSE),
-    option = "workingdays"
-  ),
-  fun = "None"
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+sp <- tramo_spec("trfull")
+sp <- add_outlier(sp,
+    type = c("AO"), c("2015-01-01", "2010-01-01")
 )
 tramo_fast(y, spec = sp)
-sp = set_outlier(sp, outliers.type = c("AO"))
+sp <- set_transform(
+    set_tradingdays(
+        set_easter(sp, enabled = FALSE),
+        option = "workingdays"
+    ),
+    fun = "None"
+)
 tramo_fast(y, spec = sp)
+sp <- set_outlier(sp, outliers.type = c("AO"))
+tramo_fast(y, spec = sp)
+
 }

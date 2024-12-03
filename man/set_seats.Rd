@@ -21,31 +21,58 @@ set_seats(
 \arguments{
 \item{x}{the specification to be modified, object of class \code{"JD3_TRAMOSEATS_SPEC"}, has to be generated with \code{tramoseats_spec()} function}
 
-\item{approximation}{character: the approximation mode. When the ARIMA model estimated by TRAMO does not accept an admissible decomposition, SEATS: \code{"None"} - performs an approximation; \code{"Legacy"} - replaces the model with a decomposable one; \code{"Noisy"} - estimates a new model by adding a white noise to the non-admissible model estimated by TRAMO. Default="Legacy".}
+\item{approximation}{character: the approximation mode.
+When the ARIMA model estimated by TRAMO does not accept an admissible
+decomposition, SEATS:
+\code{"None"} - performs an approximation;
+\code{"Legacy"} - replaces the model with a decomposable one;
+\code{"Noisy"} - estimates a new model by adding a white noise to the
+non-admissible model estimated by TRAMO. Default="Legacy".}
 
-\item{trend.boundary}{numeric: the trend boundary (rmod). The boundary beyond which an AR root is integrated in the trend component.
-If the modulus of the inverse real root is greater than the trend boundary, the AR root is integrated in the trend component.
-Below this value, the root is integrated in the transitory component. Possible values [0,1]. Default=0.5.}
+\item{trend.boundary}{numeric: the trend boundary (rmod). The boundary beyond
+which an AR root is integrated in the trend component.
+If the modulus of the inverse real root is greater than the trend boundary,
+the AR root is integrated in the trend component.
+Below this value, the root is integrated in the transitory component.
+Possible values [0,1]. Default = 0.5.}
 
-\item{seas.boundary}{numeric: the seasonal boundary (sbound). The boundary beyond which a real negative AR root is integrated in the seasonal component. If the modulus of the inverse negative real root is greater (or equal) than Seasonal boundary, the AR root is integrated into the seasonal component. Otherwise the root is integrated into the trend or transitory component. Possible values [0,1]. Default=0.8.}
+\item{seas.boundary}{numeric: the seasonal boundary (sbound). The boundary
+beyond which a real negative AR root is integrated in the seasonal component.
+If the modulus of the inverse negative real root is greater (or equal) than
+Seasonal boundary, the AR root is integrated into the seasonal component.
+Otherwise the root is integrated into the trend or transitory component.
+Possible values [0,1]. Default=0.8.}
 
-\item{seas.boundary.unique}{numeric: the seasonal boundary (unique),(sboundatpi). The boundary beyond which a negative AR root is integrated
-in the seasonal component, when the root is the unique seasonal root.  If the modulus of the inverse negative real root is greater (or equal) than Seasonal boundary, the AR root is integrated into the seasonal component. Otherwise the root is integrated into the trend or transitory component. Possible values [0,1]. Default=0.8.}
+\item{seas.boundary.unique}{numeric: the seasonal boundary (unique),
+(sboundatpi).
+The boundary beyond which a negative AR root is integrated in the seasonal
+component, when the root is the unique seasonal root.  If the modulus of the
+inverse negative real root is greater (or equal) than Seasonal boundary, the
+AR root is integrated into the seasonal component. Otherwise the root is
+integrated into the trend or transitory component. Possible values [0,1].
+Default=0.8.}
 
-\item{seas.tolerance}{numeric: the seasonal tolerance (epsphi). The tolerance (measured in degrees) to allocate the AR non-real roots
-to the seasonal component (if the modulus of the inverse complex AR root is greater than the trend boundary
-and the frequency of this root differs from one of the seasonal frequencies by less than Seasonal tolerance)
-or the transitory component (otherwise). Possible values in [0,10]. Default value 2.}
+\item{seas.tolerance}{numeric: the seasonal tolerance (epsphi). The tolerance
+(measured in degrees) to allocate the AR non-real roots to the seasonal
+component (if the modulus of the inverse complex AR root is greater than the
+trend boundary and the frequency of this root differs from one of the
+seasonal frequencies by less than Seasonal tolerance) or the transitory
+component (otherwise). Possible values in [0,10]. Default value 2.}
 
-\item{ma.boundary}{numeric: the MA unit root boundary. When the modulus of an estimated MA root falls in the range [xl, 1],
-it is set to xl. Possible values [0.9,1]. Default=0.95.}
+\item{ma.boundary}{numeric: the MA unit root boundary. When the modulus of an
+estimated MA root falls in the range [xl, 1], it is set to xl. Possible
+values [0.9,1]. Default=0.95.}
 
-\item{bcasts, fcasts}{numeric: the number of backasts (\code{bcasts}) or forecasts (\code{fcasts}) used in the decomposition in periods (positive values) or years (negative values).Default \code{bcasts}=0. Default \code{fcasts}=0.}
+\item{bcasts, fcasts}{numeric: the number of backasts (\code{bcasts}) or forecasts
+(\code{fcasts}) used in the decomposition in periods (positive values) or years
+(negative values). Default \code{bcasts} = 0. Default \code{fcasts} = 0.}
 
-\item{algorithm}{character: the estimation method for the unobserved components. The choice can be made from:
+\item{algorithm}{character: the estimation method for the unobserved
+components. The choice can be made from:
 \itemize{
-\item \code{"Burman"}: the default value. May result in a significant underestimation of the components' standard deviation,
-as it may become numerically unstable when some roots of the MA polynomial are near 1;
+\item \code{"Burman"}: the default value. May result in a significant underestimation
+of the components' standard deviation, as it may become numerically unstable
+when some roots of the MA polynomial are near 1;
 \item \code{"KalmanSmoother"}: it is not disturbed by the (quasi-) unit roots in MA;
 }}
 
@@ -60,16 +87,18 @@ seasonal adjustment process.
 (Seats is an Arima Model Based decomposition algorithm working in conjunction with Tramo.)
 }
 \examples{
-init_spec<-tramoseats_spec("rsafull")
-new_spec<- set_seats(init_spec,
-                    approximation = "Legacy",
-                    trend.boundary = 0.8,
-                    seas.boundary = 0.5,
-                    fcasts = -3,
-                    algorithm = "KalmanSmoother",
-                    bias = TRUE)
+init_spec <- tramoseats_spec("rsafull")
+new_spec <- set_seats(init_spec,
+    approximation = "Legacy",
+    trend.boundary = 0.8,
+    seas.boundary = 0.5,
+    fcasts = -3,
+    algorithm = "KalmanSmoother",
+    bias = TRUE
+)
 y <- rjd3toolkit::ABS$X0.2.09.10.M
-sa<- tramoseats(y,spec=new_spec)
+sa <- tramoseats(y, spec = new_spec)
+
 }
 \references{
 More information and examples related to 'JDemetra+' features in the online documentation:

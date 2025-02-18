@@ -1,3 +1,4 @@
+
 ^.*\.Rproj$
 ^\.Rproj\.user$
 
@@ -6,6 +7,7 @@
 
 ^README\.Rmd$
 ^README-.*\.png$
+^README\.html$
 
 ^Meta$
 ^docs$
@@ -24,4 +26,19 @@ cran-comments.md
 
 ^revdep$
 ^reconf\.sh$
+
 ^pom\.xml$
+
+^CITATION\.cff$
+^LICENSE.md$
+
+^\.httr-oauth$
+^\.zenodo\.json$
+
+^checklist.yml$
+^codecov\.yml$
+^data-raw$
+^dev$
+
+^man-roxygen$
+^organisation.yml$

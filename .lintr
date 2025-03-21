@@ -24,7 +24,6 @@ linters: lintr::all_linters(
         object_usage_linter = NULL,
         object_name_linter = NULL,
         commented_code_linter = NULL,
-        extraction_operator_linter = NULL,
         implicit_integer_linter = NULL,
         nonportable_path_linter = NULL,
         undesirable_function_linter = NULL,
@@ -32,6 +31,12 @@ linters: lintr::all_linters(
         todo_comment_linter = NULL,
         fixed_regex_linter = NULL,
         unnecessary_lambda_linter = NULL,
-        paste_linter = NULL
+        paste_linter = NULL,
+        return_linter = NULL,
+        object_overwrite_linter = NULL,
+        condition_call_linter = NULL,
+        rep_len_linter = NULL,
+        if_switch_linter = NULL,
+        unnecessary_nesting_linter = NULL
     )
 encoding: "UTF-8"

@@ -34,7 +34,7 @@ following functions:
 
 - for decomposition: `rjd3tramoseats::set_seats()`;
 
-- for benchmarking: `rjd3tramoseats::set_benchmarking()`.
+- for benchmarking: `rjd3toolkit::set_benchmarking()`.
 
 ## Installation
 

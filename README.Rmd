@@ -36,7 +36,7 @@ A specification can be created with `rjd3tramoseats::tramo_spec()` or `rjd3tramo
 
 - for decomposition: `rjd3tramoseats::set_seats()`;
 
-- for benchmarking: `rjd3tramoseats::set_benchmarking()`.
+- for benchmarking: `rjd3toolkit::set_benchmarking()`.
  
 
 ## Installation

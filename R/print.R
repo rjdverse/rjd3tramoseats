@@ -250,8 +250,8 @@ print.JD3_TRAMO_SPEC <- function(x, ...) {
         cat("\n")
 
         list_outliers <- c("ao", "ls", "tc", "so")
-        detected_outliers <- c("ao", "ls", "tc", "so")[do.call(
-            args = x$outlier[c("ao", "ls", "tc", "so")],
+        detected_outliers <- list_outliers[do.call(
+            args = x$outlier[list_outliers],
             what = c
         )]
 

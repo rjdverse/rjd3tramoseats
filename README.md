@@ -34,7 +34,7 @@ following functions:
 
 - for decomposition: `rjd3tramoseats::set_seats()`;
 
-- for benchmarking: `rjd3tramoseats::set_benchmarking()`.
+- for benchmarking: `rjd3toolkit::set_benchmarking()`.
 
 ## Installation
 
@@ -142,4 +142,4 @@ should be added or updated.
 
 The code of this project is licensed under the [European Union Public
 Licence
-(EUPL)](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12).
+(EUPL)](https://interoperable-europe.ec.europa.eu:443/collection/eupl/eupl-text-eupl-12).

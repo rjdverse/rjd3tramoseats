@@ -2,3 +2,112 @@ url: https://rjdverse.github.io/rjd3tramoseats/
 template:
   bootstrap: 5
 
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    - rpackages
+    right:
+    - jdemetra
+    - github
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    news:
+      text: News
+      href: news/index.html
+    jdemetra:
+      text: JDemetra+
+      menu:
+      - text: Download JDemetra+
+        href: https://github.com/jdemetra/jdemetra-app/releases
+      - text: JDemetra+ documentation
+        href: https://jdemetra-new-documentation.netlify.app/
+    rpackages:
+      text: Around JDemetra+ and R
+      menu:
+      - text: rjd3toolkit
+        href: https://github.com/rjdverse/rjd3toolkit
+      - text: rjd3workspace
+        href: https://github.com/rjdverse/rjd3workspace
+      - text: rjwsacruncher
+        href: https://github.com/AQLT/rjwsacruncher
+      - text: JDCruncher
+        href: https://github.com/InseeFrLab/JDCruncher
+      - text: ggdemetra3
+        href: https://github.com/AQLT/ggdemetra3
+    github:
+      icon: fa-github fa-lg
+      href: https://github.com/rjdverse/rjd3tramoseats
+
+reference:
+- title: Defining Specifications
+  desc: Prior settings for seasonal adjustment with Tramo-Seats or Tramo modelling
+  contents:
+    - '`tramo_spec`'
+    - '`tramoseats_spec`'
+    - '`set_seats`'
+- title: Seasonal Adjustment
+  desc: Functions to perform seasonal adjustment with Tramo-Seats
+  contents:
+    - '`tramoseats`'
+    - '`tramoseats_fast`'
+    - '`seats_decompose`'
+- title: Tramo Modelling and Forecasting
+  desc: Functions to perform Tramo modelling only
+  contents:
+    - '`tramo`'
+    - '`tramo_fast`'
+    - '`tramo_forecast`'
+- title: Outlier Detection
+  desc: Outlier Detection with a Tramo Model
+  contents:
+    - '`tramo_outliers`'
+    - '`terror`'
+- title: Refresh Policies
+  desc: Functions to update a specification within a domain of constraints
+  contents:
+    - '`tramo_refresh`'
+    - '`tramoseats_refresh`'
+- title: Revision History
+  desc: Monitoring revisions in estimation when adding data
+  contents:
+    - '`tramoseats_revisions`'
+- title: Output description
+  desc: Displaying names and description of all available output objects, defining customized output
+  contents:
+    - '`tramoseats_dictionary`'
+    - '`tramoseats_full_dictionary`'
+    - '`userdefined_variables_tramoseats`'
+- title: Wrangling Java objects
+  desc: Functions to easily interact between R and Java objects
+  contents:
+    - '`.tramoseats_rslts`'
+    - '`.jd2r_spec_tramo`'
+    - '`.r2jd_spec_tramo`'
+    - '`.jd2r_spec_tramoseats`'
+    - '`.r2jd_spec_tramoseats`'
+    - '`.jtramoseats`'
+- title: Deprecated functions
+  desc: Avoid using
+  contents:
+    - '`fast_tramoseats`'
+    - '`fast_tramo`'
+    - '`spec_tramoseats`'
+    - '`spec_tramo`'
+
+
+
+
+
+
+

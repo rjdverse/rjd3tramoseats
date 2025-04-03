@@ -2,10 +2,13 @@
 % Please edit documentation in R/tramoseats.R
 \name{tramoseats_full_dictionary}
 \alias{tramoseats_full_dictionary}
-\title{Title}
+\title{TRAMO-SEATS full dictionary}
 \usage{
 tramoseats_full_dictionary()
 }
+\value{
+A matrix with a complete description of the available output objects
+}
 \description{
-Title
+TRAMO-SEATS full dictionary
 }

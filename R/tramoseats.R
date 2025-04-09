@@ -557,12 +557,10 @@ tramoseats_dictionary <- function() {
     return(.jcall("jdplus/tramoseats/base/r/TramoSeats", "[S", "dictionary"))
 }
 
-#' Title
+#' TRAMO-SEATS full dictionary
 #'
-#' @return
+#' @return A matrix with a complete description of the available output objects
 #' @export
-#'
-#' @examples
 tramoseats_full_dictionary <- function() {
     q <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "[S", "fullDictionary")
     q <- `dim<-`(q, c(6, length(q) / 6))

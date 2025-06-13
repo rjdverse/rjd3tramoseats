@@ -1,5 +1,5 @@
 linters: lintr::all_linters(
-        indentation_linter = lintr::indentation_linter(indent = 4L),
+        #indentation_linter = lintr::indentation_linter(indent = 4L),
         indentation_linter = NULL,
         # line_length_linter = lintr::line_length_linter(80L),
         line_length_linter = lintr::line_length_linter(200L),
@@ -10,7 +10,6 @@ linters: lintr::all_linters(
         brace_linter = NULL,
         infix_spaces_linter = NULL,
         paren_body_linter = NULL,
-        indentation_linter = NULL,
         function_left_parentheses_linter = NULL,
         spaces_left_parentheses_linter = NULL,
         commas_linter = NULL,

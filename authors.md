@@ -14,17 +14,17 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/rjdverse/rjd3tramoseats/blob/develop/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/rjdverse/rjd3tramoseats/blob/main/DESCRIPTION)
 
 Palate J, Quartier-la-Tente A, Barthelemy T, Smyk A (2025).
 *rjd3tramoseats: Seasonal Adjustment with TRAMO-SEATS in 'JDemetra+
-3.x'*. R package version 3.6.0.9000,
+3.x'*. R package version 3.6.0,
 <https://github.com/rjdverse/rjd3tramoseats>.
 
     @Manual{,
       title = {rjd3tramoseats: Seasonal Adjustment with TRAMO-SEATS in 'JDemetra+ 3.x'},
       author = {Jean Palate and Alain Quartier-la-Tente and Tanguy Barthelemy and Anna Smyk},
       year = {2025},
-      note = {R package version 3.6.0.9000},
+      note = {R package version 3.6.0},
       url = {https://github.com/rjdverse/rjd3tramoseats},
     }

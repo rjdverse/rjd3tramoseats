@@ -12,7 +12,7 @@ NULL
 #'
 #' @param name the name of a predefined specification.
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' init_spec <- tramoseats_spec()
 #' init_spec <- tramo_spec()
 #' init_spec <- tramoseats_spec("rsa3")
@@ -53,9 +53,7 @@ NULL
 #' @export
 tramo_spec <- function(name = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")) {
     name <- gsub("rsa", "tr", tolower(name), fixed = TRUE)
-    name <- match.arg(name[1],
-        choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
-    )
+    name <- match.arg(name[1], choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"))
     jspec <- .jcall("jdplus/tramoseats/base/api/tramo/TramoSpec", "Ljdplus/tramoseats/base/api/tramo/TramoSpec;", "fromString", name)
     return(.jd2r_spec_tramo(jspec))
 }
@@ -65,9 +63,7 @@ tramo_spec <- function(name = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
 #' @export
 tramoseats_spec <- function(name = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")) {
     name <- gsub("tr", "rsa", tolower(name), fixed = TRUE)
-    name <- match.arg(name[1],
-        choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5")
-    )
+    name <- match.arg(name[1], choices = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"))
     jspec <- .jcall("jdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec", "Ljdplus/tramoseats/base/api/tramoseats/TramoSeatsSpec;", "fromString", name)
     return(.jd2r_spec_tramoseats(jspec))
 }
@@ -77,8 +73,8 @@ tramoseats_spec <- function(name = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
 #' @export
 #' @rdname jd3_utilities
 .jd2r_spec_tramo <- function(jspec) {
-    q <- .jcall("jdplus/tramoseats/base/r/Tramo", "[B", "toBuffer", jspec)
-    rq <- RProtoBuf::read(tramoseats.TramoSpec, q)
+    q_obj <- .jcall("jdplus/tramoseats/base/r/Tramo", "[B", "toBuffer", jspec)
+    rq <- RProtoBuf::read(tramoseats.TramoSpec, q_obj)
     return(.p2r_spec_tramo(rq))
 }
 
@@ -94,8 +90,8 @@ tramoseats_spec <- function(name = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
 #' @export
 #' @rdname jd3_utilities
 .jd2r_spec_tramoseats <- function(jspec) {
-    q <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "[B", "toBuffer", jspec)
-    rq <- RProtoBuf::read(tramoseats.Spec, q)
+    q_obj <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "[B", "toBuffer", jspec)
+    rq <- RProtoBuf::read(tramoseats.Spec, q_obj)
     return(.p2r_spec_tramoseats(rq))
 }
 
@@ -119,7 +115,7 @@ tramoseats_spec <- function(name = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
         preliminaryCheck = b$preliminary_check
     )
     t <- pspec$transform
-    transform <- list(
+    transform_list <- list(
         fn = rjd3toolkit::.enum_extract(modelling.Transformation, t$transformation),
         fct = t$fct,
         adjust = rjd3toolkit::.enum_extract(modelling.LengthOfPeriod, t$adjust),
@@ -137,9 +133,19 @@ tramoseats_spec <- function(name = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
         tsig = a$tsig,
         amicompare = a$ami_compare
     )
-    arima <- rjd3toolkit::.p2r_spec_sarima(pspec$arima)
+    arima_list <- rjd3toolkit::.p2r_spec_sarima(pspec$arima)
     o <- pspec$outlier
-    outlier <- list(enabled = o$enabled, span = rjd3toolkit::.p2r_span(o$span), ao = o$ao, ls = o$ls, tc = o$tc, so = o$so, va = o$va, tcrate = o$tcrate, ml = o$ml)
+    outlier <- list(
+        enabled = o$enabled,
+        span = rjd3toolkit::.p2r_span(o$span),
+        ao = o$ao,
+        ls = o$ls,
+        tc = o$tc,
+        so = o$so,
+        va = o$va,
+        tcrate = o$tcrate,
+        ml = o$ml
+    )
     r <- pspec$regression
     ptd <- pspec$regression$td
     pee <- pspec$regression$easter
@@ -157,7 +163,8 @@ tramoseats_spec <- function(name = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
         lpcoefficient = rjd3toolkit::.p2r_parameter(ptd$lpcoefficient)
     )
     easter <- list(
-        type = rjd3toolkit::.enum_extract(tramoseats.EasterType, pee$type), duration = pee$duration, julian = pee$julian, test = pee$test,
+        type = rjd3toolkit::.enum_extract(tramoseats.EasterType, pee$type),
+        duration = pee$duration, julian = pee$julian, test = pee$test,
         coefficient = rjd3toolkit::.p2r_parameter(pee$coefficient)
     )
     # TODO: complete regression
@@ -175,8 +182,13 @@ tramoseats_spec <- function(name = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", 
     estimate <- list(span = rjd3toolkit::.p2r_span(e$span), ml = e$ml, tol = e$tol, ubp = e$ubp)
     return(structure(
         list(
-            basic = basic, transform = transform, outlier = outlier,
-            arima = arima, automodel = automodel, regression = regression, estimate = estimate
+            basic = basic,
+            transform = transform_list,
+            outlier = outlier,
+            arima = arima_list,
+            automodel = automodel,
+            regression = regression,
+            estimate = estimate
         ),
         class = "JD3_TRAMO_SPEC"
     ))

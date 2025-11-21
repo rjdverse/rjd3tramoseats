@@ -7,10 +7,31 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [3.5.1] - 2025-04-10
+## [3.6.0] - 2025-11-21
+
+### Added
+
+* Documentation of `Complete` refresh policy
+
+### Changed
+
+* New JARS
 
 
+## [3.5.2] - 2025-06-17
+
+### Changed
+
+* New JARS
+* Update pkgdown appearance
+
 ## [3.5.1] - 2025-04-10
+
+## [3.5.0] - 2025-04-10
+
+### Removed
+
+* `.add_ud_var` has been transfered to {rjd3toolkit}
 
 
 ## [3.3.0] - 2024-10-28
@@ -34,9 +55,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [3.1.0] - 2023-08-11
 
-[Unreleased]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.5.1...HEAD
-[3.5.1]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.5.1...v3.5.1
-[3.5.1]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.3.0...v3.5.1
+[Unreleased]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.6.0...HEAD
+[3.6.0]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.5.2...v3.6.0
+[3.5.2]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.5.1...v3.5.2
+[3.5.1]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.5.0...v3.5.1
+[3.5.0]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.3.0...v3.5.0
 [3.3.0]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.2.3...v3.3.0
 [3.2.3]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.2.2...v3.2.3
 [3.2.2]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.2.1...v3.2.2

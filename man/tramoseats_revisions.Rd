@@ -45,6 +45,7 @@ See example.}
 Compute revisions history
 }
 \examples{
+\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 s <- rjd3toolkit::ABS$X0.2.09.10.M
 sa_mod <- tramoseats(s)
 data_ids <- list(
@@ -66,4 +67,5 @@ cmp_ids <- list(
     list(start = "2010-01-01", end = "2020-01-01", id = "t")
 )
 rh <- tramoseats_revisions(s, sa_mod$result_spec, data_ids, ts_ids, cmp_ids)
+\dontshow{\}) # examplesIf}
 }

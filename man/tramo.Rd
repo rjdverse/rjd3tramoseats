@@ -40,6 +40,7 @@ the results.
 TRAMO model, pre-adjustment in TRAMO-SEATS
 }
 \examples{
+\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library("rjd3toolkit")
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 sp <- tramo_spec("trfull")
@@ -57,5 +58,5 @@ sp <- set_transform(
 tramo_fast(y, spec = sp)
 sp <- set_outlier(sp, outliers.type = c("AO"))
 tramo_fast(y, spec = sp)
-
+\dontshow{\}) # examplesIf}
 }

@@ -41,11 +41,12 @@ RSAfull/TRfull |\tab automatic |\tab AO/LS/TC |\tab automatic |\tab automatic
 }
 }
 \examples{
+\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 init_spec <- tramoseats_spec()
 init_spec <- tramo_spec()
 init_spec <- tramoseats_spec("rsa3")
 init_spec <- tramo_spec("tr3")
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \itemize{

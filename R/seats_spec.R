@@ -55,7 +55,7 @@
 #' (negative values). Default `bcasts` = 0. Default `fcasts` = 0.
 #' @param bias TODO.
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' init_spec <- tramoseats_spec("rsafull")
 #' new_spec <- set_seats(init_spec,
 #'     approximation = "Legacy",

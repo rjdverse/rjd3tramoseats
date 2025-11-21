@@ -1,23 +1,3 @@
-.add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE) {
-    if (is.null(userdefined)) {
-        x$user_defined <- rjd3toolkit::user_defined(x, NULL)
-    } else {
-        if (result) {
-            res <- jx
-        } else {
-            if (is.null(out_class)) {
-                res <- jx$getResult()
-            } else {
-                res <- .jcall(jx, out_class, "getResult")
-            }
-        }
-        res <- rjd3toolkit::.jd3_object(res, result = TRUE)
-        x$user_defined <- rjd3toolkit::user_defined(res, userdefined = userdefined)
-    }
-    x
-}
-
-
 
 #' Display list of all available output objects (series, parameters, diagnostics)
 #'
@@ -30,7 +10,7 @@
 #'
 #' @param x a character to indicate the estimation function for which the output items list will be displayed.
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' userdefined_variables_tramoseats("tramoseats")
 #' userdefined_variables_tramoseats("tramo")
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
@@ -44,9 +24,11 @@
 #' \url{https://jdemetra-new-documentation.netlify.app/}
 #' @export
 userdefined_variables_tramoseats <- function(x = c("TRAMO-SEATS", "TRAMO")) {
-    x <- match.arg(gsub("-", "", tolower(x)),
+    x <- match.arg(gsub("-", "", tolower(x), fixed = TRUE),
         choices = c("tramoseats", "tramo")
     )
+
+    .Deprecated("tramoseats_full_dictionary")
 
     # library("rjd3tramoseats")
     # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)

@@ -17,7 +17,9 @@ tramo_forecast(
 \item{spec}{the model specification. Can be either the name of a predefined
 specification or a user-defined specification.}
 
-\item{nf}{the forecasting horizon (\code{numeric}). The forecast length is in periods (positive values) or years (negative values). By default, the program generates a one-year forecast (\code{nf = -1}).}
+\item{nf}{the forecasting horizon (\code{numeric}). The forecast length is in
+periods (positive values) or years (negative values). By default, the program
+generates a one-year forecast (\code{nf = -1}).}
 
 \item{context}{the dictionnary of variables.}
 }
@@ -34,5 +36,7 @@ a \code{mts} object with 7 variables:
 Forecasts with TRAMO
 }
 \examples{
+\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 tramo_forecast(rjd3toolkit::ABS$X0.2.09.10.M)
+\dontshow{\}) # examplesIf}
 }

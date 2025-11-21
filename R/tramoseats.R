@@ -16,7 +16,7 @@ NULL
 #' specification, while `tramo_fast()` is a faster function that only returns
 #' the results.
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' library("rjd3toolkit")
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sp <- tramo_spec("trfull")
@@ -62,7 +62,7 @@ tramo <- function(ts,
         return(NULL)
     } else {
         res <- .tramo_output(jrslt)
-        return(.add_ud_var(res, jrslt, userdefined = userdefined))
+        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined))
     }
 }
 
@@ -90,7 +90,7 @@ tramo_fast <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4",
         return(NULL)
     } else {
         res <- .regarima_rslts(jrslt)
-        return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
     }
 }
 
@@ -99,8 +99,8 @@ tramo_fast <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4",
     if (is.jnull(jq)) {
         return(NULL)
     }
-    q <- .jcall("jdplus/tramoseats/base/r/Tramo", "[B", "toBuffer", jq)
-    p <- RProtoBuf::read(tramoseats.TramoOutput, q)
+    q_obj <- .jcall("jdplus/tramoseats/base/r/Tramo", "[B", "toBuffer", jq)
+    p <- RProtoBuf::read(tramoseats.TramoOutput, q_obj)
     return(structure(
         list(
             result = rjd3toolkit::.p2r_regarima_rslts(p$result),
@@ -116,7 +116,7 @@ tramo_fast <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4",
 #' @inheritParams tramo
 #'
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' library("rjd3toolkit")
 #' sp <- tramoseats_spec("rsafull")
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
@@ -168,7 +168,7 @@ tramoseats <- function(ts,
         return(NULL)
     } else {
         res <- .tramoseats_output(jrslt)
-        return(.add_ud_var(res, jrslt, userdefined = userdefined))
+        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined))
     }
 }
 
@@ -195,7 +195,7 @@ tramoseats_fast <- function(ts, spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa
         return(NULL)
     } else {
         res <- .tramoseats_rslts(jrslt)
-        return(.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+        return(rjd3toolkit::.add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
     }
 }
 
@@ -230,8 +230,8 @@ tramoseats_fast <- function(ts, spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa
     if (is.jnull(jq)) {
         return(NULL)
     }
-    q <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "[B", "toBuffer", jq)
-    p <- RProtoBuf::read(tramoseats.TramoSeatsOutput, q)
+    q_obj <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "[B", "toBuffer", jq)
+    p <- RProtoBuf::read(tramoseats.TramoSeatsOutput, q_obj)
     return(structure(
         list(
             result = .p2r_tramoseats_rslts(p$result),
@@ -284,6 +284,9 @@ tramoseats_fast <- function(ts, spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa
 #' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model
 #' orders (p,d,q)(P,D,Q) can also be re-identified.
 #'
+#' \strong{Complete}: All the parameters are re-identified and re-estimated,
+#' unless constrained in the domain spec.
+#'
 #' @param spec the current specification to be refreshed (`"result_spec"`).
 #' @param refspec the reference specification used to define the domain
 #' considered for re-estimation (`"domain_spec"`). By default this is the
@@ -310,7 +313,7 @@ tramoseats_fast <- function(ts, spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa
 #' More information on revision policies in JDemetra+ online documentation:
 #' \url{https://jdemetra-new-documentation.netlify.app/t-rev-policies-production}
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' y <- rjd3toolkit::ABS$X0.2.08.10.M
 #' # raw series for first estimation
 #' y_raw <- window(y, end = c(2016, 12))
@@ -466,7 +469,7 @@ forecast_names <- c("forecast", "error", "fraw", "efraw")
 #' - `fraw` the forecast of the transformed series.
 #' - `efraw` the absolute errors of the transformed series.
 #'
-#' @examples
+#' @examplesIf jversion >= 17
 #' terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
 #' @export
 terror <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nback = 1, context = NULL) {
@@ -503,7 +506,9 @@ terror <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
 #' Forecasts with TRAMO
 #'
 #' @inheritParams tramo
-#' @param nf the forecasting horizon (`numeric`). The forecast length is in periods (positive values) or years (negative values). By default, the program generates a one-year forecast (`nf = -1`).
+#' @param nf the forecasting horizon (`numeric`). The forecast length is in
+#' periods (positive values) or years (negative values). By default, the program
+#' generates a one-year forecast (`nf = -1`).
 #'
 #' @return a `mts` object with 7 variables:
 #' - `forecast` the forecast of the actual data at the end of the series.
@@ -512,7 +517,7 @@ terror <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr
 #'
 #' - `fraw` the forecast of the transformed series.
 #' - `efraw` the standard deviation of the forecast of the transformed series.
-#' @examples
+#' @examplesIf jversion >= 17
 #' tramo_forecast(rjd3toolkit::ABS$X0.2.09.10.M)
 #' @export
 tramo_forecast <- function(ts, spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"), nf = -1, context = NULL) {
@@ -562,9 +567,9 @@ tramoseats_dictionary <- function() {
 #' @return A matrix with a complete description of the available output objects
 #' @export
 tramoseats_full_dictionary <- function() {
-    q <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "[S", "fullDictionary")
-    q <- `dim<-`(q, c(6, length(q) / 6))
-    q <- t(q)
-    q <- `colnames<-`(q, c("name", "description", "detail", "output", "type", "fullname"))
-    return(q)
+    dico <- .jcall("jdplus/tramoseats/base/r/TramoSeats", "[S", "fullDictionary")
+    dico <- `dim<-`(dico, c(6, length(dico) / 6))
+    dico <- t(dico)
+    dico <- `colnames<-`(dico, c("name", "description", "detail", "output", "type", "fullname"))
+    return(dico)
 }

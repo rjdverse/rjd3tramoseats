@@ -159,11 +159,11 @@ diagnostics.JD3_TRAMOSEATS_RSLTS <- function(x, ...) {
         ncol = 1,
         dimnames = list(names(variance_decomposition), "Component")
     )
-    residual_tests <- x$diagnostics[grep("test", names(x$diagnostics))]
+    residual_tests <- x$diagnostics[grep("test", names(x$diagnostics), fixed = TRUE)]
     residual_tests <- data.frame(
         Statistic = sapply(residual_tests, function(test) test[["value"]]),
         P.value = sapply(residual_tests, function(test) test[["pvalue"]]),
-        Description = sapply(residual_tests, function(test) attr(test, "distribution"))
+        Description = sapply(residual_tests, attr, "distribution")
     )
     return(list(
         preprocessing = rjd3toolkit::diagnostics(x$preprocessing),
@@ -256,7 +256,7 @@ print.JD3_TRAMO_SPEC <- function(x, ...) {
         )]
 
         if (length(detected_outliers) > 0) {
-            cat("Outliers type: ", paste(detected_outliers, collapse = ", "), "\n", sep = "")
+            cat("Outliers type: ", toString(detected_outliers), "\n", sep = "")
         }
 
         cat("Critical value: ", ifelse(x$outlier$va == 0, "0 (Auto)", x$outlier$va), "\n", sep = "")

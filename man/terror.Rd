@@ -41,5 +41,7 @@ Other transformations, such leap year corrections or length-of periods correctio
 TRAMO for ERRORs (TERROR) controls the quality of the data by checking outliers at the end of the series
 }
 \examples{
+\dontshow{if (jversion >= 17) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
+\dontshow{\}) # examplesIf}
 }

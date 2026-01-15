@@ -10,6 +10,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### [Unreleased](https://github.com/rjdverse/rjd3tramoseats/compare/v3.6.0...HEAD)
 
+#### Added
+
+- Classes to
+  [`tramoseats_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_dictionary.md)
+  and
+  [`tramoseats_full_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_full_dictionary.md)
+
 ### [3.6.0](https://github.com/rjdverse/rjd3tramoseats/compare/v3.5.2...v3.6.0) - 2025-11-21
 
 #### Added

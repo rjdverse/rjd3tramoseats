@@ -1,6 +1,6 @@
 # Revisions History
 
-Compute revisions history
+Computes revisions history
 
 ## Usage
 
@@ -58,6 +58,10 @@ tramoseats_revisions(
 - context:
 
   The context of the specification.
+
+## Value
+
+returns a list
 
 ## Examples
 

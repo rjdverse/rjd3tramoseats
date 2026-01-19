@@ -1,6 +1,7 @@
 # TRAMO model, pre-adjustment in TRAMO-SEATS
 
-TRAMO model, pre-adjustment in TRAMO-SEATS
+allows to model the series with a Reg-Arima model, estimate outlier,
+calendar or other regression effects and produce forecasts
 
 ## Usage
 
@@ -43,7 +44,7 @@ tramo_fast(
 ## Value
 
 the `tramo()` function returns a list with the results
-(`"JD3_regarima_rslts"` object), the estimation specification and the
+(`"JD3_tramo_rslts"` object), the estimation specification and the
 result specification, while `tramo_fast()` is a faster function that
 only returns the results.
 

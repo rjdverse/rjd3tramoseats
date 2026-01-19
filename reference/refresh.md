@@ -1,10 +1,10 @@
 # Refresh a specification with constraints
 
-Function allowing to create a new specification by updating a
-specification used for a previous estimation. Some selected parameters
-will be kept fixed (previous estimation results) while others will be
-freed for re-estimation in a domain of constraints. See details and
-examples.
+Functions `tramoseats_refresh()` and `tramo_refresh()` allow to create a
+new specification by updating a specification used for a previous
+estimation. Some selected parameters will be kept fixed (previous
+estimation results) while others will be freed for re-estimation in a
+domain of constraints. See details and examples.
 
 ## Usage
 
@@ -152,4 +152,56 @@ spec_tramoseats_ref <- tramoseats_refresh(current_result_spec,
 # as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
 # 2nd estimation with refreshed specification
 sa_tramoseats_ref <- tramoseats(y_new, spec_tramoseats_ref) #'
+# same procedure using tramo_refresh
+# specification for first estimation
+spec_1 <- tramo_spec("tr3")
+# first estimation
+tramo_model <- tramo(y_raw, spec_1)
+tramo_model$estimation_spec
+#> Specification
+#> 
+#> Series
+#> Serie span: All 
+#> Preliminary Check: Yes
+#> 
+#> Estimate
+#> Model span: All 
+#> Tolerance: 1e-07
+#> Exact ML: No
+#> Unit root limit: 0.96
+#> 
+#> Transformation
+#> Function: AUTO
+#> AIC difference: 
+#> Adjust: NONE
+#> 
+#> Regression
+#> No calendar regressor
+#> 
+#> Easter: UNUSED
+#> 
+#> Pre-specified outliers: 0
+#> Ramps: No
+#> User-defined variables: No
+#> 
+#> Outliers
+#> Is enabled: No
+#> 
+#> ARIMA
+#> SARIMA model: (0,1,1) (0,1,1)
+#> 
+#> SARIMA coefficients:
+#>  theta(1) btheta(1) 
+#>         0         0 
+#> 
+# refreshing the specification
+current_result_spec <- tramo_model$result_spec
+current_domain_spec <- tramo_model$estimation_spec
+# policy = "Fixed"
+spec_1_ref <- tramo_refresh(current_result_spec, # point spec to be refreshed
+                             current_domain_spec, # domain spec (set of constraints)
+                              policy = "Fixed"
+                               )
+# 2nd estimation with refreshed specification
+tramo_model_ref <- tramo(y_new, spec_1_ref)
 ```

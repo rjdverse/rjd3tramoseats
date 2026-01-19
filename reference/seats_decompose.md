@@ -69,6 +69,10 @@ seats_decompose(
   noise to the non-admissible model estimated by TRAMO.
   Default="Legacy".
 
+## Value
+
+returns a "JD3_UCARIMA" object
+
 ## Examples
 
 ``` r

@@ -24,6 +24,8 @@ spec_tramoseats(
 )
 
 spec_tramo(name = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"))
+
+userdefined_variables_tramoseats(x = c("TRAMO-SEATS", "TRAMO"))
 ```
 
 ## Arguments

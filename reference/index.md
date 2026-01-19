@@ -65,9 +65,12 @@ defining customized output
   : TRAMO-SEATS Dictionary
 - [`tramoseats_full_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_full_dictionary.md)
   : TRAMO-SEATS full dictionary
-- [`userdefined_variables_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/userdefined_variables_tramoseats.md)
-  : Display list of all available output objects (series, parameters,
-  diagnostics)
+- [`fast_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`fast_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`spec_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`userdefined_variables_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  : Deprecated functions
 
 ## Wrangling Java objects
 
@@ -93,4 +96,5 @@ Avoid using
   [`fast_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   [`spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   [`spec_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`userdefined_variables_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   : Deprecated functions

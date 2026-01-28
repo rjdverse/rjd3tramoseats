@@ -30,6 +30,50 @@ userdefined_variables_tramoseats(x = c("TRAMO-SEATS", "TRAMO"))
 
 ## Arguments
 
-- ts, spec, context, userdefined, name:
+- ts:
 
-  Parameters.
+  a univariate time series.
+
+- spec:
+
+  the model specification. Can be either the name of a predefined
+  specification or a user-defined specification.
+
+- context:
+
+  the dictionary of variables.
+
+- userdefined:
+
+  a vector containing the additional output variables (see
+  [`tramoseats_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_dictionary.md)).
+
+- name:
+
+  the name of a predefined specification.
+
+- x:
+
+  useless parameter
+
+## Value
+
+All these functions are deprecated and return the same value as the
+function that replaces them:
+
+- `spec_tramoseats()` returns the same value as
+  [`tramoseats_spec()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_spec.md)
+
+- `spec_tramo()` returns the same value as
+  [`tramo_spec()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_spec.md)
+
+- `fast_tramoseats()` returns the same value as
+  [`tramoseats_fast()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
+
+- `fast_regarima()` returns the same value as `regarima_fast()`
+
+- [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
+  returns the same value as `jtramoseats()`
+
+- `userdefined_variables_tramoseats()` returns the same value as
+  [`tramoseats_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_dictionary.md)

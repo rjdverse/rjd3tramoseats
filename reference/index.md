@@ -62,9 +62,8 @@ Displaying names and description of all available output objects,
 defining customized output
 
 - [`tramoseats_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_dictionary.md)
-  : TRAMO-SEATS Dictionary
-- [`tramoseats_full_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_full_dictionary.md)
-  : TRAMO-SEATS full dictionary
+  [`tramoseats_full_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_dictionary.md)
+  : TRAMO-SEATS dictionary
 - [`fast_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   [`fast_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   [`spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
@@ -81,12 +80,14 @@ Functions to easily interact between R and Java objects
   [`.r2jd_spec_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/jd3_utilities.md)
   [`.jd2r_spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/jd3_utilities.md)
   [`.r2jd_spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/jd3_utilities.md)
-  [`jversion`](https://rjdverse.github.io/rjd3tramoseats/reference/jd3_utilities.md)
   : Java Utility Functions
 - [`tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
   [`tramoseats_fast()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
   [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
   : Seasonal Adjustment with TRAMO-SEATS
+- [`current_java_version`](https://rjdverse.github.io/rjd3tramoseats/reference/java_version.md)
+  [`minimal_java_version`](https://rjdverse.github.io/rjd3tramoseats/reference/java_version.md)
+  : Java version.
 
 ## Deprecated functions
 

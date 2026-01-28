@@ -106,28 +106,33 @@ unless constrained in the domain spec.
 ## References
 
 More information on revision policies in JDemetra+ online documentation:
-<https://jdemetra-new-documentation.netlify.app/t-rev-policies-production>
+<https://jdemetra-new-documentation.netlify.app/a-rev-policies>
 
 ## Examples
 
 ``` r
+# \donttest{
 y <- rjd3toolkit::ABS$X0.2.08.10.M
 # raw series for first estimation
 y_raw <- window(y, end = c(2016, 12))
 # raw series for second (refreshed) estimation
 y_new <- window(y, end = c(2017, 6))
+
 # specification for first estimation
 spec_tramoseats_1 <- tramoseats_spec("rsafull")
+
 # first estimation
 sa_tramoseats <- tramoseats(y_raw, spec_tramoseats_1)
 # refreshing the specification
 current_result_spec <- sa_tramoseats$result_spec
 current_domain_spec <- sa_tramoseats$estimation_spec
+
 # policy = "Fixed"
 spec_tramoseats_ref <- tramoseats_refresh(current_result_spec, # point spec to be refreshed
     current_domain_spec, # domain spec (set of constraints)
     policy = "Fixed"
 )
+
 # 2nd estimation with refreshed specification
 sa_tramoseats_ref <- tramoseats(y_new, spec_tramoseats_ref)
 # policy = "Outliers"
@@ -150,11 +155,13 @@ spec_tramoseats_ref <- tramoseats_refresh(current_result_spec,
 )
 # points from January 2017 (included) until the end of the series will be treated
 # as Additive Outliers, the previous reg-Arima model being otherwise kept fixed
+
 # 2nd estimation with refreshed specification
 sa_tramoseats_ref <- tramoseats(y_new, spec_tramoseats_ref) #'
 # same procedure using tramo_refresh
 # specification for first estimation
 spec_1 <- tramo_spec("tr3")
+
 # first estimation
 tramo_model <- tramo(y_raw, spec_1)
 tramo_model$estimation_spec
@@ -194,14 +201,18 @@ tramo_model$estimation_spec
 #>  theta(1) btheta(1) 
 #>         0         0 
 #> 
+
 # refreshing the specification
 current_result_spec <- tramo_model$result_spec
 current_domain_spec <- tramo_model$estimation_spec
+
 # policy = "Fixed"
 spec_1_ref <- tramo_refresh(current_result_spec, # point spec to be refreshed
                              current_domain_spec, # domain spec (set of constraints)
                               policy = "Fixed"
                                )
+
 # 2nd estimation with refreshed specification
 tramo_model_ref <- tramo(y_new, spec_1_ref)
+# }
 ```

@@ -15,16 +15,14 @@ interact between R and Java objects.
 .jd2r_spec_tramoseats(jspec)
 
 .r2jd_spec_tramoseats(spec)
-
-jversion
 ```
-
-## Format
-
-An object of class `integer` of length 1.
 
 ## Arguments
 
 - spec, jspec, jrslts:
 
   parameters.
+
+## Value
+
+These functions return specification in Java, proto or R.

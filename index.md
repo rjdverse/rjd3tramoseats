@@ -1,4 +1,4 @@
-# `rjd3tramoseats`
+# {rjd3tramoseats}
 
 [![R-CMD-check](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml)
 [![lint](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml)
@@ -6,7 +6,8 @@
 [![GH Pages
 built](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml)
 
-rjd3tramoseats offers full access to options and outputs of TRAMO-SEATS
+{rjd3tramoseats} offers full access to options and outputs of
+TRAMO-SEATS
 ([`rjd3tramoseats::tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)),
 including TRAMO modelling
 ([`rjd3tramoseats::tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramo.md))
@@ -59,7 +60,7 @@ install.packages("rjd3tramoseats", repos = c("https://rjdverse.r-universe.dev", 
 
 ### Development version
 
-You can install the development version of **rjd3tramoseats** from
+You can install the development version of **{rjd3tramoseats}** from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -86,12 +87,12 @@ summary(ts_model$result$preprocessing) # Summary of tramo model
 #> 
 #> Regression model:
 #>                   Estimate Std. Error T-stat Pr(>|t|)    
-#> monday          -0.0109446  0.0034805 -3.145 0.001788 ** 
-#> tuesday          0.0048940  0.0035307  1.386 0.166481    
-#> wednesday        0.0001761  0.0034970  0.050 0.959867    
-#> thursday         0.0132928  0.0035330  3.763 0.000193 ***
-#> friday          -0.0024801  0.0035383 -0.701 0.483748    
-#> saturday         0.0153509  0.0035171  4.365 1.62e-05 ***
+#> mon             -0.0109446  0.0034805 -3.145 0.001788 ** 
+#> tue              0.0048940  0.0035307  1.386 0.166481    
+#> wed              0.0001761  0.0034970  0.050 0.959867    
+#> thu              0.0132928  0.0035330  3.763 0.000193 ***
+#> fri             -0.0024801  0.0035383 -0.701 0.483748    
+#> sat              0.0153509  0.0035171  4.365 1.62e-05 ***
 #> lp               0.0410667  0.0101178  4.059 5.94e-05 ***
 #> easter           0.0503888  0.0072698  6.931 1.69e-11 ***
 #> AO (2000-06-01)  0.1681662  0.0299743  5.610 3.78e-08 ***

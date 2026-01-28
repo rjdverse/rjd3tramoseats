@@ -34,7 +34,7 @@ tramo_fast(
 
 - context:
 
-  the dictionnary of variables.
+  the dictionary of variables.
 
 - userdefined:
 
@@ -54,14 +54,19 @@ only returns the results.
 library("rjd3toolkit")
 #> 
 #> Attaching package: ‘rjd3toolkit’
+#> The following object is masked from ‘package:rjd3tramoseats’:
+#> 
+#>     current_java_version
 #> The following objects are masked from ‘package:stats’:
 #> 
 #>     aggregate, mad
+
 y <- rjd3toolkit::ABS$X0.2.09.10.M
 sp <- tramo_spec("trfull")
 sp <- add_outlier(sp,
     type = c("AO"), c("2015-01-01", "2010-01-01")
 )
+# \donttest{
 tramo_fast(y, spec = sp)
 #> Log-transformation: yes 
 #> SARIMA model: (2,1,2) (0,1,1)
@@ -79,6 +84,7 @@ tramo_fast(y, spec = sp)
 #>       1.736e-01      -1.831e-01 
 #> 
 #> For a more detailed output, use the 'summary()' function.
+# }
 sp <- set_transform(
     set_tradingdays(
         set_easter(sp, enabled = FALSE),
@@ -86,6 +92,7 @@ sp <- set_transform(
     ),
     fun = "None"
 )
+# \donttest{
 tramo_fast(y, spec = sp)
 #> Log-transformation: no 
 #> SARIMA model: (0,1,1) (0,1,1)
@@ -103,7 +110,10 @@ tramo_fast(y, spec = sp)
 #>       -200.7316       -177.1356 
 #> 
 #> For a more detailed output, use the 'summary()' function.
+# }
 sp <- set_outlier(sp, outliers.type = c("AO"))
+
+# \donttest{
 tramo_fast(y, spec = sp)
 #> Log-transformation: no 
 #> SARIMA model: (0,1,1) (0,1,1)
@@ -121,4 +131,5 @@ tramo_fast(y, spec = sp)
 #>       -200.7316       -177.1356 
 #> 
 #> For a more detailed output, use the 'summary()' function.
+# }
 ```

@@ -32,7 +32,7 @@ tramo_forecast(
 
 - context:
 
-  the dictionnary of variables.
+  the dictionary of variables.
 
 ## Value
 
@@ -50,6 +50,7 @@ a `mts` object with 7 variables:
 ## Examples
 
 ``` r
+# \donttest{
 tramo_forecast(rjd3toolkit::ABS$X0.2.09.10.M)
 #>          forecast     error     fraw      efraw
 #> Sep 2017 1394.524  51.63894 7.240309 0.03699180
@@ -64,4 +65,5 @@ tramo_forecast(rjd3toolkit::ABS$X0.2.09.10.M)
 #> Jun 2018 1556.902  64.92067 7.350453 0.04164443
 #> Jul 2018 1433.030  60.29701 7.267546 0.04202090
 #> Aug 2018 1302.717  55.47047 7.172207 0.04252290
+# }
 ```

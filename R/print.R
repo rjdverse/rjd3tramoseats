@@ -15,7 +15,7 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
     cat(
         paste0(
             " ",
-            capture.output(
+            utils::capture.output(
                 printCoefmat(variance_decomposition * 100, digits = digits, ...)
             )
         ),
@@ -28,7 +28,7 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
     cat(
         paste0(
             " ",
-            capture.output(
+            utils::capture.output(
                 printCoefmat(residual_tests[, "P.value", drop = FALSE],
                     digits = digits,
                     na.print = "NA", ...
@@ -42,6 +42,8 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
     invisible(x)
 }
 
+#' @importFrom utils tail
+#' @importFrom stats .preformat.ts
 #' @export
 print.JD3_SEATS <- function(x, ...) {
     print(x$seatsmodel)

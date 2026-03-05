@@ -41,7 +41,7 @@ allows to model the series with a Reg-Arima model, estimate outlier,
 calendar or other regression effects and produce forecasts
 }
 \examples{
-\dontshow{if (current_java_version >= minimal_java_version) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 library("rjd3toolkit")
 
 y <- rjd3toolkit::ABS$X0.2.09.10.M

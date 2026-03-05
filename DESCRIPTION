@@ -23,7 +23,6 @@ Depends:
     R (>= 4.1.0)
 Imports:
     rJava (>= 1.0-6),
-    rjd3jars,
     rjd3toolkit (>= 3.6.0),
     RProtoBuf (>= 0.4.20),
     stats,

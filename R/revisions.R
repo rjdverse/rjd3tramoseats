@@ -37,7 +37,7 @@ NULL
 #' See example.
 #' @param context The context of the specification.
 #'
-#' @examplesIf current_java_version >= minimal_java_version
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' \donttest{
 #' s <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sa_mod <- tramoseats(s)

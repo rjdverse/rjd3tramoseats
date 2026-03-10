@@ -69,8 +69,10 @@ in the table below:
 ## Examples
 
 ``` r
+if (FALSE) { # current_java_version >= minimal_java_version
 init_spec <- tramoseats_spec()
 init_spec <- tramo_spec()
 init_spec <- tramoseats_spec("rsa3")
 init_spec <- tramo_spec("tr3")
+}
 ```

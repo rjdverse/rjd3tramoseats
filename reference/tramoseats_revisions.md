@@ -66,6 +66,7 @@ returns a list
 ## Examples
 
 ``` r
+if (FALSE) { # current_java_version >= minimal_java_version
 # \donttest{
 s <- rjd3toolkit::ABS$X0.2.09.10.M
 sa_mod <- tramoseats(s)
@@ -89,4 +90,5 @@ cmp_ids <- list(
 )
 rh <- tramoseats_revisions(s, sa_mod$result_spec, data_ids, ts_ids, cmp_ids)
 # }
+}
 ```

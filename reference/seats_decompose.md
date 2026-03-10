@@ -76,28 +76,7 @@ returns a "JD3_UCARIMA" object
 ## Examples
 
 ``` r
+if (FALSE) { # current_java_version >= minimal_java_version
 seats_decompose(rjd3toolkit::sarima_model(period = 12, phi = c(0, 1), bd = 1))
-#> model 
-#> 
-#> AR: 1 0 1 
-#> DIF: 1 0 0 0 0 0 0 0 0 0 0 0 -1 
-#> var:  1 
-#> 
-#> cmp-1 
-#> 
-#> DIF: 1 -1 
-#> MA: 1 1 
-#> var:  0.0004340278 
-#> 
-#> cmp-2 
-#> 
-#> AR: 1 0 1 
-#> DIF: 1 1 1 1 1 1 1 1 1 1 1 1 
-#> MA: 1 0.5913351 0.2222453 0.0112871 -0.1344438 -0.2247946 -0.2715816 -0.2845599 -0.2706347 -0.2410118 -0.1721786 -0.1381599 -0.04996781 -0.03753463 
-#> var:  0.5974421 
-#> 
-#> cmp-3 
-#> 
-#> var:  0.0228588 
-#> 
+}
 ```

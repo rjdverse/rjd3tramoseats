@@ -60,10 +60,9 @@ a `mts` object with 7 variables:
 ## Examples
 
 ``` r
+if (FALSE) { # current_java_version >= minimal_java_version
 # \donttest{
 terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
-#>          actual forecast     error rel. error transformed tr.fcast   tr.error
-#> Jul 2017 1445.5 1468.903 -23.40336 -0.4328439    7.276211 7.292271 0.03710535
-#> Aug 2017 1303.1 1341.213 -38.11282 -0.7664734    7.172501 7.201330 0.03761155
 # }
+}
 ```

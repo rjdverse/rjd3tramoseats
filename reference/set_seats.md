@@ -123,6 +123,7 @@ online documentation: <https://jdemetra-new-documentation.netlify.app/>
 ## Examples
 
 ``` r
+if (FALSE) { # current_java_version >= minimal_java_version
 init_spec <- tramoseats_spec("rsafull")
 new_spec <- set_seats(init_spec,
     approximation = "Legacy",
@@ -136,4 +137,5 @@ y <- rjd3toolkit::ABS$X0.2.09.10.M
 # \donttest{
 sa <- tramoseats(y, spec = new_spec)
 # }
+}
 ```

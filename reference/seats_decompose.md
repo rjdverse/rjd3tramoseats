@@ -76,7 +76,7 @@ returns a "JD3_UCARIMA" object
 ## Examples
 
 ``` r
-if (FALSE) { # current_java_version >= minimal_java_version
+if (FALSE) { # rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 seats_decompose(rjd3toolkit::sarima_model(period = 12, phi = c(0, 1), bd = 1))
 }
 ```

@@ -1,8 +1,6 @@
 # Changelog
 
-## rjd3tramoseats 3.6.0
-
-CRAN release: 2026-01-27
+## rjd3tramoseats 3.7.1
 
 All notable changes to this project will be documented in this file.
 
@@ -18,6 +16,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   [`tramoseats_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_dictionary.md)
   and
   [`tramoseats_full_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_dictionary.md)
+
+#### Changed
+
+- New Jars
+  [v3.7.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.7.1)
 
 ### [3.6.0](https://github.com/rjdverse/rjd3tramoseats/compare/v3.5.2...v3.6.0) - 2025-11-21
 

@@ -111,7 +111,7 @@ More information on revision policies in JDemetra+ online documentation:
 ## Examples
 
 ``` r
-if (FALSE) { # current_java_version >= minimal_java_version
+if (FALSE) { # rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 # \donttest{
 y <- rjd3toolkit::ABS$X0.2.08.10.M
 # raw series for first estimation

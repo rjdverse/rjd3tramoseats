@@ -51,7 +51,7 @@ only returns the results.
 ## Examples
 
 ``` r
-if (FALSE) { # current_java_version >= minimal_java_version
+if (FALSE) { # rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 library("rjd3toolkit")
 
 y <- rjd3toolkit::ABS$X0.2.09.10.M

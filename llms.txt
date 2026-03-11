@@ -236,9 +236,6 @@ Functions to easily interact between R and Java objects
   [`tramoseats_fast()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
   [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
   : Seasonal Adjustment with TRAMO-SEATS
-- [`current_java_version`](https://rjdverse.github.io/rjd3tramoseats/reference/java_version.md)
-  [`minimal_java_version`](https://rjdverse.github.io/rjd3tramoseats/reference/java_version.md)
-  : Java version.
 
 ## Deprecated functions
 

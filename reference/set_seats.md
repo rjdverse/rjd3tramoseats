@@ -123,7 +123,7 @@ online documentation: <https://jdemetra-new-documentation.netlify.app/>
 ## Examples
 
 ``` r
-if (FALSE) { # current_java_version >= minimal_java_version
+if (FALSE) { # rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 init_spec <- tramoseats_spec("rsafull")
 new_spec <- set_seats(init_spec,
     approximation = "Legacy",

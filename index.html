@@ -88,43 +88,19 @@
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>Running rjd3 packages requires <strong>Java 21 or higher</strong>. How to set up such a configuration in R is explained <a href="https://jdemetra-new-documentation.netlify.app/#Rconfig" class="external-link">here</a></p>
-<div class="section level3">
-<h3 id="latest-release">Latest release<a class="anchor" aria-label="anchor" href="#latest-release"></a>
-</h3>
-<p>To get the current stable version (from the latest release):</p>
-<ul>
-<li>From CRAN:</li>
-<li>
-</li>
-</ul>
+<p><strong>🎉 {rjd3tramoseats} is now available on CRAN! 🎉</strong></p>
+<p>To install it, you have to launch the following command line:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rjd3tramoseats"</span><span class="op">)</span></span></code></pre></div>
-<ul>
-<li>From GitHub:</li>
-</ul>
+<p>To get the current development version of <strong>{rjd3tramoseats}</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rjdverse/rjd3toolkit@*release"</span><span class="op">)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rjdverse/rjd3tramoseats@*release"</span><span class="op">)</span></span></code></pre></div>
-<ul>
-<li>From <a href="https://rjdverse.r-universe.dev/rjd3tramoseats" class="external-link">r-universe</a>:</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rjd3tramoseats"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://rjdverse.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="development-version">Development version<a class="anchor" aria-label="anchor" href="#development-version"></a>
-</h3>
-<p>You can install the development version of <strong>{rjd3tramoseats}</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rjdverse/rjd3tramoseats"</span><span class="op">)</span></span></code></pre></div>
-</div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3tramoseats" class="external-link">"rjd3tramoseats"</a></span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="va"><a href="https://rjdverse.github.io/rjd3toolkit/reference/ABS.html" class="external-link">ABS</a></span><span class="op">$</span><span class="va">X0.2.09.10.M</span></span>
 <span><span class="va">ts_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tramoseats.html">tramoseats</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
@@ -158,9 +134,9 @@
 <span><span class="co">#&gt; Standard error of the regression (ML estimate): 0.03615788 </span></span>
 <span><span class="co">#&gt; AIC: 4198.538, AICc: 4199.452, BIC: 4250.811</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ts_model</span><span class="op">)</span> <span class="co"># Plot of the final decomposition</span></span></code></pre></div>
-<p><img src="reference/figures/README-ts-final-1.png" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/README-ts-final-1.png" alt="" style="display: block; margin: auto;"></p>
 <p>To get the final components you can use the function <code><a href="https://rjdverse.github.io/rjd3toolkit/reference/sa_decomposition.html" class="external-link">rjd3toolkit::sa_decomposition()</a></code>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/sa_decomposition.html" class="external-link">sa_decomposition</a></span><span class="op">(</span><span class="va">ts_model</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Last values</span></span>
 <span><span class="co">#&gt;          series       sa    trend      seas       irr</span></span>

@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">rjd3tramoseats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
 <p><a href="https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/rjdverse/rjd3tramoseats/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml" class="external-link"><img src="https://github.com/rjdverse/rjd3tramoseats/actions/workflows/lint.yaml/badge.svg" alt="lint"></a></p>
 <p><a href="https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/rjdverse/rjd3tramoseats/actions/workflows/pkgdown.yaml/badge.svg" alt="GH Pages built"></a> <!-- badges: end --></p>
 <p>{rjd3tramoseats} offers full access to options and outputs of TRAMO-SEATS (<code><a href="reference/tramoseats.html">rjd3tramoseats::tramoseats()</a></code>), including TRAMO modelling (<code><a href="reference/tramo.html">rjd3tramoseats::tramo()</a></code>) and SEATS decomposition (<code><a href="reference/seats_decompose.html">rjd3tramoseats::seats_decompose()</a></code>).</p>
-<p>A specification can be created with <code><a href="reference/tramoseats_spec.html">rjd3tramoseats::tramo_spec()</a></code> or <code><a href="reference/tramoseats_spec.html">rjd3tramoseats::tramoseats_spec()</a></code> and can be modified with the following functions:</p>
+<p>A specification can be created with <code><a href="reference/tramoseats_spec.html">rjd3tramoseats::tramo_spec()</a></code> or <code><a href="reference/tramoseats_spec.html">rjd3tramoseats::tramoseats_spec()</a></code> and modified with the following functions:</p>
 <ul>
 <li><p>for pre-processing: <code>rjd3tramoseats::set_arima()</code>, <code>rjd3tramoseats::set_automodel()</code>, <code>rjd3tramoseats::set_basic()</code>, <code>rjd3tramoseats::set_easter()</code>, <code>rjd3tramoseats::set_estimate()</code>, <code>rjd3tramoseats::set_outlier()</code>, <code>rjd3tramoseats::set_tradingdays()</code>, <code>rjd3tramoseats::set_transform()</code>, <code>rjd3tramoseats::add_outlier()</code>, <code>rjd3tramoseats::remove_outlier()</code>, <code>rjd3tramoseats::add_ramp()</code>, <code>rjd3tramoseats::remove_ramp()</code>, <code>rjd3tramoseats::add_usrdefvar()</code>;</p></li>
 <li><p>for decomposition: <code><a href="reference/set_seats.html">rjd3tramoseats::set_seats()</a></code>;</p></li>
@@ -89,7 +89,7 @@
 </h2>
 <p>Running rjd3 packages requires <strong>Java 21 or higher</strong>. How to set up such a configuration in R is explained <a href="https://jdemetra-new-documentation.netlify.app/#Rconfig" class="external-link">here</a></p>
 <p><strong>🎉 {rjd3tramoseats} is now available on CRAN! 🎉</strong></p>
-<p>To install it, you have to launch the following command line:</p>
+<p>To install it, just launch the following command line:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rjd3tramoseats"</span><span class="op">)</span></span></code></pre></div>
 <p>To get the current development version of <strong>{rjd3tramoseats}</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
@@ -100,6 +100,9 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<div class="section level3">
+<h3 id="seasonal-adjustment-with-tramo-seats">Seasonal Adjustment with Tramo-Seats<a class="anchor" aria-label="anchor" href="#seasonal-adjustment-with-tramo-seats"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3tramoseats" class="external-link">"rjd3tramoseats"</a></span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="va"><a href="https://rjdverse.github.io/rjd3toolkit/reference/ABS.html" class="external-link">ABS</a></span><span class="op">$</span><span class="va">X0.2.09.10.M</span></span>
@@ -135,23 +138,7 @@
 <span><span class="co">#&gt; AIC: 4198.538, AICc: 4199.452, BIC: 4250.811</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ts_model</span><span class="op">)</span> <span class="co"># Plot of the final decomposition</span></span></code></pre></div>
 <p><img src="reference/figures/README-ts-final-1.png" alt="" style="display: block; margin: auto;"></p>
-<p>To get the final components you can use the function <code><a href="https://rjdverse.github.io/rjd3toolkit/reference/sa_decomposition.html" class="external-link">rjd3toolkit::sa_decomposition()</a></code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">rjd3toolkit</span><span class="fu">::</span><span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/sa_decomposition.html" class="external-link">sa_decomposition</a></span><span class="op">(</span><span class="va">ts_model</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Last values</span></span>
-<span><span class="co">#&gt;          series       sa    trend      seas       irr</span></span>
-<span><span class="co">#&gt; Sep 2016 1393.5 1552.616 1561.206 0.8975174 0.9944979</span></span>
-<span><span class="co">#&gt; Oct 2016 1497.4 1568.366 1559.217 0.9547514 1.0058681</span></span>
-<span><span class="co">#&gt; Nov 2016 1684.3 1528.962 1557.382 1.1015974 0.9817508</span></span>
-<span><span class="co">#&gt; Dec 2016 2850.4 1542.997 1556.132 1.8473143 0.9915588</span></span>
-<span><span class="co">#&gt; Jan 2017 1428.5 1545.950 1555.502 0.9240275 0.9938587</span></span>
-<span><span class="co">#&gt; Feb 2017 1092.4 1551.369 1555.210 0.7041521 0.9975303</span></span>
-<span><span class="co">#&gt; Mar 2017 1370.3 1553.207 1555.087 0.8822391 0.9987913</span></span>
-<span><span class="co">#&gt; Apr 2017 1522.6 1580.752 1554.759 0.9632123 1.0167187</span></span>
-<span><span class="co">#&gt; May 2017 1452.4 1554.517 1553.908 0.9343093 1.0003924</span></span>
-<span><span class="co">#&gt; Jun 2017 1557.2 1551.804 1552.778 1.0034774 0.9993726</span></span>
-<span><span class="co">#&gt; Jul 2017 1445.5 1544.701 1551.717 0.9357801 0.9954781</span></span>
-<span><span class="co">#&gt; Aug 2017 1303.1 1535.588 1550.949 0.8485999 0.9900960</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="package-maintenance-and-contributing">Package Maintenance and contributing<a class="anchor" aria-label="anchor" href="#package-maintenance-and-contributing"></a>

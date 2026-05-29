@@ -105,7 +105,11 @@ set_seats(
 
 - bias:
 
-  TODO.
+  boolean. If `TRUE` (default) and decomposition is multiplicative a
+  correction is applied when computing final components (S, T, I) in
+  level from components estimated in log. Average of S (on complete
+  years) and I (on the whole series) is set to 1, the correction is
+  allocated to T.
 
 ## Value
 

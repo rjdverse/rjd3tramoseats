@@ -40,7 +40,7 @@ in the table below:
 | **Identifier** \| | **Log/level detection** \| | **Outliers detection** \| | **Calendar effects** \| | **ARIMA** | RSA0/TR0 \| | *NA* \| | *NA* \| |
 | *NA* \| | Airline(+mean) | RSA1/TR1 \| | automatic \| | AO/LS/TC \| | *NA* \| | Airline(+mean) | RSA2/TR2 \| |
 | automatic \| | AO/LS/TC \| | 2 td vars + Easter \| | Airline(+mean) | RSA3/TR3 \| | automatic \| | AO/LS/TC \| | *NA* \| |
-| automatic | RSA4/TR3 \| | automatic \| | AO/LS/TC \| | 2 td vars + Easter \| | automatic | RSA5/TR5 \| | automatic \| |
+| automatic | RSA4/TR4 \| | automatic \| | AO/LS/TC \| | 2 td vars + Easter \| | automatic | RSA5/TR5 \| | automatic \| |
 | AO/LS/TC \| | 7 td vars + Easter \| | automatic | RSAfull/TRfull \| | automatic \| | AO/LS/TC \| | automatic \| | automatic |
 
 ## See also

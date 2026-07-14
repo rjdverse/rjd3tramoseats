@@ -55,7 +55,7 @@
 #'
 #' @param bcasts,fcasts numeric: the number of backasts (`bcasts`) or forecasts
 #' (`fcasts`) used in the decomposition in periods (positive values) or years
-#' (negative values). Default `bcasts` = 0. Default `fcasts` = 0.
+#' (negative values). Default `bcasts` = 0. Default `fcasts` = -2.
 #' @param bias boolean. If `TRUE` (default) and decomposition is multiplicative a correction is applied
 #' when computing final components (S, T, I) in level from components estimated in log. Average of S (on complete years)
 #' and I (on the whole series) is set to 1, the correction is allocated to T.

@@ -14,7 +14,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/rjdverse/rjd3tramoseats/blob/develop/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/rjdverse/rjd3tramoseats/blob/v3.8.0/DESCRIPTION)
 
 Palate J, Quartier-la-Tente A, Barthelemy T, Smyk A (2026).
 *rjd3tramoseats: Seasonal Adjustment with TRAMO-SEATS in 'JDemetra+'

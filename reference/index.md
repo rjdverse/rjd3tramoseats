@@ -71,6 +71,15 @@ defining customized output
   [`userdefined_variables_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   : Deprecated functions
 
+## Option for rjdverse
+
+Evironment specific to JDemetra+
+
+- [`get_tramoseats_option()`](https://rjdverse.github.io/rjd3tramoseats/reference/get_tramoseats_option.md)
+  : Set an option for tramoseats
+- [`tramoseats_option()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_option.md)
+  : Set an option for tramoseats
+
 ## Wrangling Java objects
 
 Functions to easily interact between R and Java objects

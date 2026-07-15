@@ -69,7 +69,7 @@ in the table below:
 ## Examples
 
 ``` r
-if (FALSE) { # rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+if (FALSE) { # rjd3jars::check_java_version(silent = TRUE)
 init_spec <- tramoseats_spec()
 init_spec <- tramo_spec()
 init_spec <- tramoseats_spec("rsa3")

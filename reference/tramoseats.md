@@ -62,7 +62,7 @@ to get a specific variable).
 ## Examples
 
 ``` r
-if (FALSE) { # rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+if (FALSE) { # rjd3jars::check_java_version(silent = TRUE)
 library("rjd3toolkit")
 
 sp <- tramoseats_spec("rsafull")

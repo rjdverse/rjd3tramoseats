@@ -98,7 +98,7 @@ SEATS and Benchmarking part parameters are untouched.
 model orders (p,d,q)(P,D,Q) can also be re-identified;
 SEATS and Benchmarking part parameters are untouched.
 \item \strong{Complete}: All the parameters are re-identified and
-re-estimated, unless constrained in the domain spec.
+re-estimated, unless constrained in the reference spec.
 SEATS and Benchmarking part parameters are entirely reset to values in the reference spec.
 }
 }

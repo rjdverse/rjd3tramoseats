@@ -3,6 +3,7 @@ linters: lintr::all_linters(
         # line_length_linter = lintr::line_length_linter(80L),
         line_length_linter = lintr::line_length_linter(150L),
         return_linter = NULL,
+        namespace_linter = NULL,
         cyclocomp_linter = NULL,
         object_usage_linter = NULL,
         object_name_linter = NULL,

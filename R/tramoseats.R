@@ -43,9 +43,7 @@ NULL
 #' }
 #' sp <- set_outlier(sp, outliers.type = c("AO"))
 #'
-#' \donttest{
 #' tramo_fast(y, spec = sp)
-#' }
 #'
 #' @export
 #'
@@ -755,10 +753,11 @@ forecast_names <- c("forecast", "error", "fraw", "efraw")
 #' \item \strong{efraw}: the absolute errors of the transformed series.
 #' }
 #'
-#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
-#' \donttest{
-#' terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
+#' @examples
+#' if (rjd3jars::check_java_version(silent = TRUE)) {
+#'   terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
 #' }
+#'
 #' @export
 terror <- function(
     ts,
@@ -826,9 +825,7 @@ terror <- function(
 #' - `efraw` the standard deviation of the forecast of the transformed series.
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
-#' \donttest{
 #' tramo_forecast(rjd3toolkit::ABS$X0.2.09.10.M)
-#' }
 #'
 #' @export
 tramo_forecast <- function(

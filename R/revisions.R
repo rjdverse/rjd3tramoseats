@@ -42,7 +42,6 @@ NULL
 #' @param context The context of the specification.
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
-#' \donttest{
 #' s <- rjd3toolkit::ABS$X0.2.09.10.M
 #' sa_mod <- tramoseats(s)
 #' data_ids <- list(
@@ -64,7 +63,6 @@ NULL
 #'     list(start = "2010-01-01", end = "2020-01-01", id = "t")
 #' )
 #' rh <- tramoseats_revisions(s, sa_mod$result_spec, data_ids, ts_ids, cmp_ids)
-#' }
 #' @export
 tramoseats_revisions <- function(
     ts,

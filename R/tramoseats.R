@@ -754,8 +754,10 @@ forecast_names <- c("forecast", "error", "fraw", "efraw")
 #' }
 #'
 #' @examples
+#' \donttest{
 #' if (rjd3jars::check_java_version(silent = TRUE)) {
 #'   terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
+#' }
 #' }
 #'
 #' @export

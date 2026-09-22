@@ -826,8 +826,12 @@ terror <- function(
 #' - `fraw` the forecast of the transformed series.
 #' - `efraw` the standard deviation of the forecast of the transformed series.
 #'
-#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
-#' tramo_forecast(rjd3toolkit::ABS$X0.2.09.10.M)
+#' @examples
+#' \donttest{
+#' if (rjd3jars::check_java_version(silent = TRUE)){
+#'     tramo_forecast(rjd3toolkit::ABS$X0.2.09.10.M)
+#' }
+#' }
 #'
 #' @export
 tramo_forecast <- function(

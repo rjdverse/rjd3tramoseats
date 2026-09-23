@@ -1,6 +1,8 @@
 # Changelog
 
-## rjd3tramoseats 3.8.0.9000
+## rjd3tramoseats 3.9.0
+
+CRAN release: 2026-09-22
 
 All notable changes to this project will be documented in this file.
 
@@ -9,6 +11,13 @@ Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### [Unreleased](https://github.com/rjdverse/rjd3tramoseats/compare/v3.8.0...HEAD)
+
+#### Changed
+
+- Updated JARS from jdplus-main to
+  [3.9.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.9.0)
+
+- Updated documentation
 
 ### [3.8.0](https://github.com/rjdverse/rjd3tramoseats/compare/v3.7.1...v3.8.0) - 2026-07-15
 

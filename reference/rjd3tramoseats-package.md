@@ -19,12 +19,12 @@ Useful links:
 
 ## Author
 
-**Maintainer**: Tanguy Barthelemy <tanguy.barthelemy@insee.fr>
+**Maintainer**: Tanguy Barthelemy <timeserieswithjdemetraandr@gmail.com>
 \[artist\]
 
 Authors:
 
-- Tanguy Barthelemy <tanguy.barthelemy@insee.fr> \[artist\]
+- Tanguy Barthelemy <timeserieswithjdemetraandr@gmail.com> \[artist\]
 
 - Jean Palate <palatejean@gmail.com>
 
@@ -32,3 +32,5 @@ Authors:
   ([ORCID](https://orcid.org/0000-0001-7890-3857))
 
 - Anna Smyk <anna.smyk@insee.fr>
+
+- Eulalie Delaune <eulalie.delaune-virrion@insee.fr>

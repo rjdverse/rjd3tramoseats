@@ -18,6 +18,10 @@ tramoseats_option(name, obj)
 
   Option
 
+## Value
+
+Invisibly returns `NULL`
+
 ## Examples
 
 ``` r

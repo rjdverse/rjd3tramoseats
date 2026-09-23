@@ -60,9 +60,9 @@ a `mts` object with 7 variables:
 ## Examples
 
 ``` r
-if (FALSE) { # rjd3jars::check_java_version(silent = TRUE)
 # \donttest{
-terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
-# }
+if (rjd3jars::check_java_version(silent = TRUE)) {
+  terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
 }
+# }
 ```

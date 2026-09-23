@@ -7,6 +7,14 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [3.9.0] - 2026-09-23
+
+### Changed
+
+- Updated JARS from jdplus-main to [3.9.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.9.0)
+
+- Updated documentation
+
 ## [3.8.0] - 2026-07-15
 
 ### Changed
@@ -92,8 +100,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 * New JARS related to version [3.1.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.1.0)
 
-[Unreleased]: https://github.com/rjdverse/rjd3tramoseats/compare/3.8.0...HEAD
-[3.8.0]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.7.1...3.8.0
+[Unreleased]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.9.0...HEAD
+[3.9.0]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.8.0...v3.9.0
+[3.8.0]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.7.1...v3.8.0
 [3.7.1]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.6.0...v3.7.1
 [3.6.0]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.5.2...v3.6.0
 [3.5.2]: https://github.com/rjdverse/rjd3tramoseats/compare/v3.5.1...v3.5.2

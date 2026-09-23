@@ -1,20 +1,22 @@
 Type: Package
 Package: rjd3tramoseats
 Title: Seasonal Adjustment with TRAMO-SEATS in 'JDemetra+' 3.x
-Version: 3.8.0
+Version: 3.9.0
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",
            comment = c(ORCID = "0000-0001-7890-3857")),
     person("Tanguy", "Barthelemy", , "timeserieswithjdemetraandr@gmail.com", role = c("aut", "cre", "art")),
-    person("Anna", "Smyk", , "anna.smyk@insee.fr", role = "aut")
+    person("Anna", "Smyk", , "anna.smyk@insee.fr", role = "aut"),
+    person("Eulalie", "Delaune", , "eulalie.delaune-virrion@insee.fr", role = "aut")
   )
 Description: Interface to 'JDemetra+' 3.x (<https://github.com/jdemetra>)
     time series analysis software.  It offers full access to options and
     outputs of 'TRAMO-SEATS' (Time series Regression with ARIMA noise,
     Missing values and Outliers - Signal Extraction in ARIMA Time Series),
     including 'TRAMO' modelling (ARIMA model with outlier detection and
-    trading days adjustment). ARIMA = AutoRegressive Integrated Moving Average.
+    trading days adjustment). ARIMA = AutoRegressive Integrated Moving
+    Average.
 License: EUPL
 URL: https://github.com/rjdverse/rjd3tramoseats,
     https://rjdverse.github.io/rjd3tramoseats/
@@ -23,12 +25,17 @@ Depends:
     R (>= 4.1.0)
 Imports:
     rJava (>= 1.0-6),
+    rjd3jars (>= 0.0.6),
+    rjd3toolkit (>= 3.9.0),
     RProtoBuf (>= 0.4.25),
     stats,
-    utils,
-    rjd3jars (>= 0.0.5),
-    rjd3toolkit (>= 3.8.0)
+    utils
+Suggests: 
+    spelling
+Config/roxygen2/version: 8.1.0
 Encoding: UTF-8
+Language: en-GB
+Roxygen: list(markdown = TRUE)
 SystemRequirements: Java (>= 21)
 Collate: 
     'deprecated.R'
@@ -45,8 +52,3 @@ Collate:
     'tramo_spec.R'
     'tramoseats.R'
     'zzz.R'
-Suggests: 
-    spelling
-Language: en-US
-Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.0.0

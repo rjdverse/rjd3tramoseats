@@ -1,7 +1,7 @@
 Type: Package
 Package: rjd3tramoseats
 Title: Seasonal Adjustment with TRAMO-SEATS in 'JDemetra+' 3.x
-Version: 3.9.0
+Version: 3.9.0.9000
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",
@@ -52,3 +52,6 @@ Collate:
     'tramo_spec.R'
     'tramoseats.R'
     'zzz.R'
+Remotes:  
+    github::rjdverse/rjd3jars,
+    github::rjdverse/rjd3toolkit

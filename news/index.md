@@ -1,8 +1,6 @@
 # Changelog
 
-## rjd3tramoseats 3.9.0
-
-CRAN release: 2026-09-22
+## rjd3tramoseats 3.9.0.9000
 
 All notable changes to this project will be documented in this file.
 

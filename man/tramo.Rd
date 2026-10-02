@@ -61,10 +61,9 @@ sp <- set_transform(
 )
 \donttest{
 tramo_fast(y, spec = sp)
-}
+
 sp <- set_outlier(sp, outliers.type = c("AO"))
 
-\donttest{
 tramo_fast(y, spec = sp)
 }
 \dontshow{\}) # examplesIf}

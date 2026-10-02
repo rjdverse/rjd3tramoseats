@@ -61,6 +61,8 @@ NULL
 #' @param name Name of the option
 #' @param obj Option
 #'
+#' @return Invisibly returns `NULL`
+#'
 #' @export
 #'
 #' @examples

@@ -44,9 +44,10 @@ length-of periods corrections may also be used;
 TRAMO for ERRORs (TERROR) controls the quality of the data by checking outliers at the end of the series
 }
 \examples{
-\dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
 \donttest{
-terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
+if (rjd3jars::check_java_version(silent = TRUE)) {
+  terror(rjd3toolkit::ABS$X0.2.09.10.M, nback = 2)
 }
-\dontshow{\}) # examplesIf}
+}
+
 }

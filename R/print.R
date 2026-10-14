@@ -325,7 +325,7 @@ print.JD3_TRAMO_SPEC <- function(x, ...) {
 
     cat("\n", "Outliers", "\n", sep = "")
 
-    if (is.null(x$outlier$enabled=="FALSE")){
+    if (is.null(x$outlier$enabled == "FALSE")) {
         cat("Is enabled: No\n")
     } else {
         cat("Detection span: ", x$outlier$span$type, sep = "")
@@ -335,7 +335,7 @@ print.JD3_TRAMO_SPEC <- function(x, ...) {
         if (toupper(x$outlier$span$type) %in% c("TO", "BETWEEN")) {
             cat(" to", x$outlier$span$d1)
         }
-        if (x$outlier$span$typeu == "All") {
+        if (x$outlier$span$type == "All") {
             cat("Detection span: All\n")
         }
         cat("\n")

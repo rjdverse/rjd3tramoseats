@@ -325,7 +325,7 @@ print.JD3_TRAMO_SPEC <- function(x, ...) {
 
     cat("\n", "Outliers", "\n", sep = "")
 
-    if (is.null(x$outlier$outliers) || length(x$outlier$outliers) == 0) {
+    if (is.null(x$outlier$enabled=="FALSE")){
         cat("Is enabled: No\n")
     } else {
         cat("Detection span: ", x$outlier$span$type, sep = "")
@@ -335,7 +335,7 @@ print.JD3_TRAMO_SPEC <- function(x, ...) {
         if (toupper(x$outlier$span$type) %in% c("TO", "BETWEEN")) {
             cat(" to", x$outlier$span$d1)
         }
-        if (x$outlier$span == "All") {
+        if (x$outlier$span$typeu == "All") {
             cat("Detection span: All\n")
         }
         cat("\n")
@@ -389,6 +389,9 @@ print.JD3_SEATS_SPEC <- function(x, ...) {
     cat("Seasonal tolerance: ", x$epsphi, "\n", sep = "")
     cat("Seasonal boundary: ", x$sbound, "\n", sep = "")
     cat("Method: ", x$algorithm, "\n", sep = "")
+    cat("Forecasts: ", x$nfcasts, "\n", sep = "")
+    cat("Backcasts: ", x$nbcasts, "\n", sep = "")
+    cat("Bias: ", x$bias, "\n", sep = "")
 
     return(invisible(x))
 }

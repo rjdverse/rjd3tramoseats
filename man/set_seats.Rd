@@ -65,7 +65,7 @@ values [0.9,1]. Default=0.95.}
 
 \item{bcasts, fcasts}{numeric: the number of backasts (\code{bcasts}) or forecasts
 (\code{fcasts}) used in the decomposition in periods (positive values) or years
-(negative values). Default \code{bcasts} = 0. Default \code{fcasts} = 0.}
+(negative values). Default \code{bcasts} = 0. Default \code{fcasts} = -2.}
 
 \item{algorithm}{character: the estimation method for the unobserved
 components. The choice can be made from:

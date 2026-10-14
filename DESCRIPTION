@@ -39,6 +39,7 @@ Roxygen: list(markdown = TRUE)
 SystemRequirements: Java (>= 21)
 Collate: 
     'deprecated.R'
+    'options.R'
     'print.R'
     'utils.R'
     'tramoseats_rslts.R'

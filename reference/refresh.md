@@ -112,8 +112,8 @@ Available refresh policies are:
     Benchmarking part parameters are untouched.
 
 8.  **Complete**: All the parameters are re-identified and re-estimated,
-    unless constrained in the domain spec. SEATS and Benchmarking part
-    parameters are entirely reset to values in the reference spec.
+    unless constrained in the reference spec. SEATS and Benchmarking
+    part parameters are entirely reset to values in the reference spec.
 
 ## References
 

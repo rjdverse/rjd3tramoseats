@@ -88,7 +88,7 @@ set_seats(
 
   numeric: the number of backasts (`bcasts`) or forecasts (`fcasts`)
   used in the decomposition in periods (positive values) or years
-  (negative values). Default `bcasts` = 0. Default `fcasts` = 0.
+  (negative values). Default `bcasts` = 0. Default `fcasts` = -2.
 
 - algorithm:
 

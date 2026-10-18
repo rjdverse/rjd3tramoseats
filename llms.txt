@@ -35,11 +35,6 @@ and modified with the following functions:
   [`rjd3toolkit::remove_ramp()`](https://rjdverse.github.io/rjd3toolkit/reference/add_outlier.html),
   [`rjd3toolkit::add_usrdefvar()`](https://rjdverse.github.io/rjd3toolkit/reference/add_usrdefvar.html);
 
-- for decomposition: `rjd3x13::set_x11()`;
-
-- for benchmarking:
-  [`rjd3toolkit::set_benchmarking()`](https://rjdverse.github.io/rjd3toolkit/reference/set_benchmarking.html).
-
 - for decomposition:
   [`rjd3tramoseats::set_seats()`](https://rjdverse.github.io/rjd3tramoseats/reference/set_seats.md);
 
@@ -50,7 +45,7 @@ and modified with the following functions:
 
 Running rjd3 packages requires **Java 21 or higher**. How to set up such
 a configuration in R is explained
-[here](https://jdemetra-new-documentation.netlify.app/#Rconfig)
+[here](https://doc.jdemetra.org/#Rconfig)
 
 **🎉 {rjd3tramoseats} is now available on CRAN! 🎉**
 

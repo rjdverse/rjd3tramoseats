@@ -320,7 +320,7 @@ tramoseats_fast <- function(
 
 #' @export
 #' @rdname tramoseats
-.jtramoseats <- function(
+jtramoseats <- function(
     ts,
     spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
     context = NULL,

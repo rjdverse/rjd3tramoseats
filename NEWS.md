@@ -7,6 +7,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Function `.jtramoseats()` renamed `jtramoseats()` [#98](https://github.com/rjdverse/rjd3tramoseats/issues/98).
+Function `.jtramoseats()` now deprecated
+
 ## [3.9.0] - 2026-09-23
 
 ### Changed

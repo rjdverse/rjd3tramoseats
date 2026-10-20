@@ -224,7 +224,7 @@ jtramo <- function(
 #' @returns The `tramoseats()` function returns a list with the results, the
 #' estimation specification and the result specification, while
 #' `tramoseats_fast()` is a faster function that only returns the results.
-#' The `.jtramoseats()` functions only results the java object to custom outputs
+#' The `jtramoseats()` functions only results the java object to custom outputs
 #' in other packages (use [rjd3toolkit::dictionary()] to get the list of
 #' variables and [rjd3toolkit::result()] to get a specific variable).
 #'

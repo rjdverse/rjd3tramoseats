@@ -19,6 +19,9 @@ NULL
 #' (`"JD3_tramo_rslts"` object), the estimation specification and the result
 #' specification, while `tramo_fast()` is a faster function that only returns
 #' the results.
+#' The `jtramo()` functions only results the java object to custom outputs
+#' in other packages (use [rjd3toolkit::dictionary()] to get the list of
+#' variables and [rjd3toolkit::result()] to get a specific variable).
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' library("rjd3toolkit")
@@ -149,6 +152,54 @@ tramo_fast <- function(
     }
 }
 
+#' @export
+#' @rdname tramo
+jtramo <- function(
+    ts,
+    spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+    context = NULL,
+    userdefined = NULL
+) {
+    # TODO : check parameters
+    jts <- rjd3toolkit::.r2jd_tsdata(ts)
+    if (is.character(spec)) {
+        spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
+        spec <- match.arg(
+            spec[1],
+            choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
+        )
+        jrslt <- .jcall(
+            "jdplus/tramoseats/base/r/Tramo",
+            "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
+            "process",
+            jts,
+            spec
+        )
+    } else {
+        jspec <- .r2jd_spec_tramo(spec)
+        if (is.null(context)) {
+            jcontext <- .jnull(
+                "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
+            )
+        } else {
+            jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
+        }
+        jrslt <- .jcall(
+            "jdplus/tramoseats/base/r/Tramo",
+            "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
+            "process",
+            jts,
+            jspec,
+            jcontext
+        )
+    }
+    if (is.jnull(jrslt)) {
+        return(NULL)
+    } else {
+        res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
+        return(res)
+    }
+}
 
 .tramo_output <- function(jq) {
     if (is.jnull(jq)) {

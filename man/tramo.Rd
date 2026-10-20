@@ -3,6 +3,7 @@
 \name{tramo}
 \alias{tramo}
 \alias{tramo_fast}
+\alias{jtramo}
 \title{TRAMO model, pre-adjustment in TRAMO-SEATS}
 \usage{
 tramo(
@@ -13,6 +14,13 @@ tramo(
 )
 
 tramo_fast(
+  ts,
+  spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+  context = NULL,
+  userdefined = NULL
+)
+
+jtramo(
   ts,
   spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
   context = NULL,
@@ -35,6 +43,9 @@ the \code{tramo()} function returns a list with the results
 (\code{"JD3_tramo_rslts"} object), the estimation specification and the result
 specification, while \code{tramo_fast()} is a faster function that only returns
 the results.
+The \code{jtramo()} functions only results the java object to custom outputs
+in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to get the list of
+variables and \code{\link[rjd3toolkit:result]{rjd3toolkit::result()}} to get a specific variable).
 }
 \description{
 allows to model the series with a Reg-Arima model, estimate outlier,

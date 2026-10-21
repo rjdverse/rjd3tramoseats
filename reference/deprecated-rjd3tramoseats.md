@@ -26,6 +26,13 @@ spec_tramoseats(
 spec_tramo(name = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"))
 
 userdefined_variables_tramoseats(x = c("TRAMO-SEATS", "TRAMO"))
+
+.jtramoseats(
+  ts,
+  spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+  context = NULL,
+  userdefined = NULL
+)
 ```
 
 ## Arguments
@@ -72,8 +79,8 @@ function that replaces them:
 
 - `fast_regarima()` returns the same value as `regarima_fast()`
 
-- [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
-  returns the same value as `jtramoseats()`
+- `.jtramoseats()` returns the same value as
+  [`jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
 
 - `userdefined_variables_tramoseats()` returns the same value as
   [`tramoseats_dictionary()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats_dictionary.md)

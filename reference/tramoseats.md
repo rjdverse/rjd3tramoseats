@@ -19,7 +19,7 @@ tramoseats_fast(
   userdefined = NULL
 )
 
-.jtramoseats(
+jtramoseats(
   ts,
   spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
   context = NULL,
@@ -52,7 +52,7 @@ tramoseats_fast(
 The `tramoseats()` function returns a list with the results, the
 estimation specification and the result specification, while
 `tramoseats_fast()` is a faster function that only returns the results.
-The `.jtramoseats()` functions only results the java object to custom
+The `jtramoseats()` functions only results the java object to custom
 outputs in other packages (use
 [`rjd3toolkit::dictionary()`](https://rjdverse.github.io/rjd3toolkit/reference/dictionary.html)
 to get the list of variables and

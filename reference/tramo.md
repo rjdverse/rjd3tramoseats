@@ -19,6 +19,13 @@ tramo_fast(
   context = NULL,
   userdefined = NULL
 )
+
+jtramo(
+  ts,
+  spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+  context = NULL,
+  userdefined = NULL
+)
 ```
 
 ## Arguments
@@ -46,7 +53,12 @@ tramo_fast(
 the `tramo()` function returns a list with the results
 (`"JD3_tramo_rslts"` object), the estimation specification and the
 result specification, while `tramo_fast()` is a faster function that
-only returns the results.
+only returns the results. The `jtramo()` functions only results the java
+object to custom outputs in other packages (use
+[`rjd3toolkit::dictionary()`](https://rjdverse.github.io/rjd3toolkit/reference/dictionary.html)
+to get the list of variables and
+[`rjd3toolkit::result()`](https://rjdverse.github.io/rjd3toolkit/reference/dictionary.html)
+to get a specific variable).
 
 ## Examples
 

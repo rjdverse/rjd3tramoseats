@@ -10,6 +10,22 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### [Unreleased](https://github.com/rjdverse/rjd3tramoseats/compare/v3.9.0...HEAD)
 
+#### Added
+
+- New function
+  [`jtramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramo.md)
+  [\#99](https://github.com/rjdverse/rjd3tramoseats/issues/99)
+
+#### Changed
+
+- Function
+  [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  renamed
+  [`jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
+  [\#98](https://github.com/rjdverse/rjd3tramoseats/issues/98). Function
+  [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  now deprecated
+
 ### [3.9.0](https://github.com/rjdverse/rjd3tramoseats/compare/v3.8.0...v3.9.0) - 2026-09-23
 
 #### Changed

@@ -17,7 +17,7 @@ Functions to perform seasonal adjustment with Tramo-Seats
 
 - [`tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
   [`tramoseats_fast()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
-  [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
+  [`jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
   : Seasonal Adjustment with TRAMO-SEATS
 - [`seats_decompose()`](https://rjdverse.github.io/rjd3tramoseats/reference/seats_decompose.md)
   : SEATS Decomposition
@@ -28,6 +28,7 @@ Functions to perform Tramo modelling only
 
 - [`tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramo.md)
   [`tramo_fast()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramo.md)
+  [`jtramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramo.md)
   : TRAMO model, pre-adjustment in TRAMO-SEATS
 - [`tramo_forecast()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramo_forecast.md)
   : Forecasts with TRAMO
@@ -69,6 +70,7 @@ defining customized output
   [`spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   [`spec_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   [`userdefined_variables_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   : Deprecated functions
 
 ## Option for rjdverse
@@ -90,10 +92,13 @@ Functions to easily interact between R and Java objects
   [`.jd2r_spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/jd3_utilities.md)
   [`.r2jd_spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/jd3_utilities.md)
   : Java Utility Functions
-- [`tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
-  [`tramoseats_fast()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
-  [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/tramoseats.md)
-  : Seasonal Adjustment with TRAMO-SEATS
+- [`fast_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`fast_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`spec_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`userdefined_variables_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  : Deprecated functions
 
 ## Deprecated functions
 
@@ -104,4 +109,5 @@ Avoid using
   [`spec_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   [`spec_tramo()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   [`userdefined_variables_tramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
+  [`.jtramoseats()`](https://rjdverse.github.io/rjd3tramoseats/reference/deprecated-rjd3tramoseats.md)
   : Deprecated functions

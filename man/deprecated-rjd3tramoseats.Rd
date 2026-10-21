@@ -7,6 +7,7 @@
 \alias{spec_tramoseats}
 \alias{spec_tramo}
 \alias{userdefined_variables_tramoseats}
+\alias{.jtramoseats}
 \title{Deprecated functions}
 \usage{
 fast_tramoseats(
@@ -30,6 +31,13 @@ spec_tramoseats(
 spec_tramo(name = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"))
 
 userdefined_variables_tramoseats(x = c("TRAMO-SEATS", "TRAMO"))
+
+.jtramoseats(
+  ts,
+  spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+  context = NULL,
+  userdefined = NULL
+)
 }
 \arguments{
 \item{ts}{a univariate time series.}

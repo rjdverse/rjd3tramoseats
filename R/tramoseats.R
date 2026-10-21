@@ -19,6 +19,9 @@ NULL
 #' (`"JD3_tramo_rslts"` object), the estimation specification and the result
 #' specification, while `tramo_fast()` is a faster function that only returns
 #' the results.
+#' The `jtramo()` functions only results the java object to custom outputs
+#' in other packages (use [rjd3toolkit::dictionary()] to get the list of
+#' variables and [rjd3toolkit::result()] to get a specific variable).
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' library("rjd3toolkit")
@@ -54,39 +57,11 @@ tramo <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    # TODO : check parameters
-    jts <- rjd3toolkit::.r2jd_tsdata(ts)
-    if (is.character(spec)) {
-        spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
-        spec <- match.arg(
-            spec[1],
-            choices = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5")
-        )
-        jrslt <- .jcall(
-            "jdplus/tramoseats/base/r/Tramo",
-            "Ljdplus/tramoseats/base/core/tramo/TramoOutput;",
-            "fullProcess",
-            jts,
-            spec
-        )
-    } else {
-        jspec <- .r2jd_spec_tramo(spec)
-        if (is.null(context)) {
-            jcontext <- .jnull(
-                "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
-            )
-        } else {
-            jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
-        }
-        jrslt <- .jcall(
-            "jdplus/tramoseats/base/r/Tramo",
-            "Ljdplus/tramoseats/base/core/tramo/TramoOutput;",
-            "fullProcess",
-            jts,
-            jspec,
-            jcontext
-        )
-    }
+    jrslt <- .jrslt_tramo(
+        ts = ts, spec = spec, context = context,
+        jfun = "fullProcess",
+        joutput = "Ljdplus/tramoseats/base/core/tramo/TramoOutput;"
+    )
     if (is.jnull(jrslt)) {
         return(NULL)
     } else {
@@ -103,7 +78,54 @@ tramo_fast <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    # TODO : check parameters
+    jrslt <- .jrslt_tramo(
+        ts = ts, spec = spec, context = context,
+        jfun = "process",
+        joutput = "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;"
+    )
+    if (is.jnull(jrslt)) {
+        return(NULL)
+    } else {
+        res <- .regarima_rslts(jrslt)
+        return(rjd3toolkit::.add_ud_var(
+            res,
+            jrslt,
+            userdefined = userdefined,
+            result = TRUE
+        ))
+    }
+}
+
+#' @export
+#' @rdname tramo
+jtramo <- function(
+    ts,
+    spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+    context = NULL,
+    userdefined = NULL
+) {
+    jrslt <- .jrslt_tramo(
+        ts = ts, spec = spec, context = context,
+        jfun = "process",
+        joutput = "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;"
+    )
+    if (is.jnull(jrslt)) {
+        return(NULL)
+    } else {
+        res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
+        return(res)
+    }
+}
+
+#' @keywords internals
+#' @noRd
+.jrslt_tramo <- function(
+    ts,
+    jfun,
+    joutput,
+    spec = c("trfull", "tr0", "tr1", "tr2", "tr3", "tr4", "tr5"),
+    context = NULL
+) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
         spec <- gsub("rsa", "tr", tolower(spec), fixed = TRUE)
@@ -113,8 +135,8 @@ tramo_fast <- function(
         )
         jrslt <- .jcall(
             "jdplus/tramoseats/base/r/Tramo",
-            "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
-            "process",
+            joutput,
+            jfun,
             jts,
             spec
         )
@@ -129,27 +151,18 @@ tramo_fast <- function(
         }
         jrslt <- .jcall(
             "jdplus/tramoseats/base/r/Tramo",
-            "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;",
-            "process",
+            joutput,
+            jfun,
             jts,
             jspec,
             jcontext
         )
     }
-    if (is.jnull(jrslt)) {
-        return(NULL)
-    } else {
-        res <- .regarima_rslts(jrslt)
-        return(rjd3toolkit::.add_ud_var(
-            res,
-            jrslt,
-            userdefined = userdefined,
-            result = TRUE
-        ))
-    }
+    return(jrslt)
 }
 
-
+#' @keywords internals
+#' @noRd
 .tramo_output <- function(jq) {
     if (is.jnull(jq)) {
         return(NULL)
@@ -173,7 +186,7 @@ tramo_fast <- function(
 #' @returns The `tramoseats()` function returns a list with the results, the
 #' estimation specification and the result specification, while
 #' `tramoseats_fast()` is a faster function that only returns the results.
-#' The `.jtramoseats()` functions only results the java object to custom outputs
+#' The `jtramoseats()` functions only results the java object to custom outputs
 #' in other packages (use [rjd3toolkit::dictionary()] to get the list of
 #' variables and [rjd3toolkit::result()] to get a specific variable).
 #'
@@ -208,47 +221,11 @@ tramoseats <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    # TODO : check parameters
-    jts <- rjd3toolkit::.r2jd_tsdata(ts)
-    if (is.character(spec)) {
-        spec <- gsub("tr", "rsa", tolower(spec), fixed = TRUE)
-        spec <- match.arg(
-            spec[1],
-            choices = c(
-                "rsafull",
-                "rsa0",
-                "rsa1",
-                "rsa2",
-                "rsa3",
-                "rsa4",
-                "rsa5"
-            )
-        )
-        jrslt <- .jcall(
-            "jdplus/tramoseats/base/r/TramoSeats",
-            "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;",
-            "fullProcess",
-            jts,
-            spec
-        )
-    } else {
-        jspec <- .r2jd_spec_tramoseats(spec)
-        if (is.null(context)) {
-            jcontext <- .jnull(
-                "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
-            )
-        } else {
-            jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
-        }
-        jrslt <- .jcall(
-            "jdplus/tramoseats/base/r/TramoSeats",
-            "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsOutput;",
-            "fullProcess",
-            jts,
-            jspec,
-            jcontext
-        )
-    }
+
+    jrslt <- .jrslt_tramoseats(
+        ts = ts, spec = spec, context = context,
+        jfun = "fullProcess", joutput = "TramoSeatsOutput"
+    )
     if (is.jnull(jrslt)) {
         return(NULL)
     } else {
@@ -265,46 +242,10 @@ tramoseats_fast <- function(
     context = NULL,
     userdefined = NULL
 ) {
-    jts <- rjd3toolkit::.r2jd_tsdata(ts)
-    if (is.character(spec)) {
-        spec <- gsub("tr", "rsa", tolower(spec), fixed = TRUE)
-        spec <- match.arg(
-            spec[1],
-            choices = c(
-                "rsafull",
-                "rsa0",
-                "rsa1",
-                "rsa2",
-                "rsa3",
-                "rsa4",
-                "rsa5"
-            )
-        )
-        jrslt <- .jcall(
-            "jdplus/tramoseats/base/r/TramoSeats",
-            "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;",
-            "process",
-            jts,
-            spec
-        )
-    } else {
-        jspec <- .r2jd_spec_tramoseats(spec)
-        if (is.null(context)) {
-            jcontext <- .jnull(
-                "jdplus/toolkit/base/api/timeseries/regression/ModellingContext"
-            )
-        } else {
-            jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
-        }
-        jrslt <- .jcall(
-            "jdplus/tramoseats/base/r/TramoSeats",
-            "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;",
-            "process",
-            jts,
-            jspec,
-            jcontext
-        )
-    }
+    jrslt <- .jrslt_tramoseats(
+        ts = ts, spec = spec, context = context,
+        jfun = "process", joutput = "TramoSeatsResults"
+    )
     if (is.jnull(jrslt)) {
         return(NULL)
     } else {
@@ -320,11 +261,32 @@ tramoseats_fast <- function(
 
 #' @export
 #' @rdname tramoseats
-.jtramoseats <- function(
+jtramoseats <- function(
     ts,
     spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
     context = NULL,
     userdefined = NULL
+) {
+    jrslt <- .jrslt_tramoseats(
+        ts = ts, spec = spec, context = context,
+        jfun = "process", joutput = "TramoSeatsResults"
+    )
+    if (is.jnull(jrslt)) {
+        return(NULL)
+    } else {
+        res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
+        return(res)
+    }
+}
+
+#' @keywords internals
+#' @noRd
+.jrslt_tramoseats <- function(
+    ts,
+    jfun,
+    joutput,
+    spec =  c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+    context = NULL
 ) {
     jts <- rjd3toolkit::.r2jd_tsdata(ts)
     if (is.character(spec)) {
@@ -343,8 +305,8 @@ tramoseats_fast <- function(
         )
         jrslt <- .jcall(
             "jdplus/tramoseats/base/r/TramoSeats",
-            "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;",
-            "process",
+            sprintf("Ljdplus/tramoseats/base/core/tramoseats/%s;", joutput),
+            jfun,
             jts,
             spec
         )
@@ -359,21 +321,17 @@ tramoseats_fast <- function(
         }
         jrslt <- .jcall(
             "jdplus/tramoseats/base/r/TramoSeats",
-            "Ljdplus/tramoseats/base/core/tramoseats/TramoSeatsResults;",
-            "process",
+            sprintf("Ljdplus/tramoseats/base/core/tramoseats/%s;", joutput),
+            jfun,
             jts,
             jspec,
             jcontext
         )
     }
-    if (is.jnull(jrslt)) {
-        return(NULL)
-    } else {
-        res <- rjd3toolkit::.jd3_object(jrslt, result = TRUE)
-        return(res)
-    }
+    return(jrslt)
 }
-
+#' @keywords internals
+#' @noRd
 .tramoseats_output <- function(jq) {
     if (is.jnull(jq)) {
         return(NULL)

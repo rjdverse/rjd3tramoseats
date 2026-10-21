@@ -63,3 +63,15 @@ userdefined_variables_tramoseats <- function(x = c("TRAMO-SEATS", "TRAMO")) {
     .Deprecated("tramoseats_dictionary")
     tramoseats_dictionary()
 }
+
+#' @export
+#' @rdname deprecated-rjd3tramoseats
+.jtramoseats <- function(
+    ts,
+    spec = c("rsafull", "rsa0", "rsa1", "rsa2", "rsa3", "rsa4", "rsa5"),
+    context = NULL,
+    userdefined = NULL
+) {
+    .Deprecated("jtramoseats")
+    jtramoseats(ts, spec, context, userdefined)
+}
